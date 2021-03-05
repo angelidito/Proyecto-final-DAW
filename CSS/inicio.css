@@ -1,0 +1,89 @@
+#ciclos {
+    box-sizing: border-box;
+    width: auto;
+    margin: 1em;
+    position: relative;
+}
+
+
+#ciclos button {
+    box-sizing: content-box;
+    background-color: white;
+    border: 1px solid #8C4F2B;
+    color: #8C4F2B;
+    /* cursor: pointer; */
+    width: 100%;
+    height: 2em;
+    margin: auto;
+    display: block;
+}
+
+#ciclos button:not(:last-child) {
+    border-bottom: none;
+    /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+#ciclos button:hover {
+    background-color: #8C4F2B;
+    color: white;
+    border-color: #D9AD5B;
+}
+
+.modulos {
+    box-sizing: content-box;
+    background-color: whitesmoke;
+    border: 1px solid #8C4F2B;
+    color: #8C4F2B;
+    width: 100%;
+    padding: 0.5em 0;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    display: none;
+    /* position: absolute; */
+    /* z-index: 1; */
+    /* position: absolute; */
+}
+
+.modulos {
+    border-radius: 0 0 10px 10px;
+}
+
+
+.modulo {
+    width: 200px;
+    height: calc(115px + 1.25em);
+    background-color: #e9e9e9;
+    border: 1px solid #b9b9b9;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.35em auto 0.35em auto;
+}
+
+.modulo:hover {
+    cursor: pointer;
+}
+
+
+.modulo img {
+    width: 200px;
+    height: 115px;
+}
+
+/* para que se despliegue con hover
+pero lo he hecho con javascipt
+por que hover no era practico en este caso*/
+
+/* .basicos:hover .basicos {
+    display: flex;
+}
+
+.medios:hover .medios {
+    display: flex;
+}
+
+.superiores:hover .superiores {
+    display: flex;
+} */
