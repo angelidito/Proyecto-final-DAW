@@ -386,7 +386,7 @@ ul.breadcrumb li {
 }
 
 ul.breadcrumb li+li::before {
-    content: " > ";
+    content: " / ";
 }
 
 ul.breadcrumb li a {
@@ -402,6 +402,7 @@ ul.breadcrumb li a:hover {
 main {
     grid-area: cuerpo;
     background-color: white;
+    padding: 1em;
 }
 
 /*  */

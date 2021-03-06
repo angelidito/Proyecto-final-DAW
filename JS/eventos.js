@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Ocultar/mostrar menu en versión movil
     document.getElementById('botonMenu').addEventListener('click', mostrarMenu);
 
 });
 
+// Ocultar/mostrar menu en versión movil
+// lo hace dando uso a las clases css
 function mostrarMenu() {
     let menu = document.getElementById('menu');
 
