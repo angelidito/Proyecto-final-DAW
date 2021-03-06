@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
 function mostrarMenu() {
     let menu = document.getElementById('menu');
 
-    if (menu.style.display != "flex") {
-        menu.style.display = "flex";
+    if (menu.getAttribute('class') != 'flex') {
+        menu.setAttribute('class', 'flex');
     } else {
-        menu.style.display = "none";
+        menu.setAttribute('class', 'hidden');
     }
 }
 
