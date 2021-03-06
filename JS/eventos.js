@@ -3,6 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ocultar/mostrar menu en versión movil
     document.getElementById('botonMenu').addEventListener('click', mostrarMenu);
 
+
+    // TODO: evento cambio de idioma.
+    // Usar las clases de los elementos
+    // La primera clase será el idioma:
+    //   · EN para cambiar a inglés
+    //   · ES para cambiar a español
+    // La segunda será cambioIdioma;
+    // para añadirles el evento de cambiar de idioma
+    let elementosCambioIdioma = document.getElementsByClassName('cambioIdioma');
+    for (let i = 0; i < elementosCambioIdioma.length; i++) {
+        const elemento = elementosCambioIdioma[i];
+        elemento.addEventListener('click', cambiarIdioma);
+    }
+
 });
 
 // Ocultar/mostrar menu en versión movil
@@ -17,7 +31,7 @@ function mostrarMenu() {
     }
 }
 
-// function mostrarOcultar(e) {
+// function mostrarOcultarConFlex(e) {
 //     let nivel = e.target.parentNode.getAttribute('class').split(' ')[1];
 //     let div = document.getElementsByClassName(nivel)[1];
 //     if (div.style.display != "flex") {
@@ -26,3 +40,65 @@ function mostrarMenu() {
 //         div.style.display = "none";
 //     }
 // }
+
+// Cambia el idioma de la página cambiando la url
+// Usar las clases de los elementos
+// La primera clase será el idioma:
+//   · EN para cambiar a inglés
+//   · ES para cambiar a español
+// La segunda será cambioIdioma;
+// para añadirles el evento de cambiar de idioma
+function cambiarIdioma(e) {
+
+    // Nuestra url actual
+    let urlActual = window.location.href;
+
+    // URL objetivo
+    let urlObjetivo = '';
+
+    // Idioma al que queremos cambiar
+    let idiomaObjetivo = e.target.getAttribute('class').split(' ')[0].toLowerCase();
+
+    // Buscamos cual es nuestro idioma actual:
+    let idiomaActual = document.getElementsByTagName('html')[0].getAttribute('lang').toLowerCase();
+
+
+
+    // Si no estámos ya en la página del idioma...
+    if (idiomaActual !== idiomaObjetivo) {
+
+        // Contemplamos el caso excepcional de la página de inicio index.html en español 
+        // donde no está escrito el idioma
+        if (idiomaActual === 'es' && !/\/es\//.test(urlActual)) {
+            // Le quitamos la parte de index.html por si por algun casual la tiene...
+            // y le metemos en/   (sin la primera barra, porque no se la quitamos a la url actual)
+            urlObjetivo = urlActual.split('index.html')[0] + 'en/';
+        }
+
+        // Si no es el caso excepcional, toca sustituir cosas
+        else {
+            // Dividimos el string por /es/ o /en/ segun corresponda
+            let partesURL = urlActual.split('/' + idiomaActual + '/');
+            // Creamos la nueva url con las partes del string anterior y metiendole /en/ o /es/ segun corresponda
+            urlObjetivo = partesURL[0] + '/' + idiomaObjetivo + '/' + partesURL[1];
+        }
+
+        // console.log(
+        //     "Idioma objetivo: " + idiomaObjetivo +
+        //     '\n URL actual: ' + urlActual +
+        //     '\n Idioma actual: ' + idiomaActual +
+        //     '\n URL actual: ' + urlObjetivo);
+
+        // Por ultimo vamos a la url del nuevo idioma.
+        window.location.href = urlObjetivo;
+
+    } else {
+        console.log('Vaya, parece que alguien está intentando cambiar a un idioma en el que ya está la página...\nQue inista, que insista... La banderita no va moverse el sitio.')
+    }
+
+
+    // NOTA: si aun no están creados los archivos de los otros idiomas, 
+    // obviamente no va a encontrarlos, pero no es porblema, porque 
+    // Tan y como funcióna ahora, llevará a los archivos correctos cuando estén
+
+}

@@ -259,7 +259,7 @@ header {
     align-items: center;
     width: 100%;
     height: min-content;
-    color: #f40;
+    /* color: #f40; */
 
     display: flex;
     /* justify-content: flex-end; */
@@ -270,6 +270,10 @@ header {
 
     height: min-content;
     border-bottom: 1px solid #f40;
+}
+
+header a {
+    color: red;
 }
 
 #logoYTitulo {
@@ -292,6 +296,7 @@ header {
     margin: auto;
     padding-right: 7px;
 
+
 }
 
 #botonMenu {
@@ -299,15 +304,16 @@ header {
     font-size: 2.5em;
     margin: auto 0;
     text-align: center;
+    color: red;
 }
 
 #botonMenu:hover,
 #botonMenu:focus {
-    color: rgb(153, 41, 0);
+    color: #f40;
 }
 
 #botonMenu:active {
-    color: #f40;
+    color: rgb(200, 0, 0);
 }
 
 /* TODO: 
@@ -340,7 +346,7 @@ mostrar al hacer click en el boton menu, que será hijo del  header, por lo que 
     padding-top: 1em;
     padding-bottom: 1em;
     text-decoration: none;
-    color: red;
+    /* color: red; */
 }
 
 /* 
@@ -348,11 +354,11 @@ mostrar al hacer click en el boton menu, que será hijo del  header, por lo que 
     border-bottom: none;
 } */
 
-#menu a:focus {
+/* #menu a:focus {
     color: white;
-}
+} */
 
-#menu a:hover {
+#menu li a:hover {
     color: white;
     background-color: #f76;
 }
@@ -361,24 +367,24 @@ mostrar al hacer click en el boton menu, que será hijo del  header, por lo que 
     color: black;
 }
 
-
-
 #tiposTraduccion {
+    display: none;
+}
+
+#cambioIdiomaEscritorio {
     display: none;
 }
 
 
 
 /* BREADCRUMB */
-.breadcrumb {
-    grid-area: migas;
-}
 
 ul.breadcrumb {
-    background-color: cyan;
-    box-sizing: content-box;
+    display: block;
+    grid-area: migas;
     list-style: none;
-    width: 100%;
+    width: max-content;
+    margin: 0.5em 0 0.5em 1em;
 }
 
 ul.breadcrumb li {
@@ -386,17 +392,26 @@ ul.breadcrumb li {
 }
 
 ul.breadcrumb li+li::before {
-    content: " / ";
+    content: ">";
+
 }
 
+/* Sólo para el último */
 ul.breadcrumb li a {
     color: black;
-
 }
 
-ul.breadcrumb li a:hover {
-    color: white;
+/* Para todos menos el último */
+ul.breadcrumb li:not(:last-child) a {
+    color: darkblue;
+    text-decoration: underline;
 }
+
+/* Para todos menos el último */
+ul.breadcrumb li:not(:last-child) a:hover {
+    color: blue;
+}
+
 
 /*  */
 main {
@@ -416,7 +431,6 @@ aside {
 
 footer {
     background-color: #fc9;
-    padding-top: 1em;
     grid-area: pie;
     display: flex;
     flex-wrap: wrap-reverse;
@@ -424,12 +438,14 @@ footer {
     /* align-content: flex-start; */
     /* justify-content: space-evenly; */
     align-items: center;
+
+    padding: 1em calc(5% - 0.5em) 0 calc(5% - 0.5em);
 }
 
 
 
 #logoYCopyR {
-    margin: 0 auto 1em 5%;
+    margin: 0 auto 1em 0;
     min-width: min-content;
     height: auto;
     display: flex;
@@ -447,14 +463,12 @@ footer {
 footer address {
     text-align: center;
 
-    padding: 0 1em;
 }
 
 .botonPresupuesto {
     display: block;
     background-color: blueviolet;
     border-radius: 40% 1mm;
-    padding: 1.2em;
     text-align: center;
     color: white;
     width: max-content;
@@ -462,8 +476,8 @@ footer address {
     /* position: absolute;
     left: calc(100% - 10em); */
     margin-left: auto;
-    margin-right: 5%;
-
+    margin-right: 0.5em;
+    padding: 1.2em;
 }
 
 
@@ -476,7 +490,7 @@ footer address {
 
 /* ---------- VERSIÓN ORDENADOR PEQUEÑO/TABLET ---------- */
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
     /* body {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -509,7 +523,7 @@ footer address {
         align-content: flex-start; */
         justify-items: flex-end;
         align-content: flex-end;
-
+        margin-top: 7px;
         margin-right: 18%;
 
     }
@@ -533,13 +547,9 @@ footer address {
         cursor: pointer;
     }
 
-
-
-
     #botonMenu {
         display: none;
     }
-
 
 
     #menu {
@@ -584,29 +594,27 @@ footer address {
         display: block;
     }
 
-
-    /* BREADCRUMB */
-    .breadcrumb {
-        grid-area: migas;
-    }
-
-    ul.breadcrumb {
-        box-sizing: content-box;
-        list-style: none;
-        width: 100%;
-    }
-
-
-    /*  */
-    main {
-        grid-area: cuerpo;
-    }
-
-    /*  */
-    aside {
-        grid-area: aside;
+    #cambioIdiomaMovil {
         display: none;
     }
+
+    #cambioIdiomaEscritorio {
+        display: block;
+        position: absolute;
+        font-size: 2em;
+        top: 1em;
+        right: 1em;
+        z-index: 1;
+    }
+
+    /* .es {
+        margin-right: 0.1em;
+    } */
+
+
+
+
+
 
     /*  */
 
