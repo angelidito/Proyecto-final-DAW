@@ -371,6 +371,10 @@ mostrar al hacer click en el boton menu, que será hijo del  header, por lo que 
     display: none;
 }
 
+#listaServicios {
+    display: none;
+}
+
 #cambioIdiomaEscritorio {
     display: none;
 }
