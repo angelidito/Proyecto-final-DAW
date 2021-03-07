@@ -26,8 +26,8 @@ h6 {
 }
 
 html {
-    overflow-y: scroll;
-    /* overflow-x: hidden; */
+    overflow-y: scroll visible;
+    overflow-x: scroll visible;
 }
 
 html,
@@ -218,7 +218,7 @@ a:focus {
 /* ---------- INFO CONTACTO ---------- */
 
 .telefono {
-    padding-left: 1em;
+    padding-left: 1.1em;
     background-image: url("../imagenes/icons/was.ico");
     background-size: 1em auto;
     background-repeat: no-repeat;
@@ -572,7 +572,7 @@ footer address {
     }
 
     #menu a {
-        padding: 1em 1.5em;
+        padding: 1em 1.3em;
     }
 
     #menu li:not(:last-child) {
@@ -584,6 +584,9 @@ footer address {
         background-color: rgb(252, 252, 252);
         list-style: none;
 
+        border: 1px solid #f40;
+        border-top: none;
+
         display: none;
         position: absolute;
         z-index: 1;
@@ -591,6 +594,24 @@ footer address {
     }
 
     #traduccion:hover #tiposTraduccion {
+        display: block;
+    }
+
+
+    #listaServicios {
+        background-color: rgb(252, 252, 252);
+        list-style: none;
+
+        border: 1px solid #f40;
+        border-top: none;
+
+        display: none;
+        position: absolute;
+        z-index: 1;
+        width: max-content;
+    }
+
+    #otrosServicios:hover #listaServicios {
         display: block;
     }
 
@@ -628,5 +649,14 @@ footer address {
     }
 
     /* TODO: footer */
+
+}
+
+
+
+@media screen and (min-width: 630px) {
+    #menu a {
+        padding: 1em 1.5em;
+    }
 
 }
