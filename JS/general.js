@@ -47,6 +47,7 @@ function mostrarMenu() {
 // para añadirles el evento de cambiar de idioma
 function asignarEnlaceIdioma(enlace) {
 
+
     // Nuestra url actual
     let urlActual = window.location.href;
 
@@ -58,6 +59,13 @@ function asignarEnlaceIdioma(enlace) {
 
     // Buscamos cual es nuestro idioma actual:
     let idiomaActual = document.getElementsByTagName('html')[0].getAttribute('lang').toLowerCase();
+
+
+    if (idiomaObjetivo == 'es') {
+        enlace.innerHTML = 'ES'; // Cambiar esto por un icono
+    } else if (idiomaObjetivo == 'en') {
+        enlace.innerHTML = 'EN'; // Cambiar esto por un icono
+    }
 
 
 

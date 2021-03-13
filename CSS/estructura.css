@@ -626,7 +626,7 @@ footer address {
     #cambioIdiomaEscritorio {
         display: block;
         position: absolute;
-        font-size: 2em;
+        font-size: 1em;
         top: 1em;
         right: 1em;
         z-index: 1;
