@@ -4,17 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('botonMenu').addEventListener('click', mostrarMenu);
 
 
-    // TODO: evento cambio de idioma.
-    // Usar las clases de los elementos
-    // La primera clase será el idioma:
-    //   · EN para cambiar a inglés
-    //   · ES para cambiar a español
-    // La segunda será cambioIdioma;
-    // para añadirles el evento de cambiar de idioma
-    let elementosCambioIdioma = document.getElementsByClassName('cambioIdioma');
-    for (let i = 0; i < elementosCambioIdioma.length; i++) {
-        const elemento = elementosCambioIdioma[i];
-        elemento.addEventListener('click', cambiarIdioma);
+
+    // Añadir enlaces de cada idioma    cambio de idioma.
+
+    let enlacesCambioIdioma = document.getElementsByClassName('cambioIdioma');
+    for (let i = 0; i < enlacesCambioIdioma.length; i++) {
+        asignarEnlaceIdioma(enlacesCambioIdioma[i]);
     }
 
 });
@@ -41,14 +36,16 @@ function mostrarMenu() {
 //     }
 // }
 
-// Cambia el idioma de la página cambiando la url
-// Usar las clases de los elementos
+// Asigna el atributo href al enlace  
+// correspondiente a la mísma página 
+// pero en el otro idioma.
+// Usa las clases de los elementos.
 // La primera clase será el idioma:
 //   · EN para cambiar a inglés
 //   · ES para cambiar a español
 // La segunda será cambioIdioma;
 // para añadirles el evento de cambiar de idioma
-function cambiarIdioma(e) {
+function asignarEnlaceIdioma(enlace) {
 
     // Nuestra url actual
     let urlActual = window.location.href;
@@ -57,7 +54,7 @@ function cambiarIdioma(e) {
     let urlObjetivo = '';
 
     // Idioma al que queremos cambiar
-    let idiomaObjetivo = e.target.getAttribute('class').split(' ')[0].toLowerCase();
+    let idiomaObjetivo = enlace.getAttribute('class').split(' ')[0].toLowerCase();
 
     // Buscamos cual es nuestro idioma actual:
     let idiomaActual = document.getElementsByTagName('html')[0].getAttribute('lang').toLowerCase();
@@ -90,10 +87,11 @@ function cambiarIdioma(e) {
         //     '\n URL actual: ' + urlObjetivo);
 
         // Por ultimo vamos a la url del nuevo idioma.
-        window.location.href = urlObjetivo;
+        enlace.setAttribute('href', 'urlObjetivo');
 
     } else {
-        console.log('Vaya, parece que alguien está intentando cambiar a un idioma en el que ya está la página...\nQue inista, que insista... La banderita no va moverse el sitio.')
+        console.log('Vaya, parece que alguien está intentando cambiar a un idioma en el que ya está la página...\nQue inista, que insista... La banderita no va moverse el sitio.');
+        enlace.setAttribute('href', '#')
     }
 
 
