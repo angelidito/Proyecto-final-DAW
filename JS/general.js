@@ -1,21 +1,23 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", inicio);
+
+/** 
+ * Inicia diversos mecanismos necesarios para página. 
+ */
+function inicio() {
 
     // Ocultar/mostrar menu en versión movil
     document.getElementById('botonMenu').addEventListener('click', mostrarMenu);
 
+    // Enlaces
+    asignarEnlaces();
+}
 
 
-    // Añadir enlaces de cada idioma    cambio de idioma.
-
-    let enlacesCambioIdioma = document.getElementsByClassName('cambioIdioma');
-    for (let i = 0; i < enlacesCambioIdioma.length; i++) {
-        asignarEnlaceIdioma(enlacesCambioIdioma[i]);
-    }
-
-});
-
-// Ocultar/mostrar menu en versión movil
-// lo hace dando uso a las clases css
+/**
+ * Oculta o muestra el menú en versión movil.
+ * 
+ * Emplea clases css.
+ */
 function mostrarMenu() {
     let menu = document.getElementById('menu');
 
@@ -36,15 +38,36 @@ function mostrarMenu() {
 //     }
 // }
 
-// Asigna el atributo href al enlace  
-// correspondiente a la mísma página 
-// pero en el otro idioma.
-// Usa las clases de los elementos.
-// La primera clase será el idioma:
-//   · EN para cambiar a inglés
-//   · ES para cambiar a español
-// La segunda será cambioIdioma;
-// para añadirles el evento de cambiar de idioma
+
+function asignarEnlaces() {
+
+    // Añadir enlaces de cada idioma    cambio de idioma.
+    let enlacesCambioIdioma = document.getElementsByClassName('cambioIdioma');
+    for (let i = 0; i < enlacesCambioIdioma.length; i++) {
+        asignarEnlaceIdioma(enlacesCambioIdioma[i]);
+    }
+
+    asignarEnlaceAClase('google.es', 'telefono');
+    asignarEnlaceAClase('mailto:malena.traduceme@gmail.com', 'email');
+
+}
+
+/** 
+ * Asigna el atributo href al enlace
+ * correspondiente a la mísma página
+ * pero en el otro idioma.
+ * Usa las clases de los elementos.
+ * 
+ * La primera clase será el idioma:  
+ *  · EN para cambiar a inglés;  
+ *  · ES para cambiar a español.
+ * 
+ * La segunda será cambioIdioma: 
+ * para añadirles el evento de cambiar de idioma
+ * 
+ * @param {Element} enlace Elemento `a` que debe cambiar de idioma
+ * 
+ */
 function asignarEnlaceIdioma(enlace) {
 
 
@@ -62,11 +85,10 @@ function asignarEnlaceIdioma(enlace) {
 
 
     if (idiomaObjetivo == 'es') {
-        enlace.innerHTML = 'ES'; // Cambiar esto por un icono
+        enlace.innerHTML = 'ES'; // TODO: Cambiar esto por un icono
     } else if (idiomaObjetivo == 'en') {
-        enlace.innerHTML = 'EN'; // Cambiar esto por un icono
+        enlace.innerHTML = 'EN'; // TODO: Cambiar esto por un icono
     }
-
 
 
     // Si no estámos ya en la página del idioma...
@@ -95,16 +117,38 @@ function asignarEnlaceIdioma(enlace) {
         //     '\n URL actual: ' + urlObjetivo);
 
         // Por ultimo vamos a la url del nuevo idioma.
-        enlace.setAttribute('href', 'urlObjetivo');
+        enlace.setAttribute('href', urlObjetivo);
 
     } else {
-        console.log('Vaya, parece que alguien está intentando cambiar a un idioma en el que ya está la página...\nQue inista, que insista... La banderita no va moverse el sitio.');
         enlace.setAttribute('href', '#')
     }
-
 
     // NOTA: si aun no están creados los archivos de los otros idiomas, 
     // obviamente no va a encontrarlos, pero no es porblema, porque 
     // Tan y como funcióna ahora, llevará a los archivos correctos cuando estén
+}
 
+
+/**
+ * Asigna el un string como atributo `href` 
+ * a los elementos `a` de una clase concreta.
+ * 
+ * Si algún elemento tiene la clase especificada, 
+ * pero no es un elace, no le asigna el atributo `href`.
+ * 
+ * @param {string} enlace Enlace poner como `href` 
+ * @param {string} clase Atributo `class` del elemento
+ */
+function asignarEnlaceAClase(enlace, clase) {
+
+    const elementos = document.getElementsByClassName(clase);
+
+    for (let i = 0; i < elementos.length; i++) {
+        const element = elementos[i];
+
+        if (element.tagName == 'A') {
+            element.setAttribute('href', enlace);
+        }
+
+    }
 }
