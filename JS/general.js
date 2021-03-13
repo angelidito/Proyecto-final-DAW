@@ -47,7 +47,7 @@ function asignarEnlaces() {
         asignarEnlaceIdioma(enlacesCambioIdioma[i]);
     }
 
-    asignarEnlaceAClase('google.es', 'telefono');
+    asignarEnlaceAClase('https://wa.me/34646894066?text=¡Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo…', 'telefono');
     asignarEnlaceAClase('mailto:malena.traduceme@gmail.com', 'email');
 
 }
