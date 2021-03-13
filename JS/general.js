@@ -129,6 +129,7 @@ function asignarEnlaceIdioma(enlace) {
 }
 
 
+
 /**
  * Asigna el un string como atributo `href` 
  * a los elementos `a` de una clase concreta.
