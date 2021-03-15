@@ -316,11 +316,6 @@ header a {
     color: rgb(200, 0, 0);
 }
 
-/* TODO: 
-sacar el boton menu de la calse desplegable y quizá hasta sobre la clase.
-ocultar el btn-group.
-mostrar al hacer click en el boton menu, que será hijo del  header, por lo que quizá hay que meterle a este un wrap y dar al btn-group width de 100%  ver si funciona de una vez
-*/
 #menu {
     display: none;
     grid-area: menú;
@@ -420,9 +415,52 @@ ul.breadcrumb li:not(:last-child) a:hover {
 /*  */
 main {
     grid-area: cuerpo;
-    background-color: white;
+    /* background-color: rgba(255, 255, 255, 0); */
+    /* background-size: cover; */
     padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
 }
+
+#tituloPagina {
+    /* background-attachment: fixed 50% 50%; */
+    background-position: absolute;
+    background-position-y: -50px;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+    height: 15em;
+    width: 100%;
+    /* filter: blur(8px); */
+    /* text-align: left; */
+    padding: 1;
+}
+
+#tituloPagina h2 {
+    content: "";
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background: #000;
+    color: red;
+    margin: auto auto;
+    font-size: 3em;
+    /* height: em; */
+
+    /* background-color: rgb(0, 0, 0, 0.4); */
+    /* border-radius: 1em; */
+}
+
+#tituloPagina h2 {}
 
 /*  */
 aside {
