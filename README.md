@@ -8,4 +8,4 @@ Las páginas principales toman forma con HTML y CSS, mientras que sólo algunas 
 No dejo JavaScript atrás, puesto que se emplea para diversas funcionalidades de applicación web.
 
 ## Nota:
-Mientras desarrolle la web (y el contenido de esta sea estático) se podrá ver su progreso a traves de [GitHub Pages en este enlace](https://angelidito.github.io/Proyecto-final-DAW/).
+Mientras desarrolle la web (y el contenido de esta sea estático) se podrá ver su progreso [a traves de GitHub Pages en este enlace](https://angelidito.github.io/Proyecto-final-DAW/).
