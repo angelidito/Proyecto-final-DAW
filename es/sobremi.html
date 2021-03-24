@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - TraduceTe</title>
     <!-- Hojas de estilos -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/bootstrap-5.0.0-beta2-dist/css/bootstrap-grid.min.css"> -->
+    <link rel="stylesheet" href="../CSS/w3.css">
     <link rel="stylesheet" href="../CSS/estructura.css">
     <link rel="stylesheet" href="../CSS/sobremi.css">
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script src="../JS/general.js"></script>
 
 </head>
@@ -23,7 +31,7 @@
                 <img src="../imagenes/logo.png" alt="logo" id="logoCabecera" class="logo">
             </a>
             <a href="..">
-                <h1>TradúceMe</h1>
+                <p id="tituloWeb" class="heading">TradúceMe</p>
             </a>
 
             <span id="botonMenu">
@@ -76,22 +84,91 @@
 
 
 
-    <nav class="breadcrumb">
-        <ul class="breadcrumb">
-            <li>
-                &nbsp;<a href="..">Inicio</a>
-            </li>
-            <li>
-                <a href="#">Sobre mí</a>
-            </li>
-        </ul>
-    </nav>
-
-
     <main>
-        <div id="tituloPagina">
-            <h2>Sobre mí: Malena</h2>
+
+        <div id="tituloPagina" class="w3-display-container">
+
+
+            <h1 class="w3-content w3-center">Sobre mí: Malena</h1>
+
         </div>
+
+        <nav class="breadcrumb">
+            <ul class="breadcrumb">
+                <li> &nbsp;<a href="..">Inicio</a> </li>
+                <li> <a href="#">Sobre mí</a> </li>
+            </ul>
+        </nav>
+
+        <!-- <div class="w3-display-container w3-green" style="height:300px;">
+            <div class="w3-display-topleft"> Top Left </div>
+            <div class="w3-display-topright"> Top Right </div>
+            <div class="w3-display-bottomleft"> Bottom Left </div>
+            <div class="w3-display-bottomright"> Bottom Right </div>
+            <div class="w3-display-left"> Left </div>
+            <div class="w3-display-right"> Right </div>
+            <div class="w3-display-middle"> Middle </div>
+            <div class="w3-display-topmiddle"> Top Mid </div>
+            <div class="w3-display-bottommiddle"> Bottom Mid </div>
+        </div> -->
+
+        <div class="w3-container w3-padding-large w3-round-large w3-center">
+            <h2 class="">¡Hola!</h2>
+            <p>
+                Me llamo Malena Martínez Díez y soy filóloga, traductora y profesora de lenguas.
+            </p>
+        </div>
+
+        <div class="w3-container w3-padding-16 w3-center ">
+            <img src="../imagenes/paraPruebas/IMG_8915.JPG" alt="imagen decorativa" class='' width="100px">
+        </div>
+        <div class="w3-container w3-padding-large w3-round-large ">
+
+
+
+            <h2 class=" ">Mis mitulaciones universitarias</h2>
+            <ul class="w3-ul  ">
+                <li>
+                    Grado en Estudios Ingleses, Universidad de Valladolid.
+                </li>
+                <li>
+                    Máster en Traducción Institucional, Universidad de Alicante
+                </li>
+                <li>
+                    Máster en Enseñanza de Español como Lengua Extranjera, Universidad de Burgos.
+                </li>
+            </ul>
+
+        </div>
+
+
+
+        <div class="w3-container w3-padding-large w3-round-large">
+            <!-- <div class="w3-container w3-padding-16 w3-right"><img
+                    src="../imagenes/paraPruebas/b443e8ce-b759-4126-b7c6-e0cecbd4ae3c.JPG" alt="imagen decorativa">
+            </div> -->
+            <h2 class=" ">Otros estudios</h2>
+
+            <ul class="w3-ul  ">
+                <li>
+                    Curso de traducción de contenidos audiovisuales para plataformas VOD EN-ES
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- <div class="w3-container w3-padding-large w3-round-large">
+            <div class="w3-left"><img src="." alt="imagen decorativa"></div>
+            <h2 class="w3-right-align ">Título</h2>
+            <p class="w3-left-align">
+                Vel, praesentium vitae! Culpa voluptatem eius laborum iure dolores? Provident,
+                sequi tempore. Possimus
+                saepe
+                nemo unde in amet voluptate inventore aspernatur magni deserunt eos, maiores quos quae reiciendis error
+                quod.
+            </p>
+        </div> -->
+
 
 
     </main>
@@ -102,10 +179,6 @@
 
             <p>&copy; TradúceMe 2021</p>
         </div>
-
-
-
-
 
         <address>
             <p>
@@ -125,7 +198,7 @@
             </p>
         </address>
 
-        <a href="presupuesto.php" class="botonPresupuesto">Pide tu presupuesto<br>sin compromiso</a>
+        <a href="presupuesto.php" class="botonPresupuesto w3-card-4 w3-red">Pide tu presupuesto<br>sin compromiso</a>
 
     </footer>
 

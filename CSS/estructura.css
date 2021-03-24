@@ -36,7 +36,7 @@ body {
     height: 100%;
     max-width: 100%;
     font-size: 14px;
-    line-height: 1.6em;
+    line-height: 1.6rem;
 }
 
 h1,
@@ -46,7 +46,7 @@ h4,
 h5,
 h6,
 .heading {
-    /* font-size: 22px; */
+    /* font-size: 44px; */
     line-height: normal;
     font-weight: normal;
     text-transform: capitalize;
@@ -66,6 +66,9 @@ hr {
 
 }
 
+ul {
+    padding-left: 0;
+}
 
 
 *,
@@ -218,17 +221,17 @@ a:focus {
 /* ---------- INFO CONTACTO ---------- */
 
 .telefono {
-    padding-left: 1.1em;
+    padding-left: 1.1rem;
     background-image: url("../imagenes/icons/was.ico");
-    background-size: 1em auto;
+    background-size: 1rem auto;
     background-repeat: no-repeat;
     background-position-y: center;
 }
 
 .email {
-    padding-left: 1.2em;
+    padding-left: 1.2rem;
     background-image: url("../imagenes/icons/sobre.ico");
-    background-size: 1em auto;
+    background-size: 1rem auto;
     background-repeat: no-repeat;
     background-position-y: center;
 }
@@ -285,13 +288,13 @@ header a {
 }
 
 #logoCabecera {
-    height: 5em;
-    width: 5em;
-    margin: 0.5em;
+    height: 5rem;
+    width: 5rem;
+    margin: 0.5rem;
 }
 
 
-#logoYTitulo h1 {
+#logoYTitulo .heading {
     width: min-content;
     margin: auto;
     padding-right: 7px;
@@ -300,8 +303,8 @@ header a {
 }
 
 #botonMenu {
-    width: 2.4em;
-    font-size: 2.5em;
+    width: 2.4rem;
+    font-size: 2.5rem;
     margin: auto 0;
     text-align: center;
     color: red;
@@ -338,8 +341,8 @@ header a {
 
 #menu a {
     display: block;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     text-decoration: none;
     /* color: red; */
 }
@@ -383,7 +386,8 @@ ul.breadcrumb {
     grid-area: migas;
     list-style: none;
     width: max-content;
-    margin: 0.5em 0 0.5em 1em;
+    margin: 0.5rem 0 0.5rem 0rem;
+    margin-bottom: 0;
 }
 
 ul.breadcrumb li {
@@ -417,15 +421,19 @@ main {
     grid-area: cuerpo;
     /* background-color: rgba(255, 255, 255, 0); */
     /* background-size: cover; */
-    padding: 1em;
+    /* padding: 1rem; */
 
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: center; */
 
 }
 
+/* AAAAAAAAAAAHHHHHHHHHHHHHHHHHHH */
+
+
 #tituloPagina {
+    /* padding:  ; */
     /* background-attachment: fixed 50% 50%; */
     background-position: absolute;
     background-position-y: -50px;
@@ -434,33 +442,65 @@ main {
     /* Do not repeat the image */
     background-size: cover;
     /* Resize the background image to cover the entire container */
-    height: 15em;
+    height: 15rem;
     width: 100%;
     /* filter: blur(8px); */
     /* text-align: left; */
-    padding: 1;
+    padding: 0;
+    border-bottom: 5px solid red;
+    margin: 0px 0 0.5rem 0;
+    border: none;
+    border-bottom: 2px solid red;
 }
 
-#tituloPagina h2 {
-    content: "";
+#tituloPagina h1 {
+    /* content: "";
     left: 0;
     top: 0;
     bottom: 0;
     right: 0;
-    width: 100%;
+    width: 100%; */
     height: 100%;
-    opacity: 0.4;
-    background: #000;
+    /* opacity: 0.4; */
+    /* background: #000; */
     color: red;
     margin: auto auto;
-    font-size: 3em;
-    /* height: em; */
+    font-size: 3rem;
+    /* height: rem; */
 
-    /* background-color: rgb(0, 0, 0, 0.4); */
-    /* border-radius: 1em; */
+    background-color: rgb(0, 0, 0, 0.5);
+    /* border-radius: 1rem; */
 }
 
-#tituloPagina h2 {}
+#tituloPagina h1 {}
+
+
+main div {}
+
+main .w3-container {
+    /* border: 3px dashed red; */
+    /* border: 3px solid red; */
+    margin: 0.5rem;
+    /* width: fit-content; */
+}
+
+main div img {
+    display: inline;
+    max-width: 200px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+}
+
+main .w3-ul li {}
+
+
+
+
+
+
+
+
 
 /*  */
 aside {
@@ -472,7 +512,8 @@ aside {
 /*  */
 
 footer {
-    background-color: #fc9;
+    border-top: 1px solid red;
+
     grid-area: pie;
     display: flex;
     flex-wrap: wrap-reverse;
@@ -481,13 +522,13 @@ footer {
     /* justify-content: space-evenly; */
     align-items: center;
 
-    padding: 1em calc(5% - 0.5em) 0 calc(5% - 0.5em);
+    padding: 1rem calc(5% - 0.5rem) 0 calc(5% - 0.5rem);
 }
 
 
 
 #logoYCopyR {
-    margin: 0 auto 1em 0;
+    margin: 0 auto 1rem 0;
     min-width: min-content;
     height: auto;
     display: flex;
@@ -516,10 +557,10 @@ footer address {
     width: max-content;
     height: min-content;
     /* position: absolute;
-    left: calc(100% - 10em); */
+    left: calc(100% - 10rem); */
     margin-left: auto;
-    margin-right: 0.5em;
-    padding: 1.2em;
+    margin-right: 0.5rem;
+    padding: 1.2rem;
 }
 
 
@@ -532,11 +573,11 @@ footer address {
 
 /* ---------- VERSIÓN ORDENADOR PEQUEÑO/TABLET ---------- */
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 650px) {
     /* body {
         display: grid;
         grid-template-columns: auto 1fr;
-        grid-template-rows:
+        grid-template-rows:ƒ
             min-content min-content min-content auto min-content min-content;
         grid-template-areas:
             'cabecera cabecera'
@@ -572,9 +613,9 @@ footer address {
 
 
     #logoCabecera {
-        /* height: 5em;
-        width: 5em;
-        margin: 0.5em; */
+        /* height: 5rem;
+        width: 5rem;
+        margin: 0.5rem; */
         /* margin: 2px; */
         margin-bottom: 7px;
     }
@@ -614,7 +655,7 @@ footer address {
     }
 
     #menu a {
-        padding: 1em 1.3em;
+        padding: 1rem 1.3rem;
     }
 
     #menu li:not(:last-child) {
@@ -664,14 +705,14 @@ footer address {
     #cambioIdiomaEscritorio {
         display: block;
         position: absolute;
-        font-size: 1em;
-        top: 1em;
-        right: 1em;
+        font-size: 1rem;
+        top: 1rem;
+        right: 1rem;
         z-index: 1;
     }
 
     /* .es {
-        margin-right: 0.1em;
+        margin-right: 0.1rem;
     } */
 
 
@@ -698,7 +739,7 @@ footer address {
 
 @media screen and (min-width: 630px) {
     #menu a {
-        padding: 1em 1.5em;
+        padding: 1rem 1.5rem;
     }
 
 }
