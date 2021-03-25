@@ -36,7 +36,7 @@ body {
     height: 100%;
     max-width: 100%;
     font-size: 16px;
-    line-height: 1.6rem;
+    line-height: 2rem;
 }
 
 h1,
@@ -236,6 +236,14 @@ a:focus {
     background-position-y: center;
 }
 
+.chincheta {
+    padding-left: 1.2em;
+    background-image: url("../imagenes/icons/sobre.ico");
+    background-size: 1rem auto;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
 
 /* ---------- VERSIÓN MOVIL ---------- */
 
@@ -304,7 +312,8 @@ header a {
 
 #botonMenu {
     width: 2.4rem;
-    font-size: 2.5rem;
+    font-size: 2.5em;
+    /* font-size: 40px; */
     margin: auto 0;
     text-align: center;
     color: red;

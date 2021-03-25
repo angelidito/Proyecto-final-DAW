@@ -5,11 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - TraduceTe</title>
-    <!-- Hojas de estilos -->
+    <!-- BootstrapCDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- jQuery, Popper.js & B4JS-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+
+
+    <!-- Mis Hojas de Estilos -->
     <link rel="stylesheet" href="../CSS/estructura.css">
     <link rel="stylesheet" href="../CSS/contacto.css">
 
-    <!-- Scripts -->
+    <!-- Mis Scripts -->
     <script src="../JS/general.js"></script>
 
 </head>
@@ -67,15 +83,12 @@
             <li>
                 <a href="contacto.html">Contacto</a>
             </li>
-            <li>
-                <a href="recursos/index.php">Recursos</a>
-            </li>
         </ul>
     </header>
 
 
 
-    <nav class="breadcrumb">
+    <nav class="breadcrumb m-0 py-0  w-100 fg">
         <ul class="breadcrumb">
             <li>
                 &nbsp;<a href="..">Inicio</a>
@@ -89,53 +102,39 @@
 
     <main class="flex-c">
 
-        <nav class="breadcrumb m-0 py-0  w-100 fg">
-            <ul class="breadcrumb">
-                <li> &nbsp;<a href="..">Inicio</a> </li>
-                <li> <a href="#">Sobre mí</a> </li>
-            </ul>
-        </nav>
 
 
         <div id="tituloPagina" class="m-0 w-100">
 
-            <h1 class="display-3 p-5 m-0">Sobre mí: Malena</h1>
+            <h1 class="display-3 p-5 m-0">Contacto</h1>
 
         </div>
 
 
-        <div id='cuerpo' class="m-4 text-center d-flex  flex-wrap">
+        <div id='cuerpo' class="m-4 text-center d-flex flex-wrap justify-content-center ">
 
-            <img src="../imagenes/orla.jpeg" alt="Orla" class='img-fluid m-auto'>
-
-
-            <div id="textoCuerpo" class="m-auto">
-                <div id="saludo" class="m-4">
-                    <h2 class="">¡Hola!</h2>
-                    <p>
-                        Me llamo Malena Martínez Díez y soy filóloga, traductora y profesora de lenguas.
-                    </p>
-                </div>
-
-                <div id="titulacionesUniversitarias" class="m-4">
-                    <h2 class="">Mis mitulaciones universitarias</h2>
-
-                    <ul class="list-unstyled">
-                        <li> Grado en Estudios Ingleses, Universidad de Valladolid. </li>
-                        <li> Máster en Traducción Institucional, Universidad de Alicante </li>
-                        <li> Máster en Enseñanza de Español como Lengua Extranjera, Universidad de Burgos. </li>
-                    </ul>
-                </div>
-
-                <div id="otrosEstudios" class="m-4 ">
-                    <h2 class=" ">Otros estudios</h2>
-                    <ul class="list-unstyled  ">
-                        <li> Curso de traducción de contenidos audiovisuales para plataformas VOD EN-ES </li>
-                    </ul>
-                </div>
+            <div id="texto1" class="p-4 align-self-start w-50 ">
+                <h2 class="">¿Necesitas más información?</h2>
+                <p>
+                    Escríbeme un correo, llámame o mándame un mensaje de Whatsapp y te responderé lo antes posible.
+                </p>
             </div>
 
 
+            <address id="contactoCuerpo" class="p-4 w-50  align-self-start">
+                <h2 class="">Aquí estoy</h2>
+                <!-- <p class="my-1">Escríbeme y te responeré lo antes posible:</p> -->
+                <ul class="list-unstyled">
+                    <li> Malena Martínez Díez </li>
+                    <li> <a href="mailto:malena.traduceme@gmail.com" class="email">
+                            malena.traduceme@gmail.com
+                        </a> </li>
+                    <li> <a href="https://wa.me/34646894066?text=¡Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo…"
+                            target="_blank" class="telefono">
+                            +34 646 89 40 66</a> </li>
+                    <li><span class="chincheta"> Burgos, España</span> </li>
+                </ul>
+            </address>
         </div>
     </main>
 
@@ -151,26 +150,20 @@
 
 
         <address>
-            <p>
-                Malena Martínez Díez
-            </p>
-
-            <p>
-                <a href="https://web.whatsapp.com/send?phone=34646894066&text=¡Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo…"
-                    target="_blank" class="telefono">
-                    +34 646 89 40 66
-                </a>
-            </p>
-            <p>
-                <a href="mailto:malenadeburgos@gmail.com" class="email">
-                    malena.traduceme@gmail.com
-                </a>
-            </p>
+            <ul class="list-unstyled">
+                <li> Malena Martínez Díez </li>
+                <li> <a href="mailto:malena.traduceme@gmail.com" class="email">
+                        malena.traduceme@gmail.com
+                    </a> </li>
+                <li> <a href="https://wa.me/34646894066?text=¡Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo…"
+                        target="_blank" class="telefono">
+                        +34 646 89 40 66</a> </li>
+                <li> <span class="chincheta">Burgos, España </span> </li>
+            </ul>
         </address>
 
         <a href="presupuesto.php" class="botonPresupuesto">
-            Pide tu presupuesto
-            <br>sin compromiso
+            Pide tu presupuesto<br>sin compromiso
         </a>
 
     </footer>
