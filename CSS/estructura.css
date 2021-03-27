@@ -716,13 +716,42 @@ footer address {
         display: none;
     }
 
+
+    /* ---------- CAMBIO DE IDIOMA ---------- */
+
     #cambioIdiomaEscritorio {
         display: block;
         position: absolute;
         font-size: 1rem;
         top: 1rem;
-        right: 1rem;
+        right: 0;
         z-index: 1;
+    }
+
+    #cambioIdiomaEscritorio .ES {
+        visibility: hidden;
+    }
+
+    #cambioIdiomaEscritorio .ES::after {
+        visibility: visible;
+        padding-right: 1.65em;
+        content: '';
+        background-image: url(../imagenes/icons/es.ico);
+        background-size: auto 1.1em;
+        background-repeat: no-repeat;
+    }
+
+    #cambioIdiomaEscritorio .EN {
+        visibility: hidden;
+    }
+
+    #cambioIdiomaEscritorio .EN::before {
+        visibility: visible;
+        padding-right: 2em;
+        content: '';
+        background-image: url(../imagenes/icons/en.ico);
+        background-size: auto 1em;
+        background-repeat: no-repeat;
     }
 
     /* .es {
