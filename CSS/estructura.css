@@ -221,25 +221,25 @@ a:focus {
 /* ---------- INFO CONTACTO ---------- */
 
 .telefono {
-    padding-left: 1.1rem;
+    padding-left: 1.3em;
     background-image: url("../imagenes/icons/was.ico");
-    background-size: 1rem auto;
+    background-size: 1.1em auto;
     background-repeat: no-repeat;
     background-position-y: center;
 }
 
 .email {
-    padding-left: 1.2rem;
+    padding-left: 1.2em;
     background-image: url("../imagenes/icons/sobre.ico");
-    background-size: 1rem auto;
+    background-size: 1em auto;
     background-repeat: no-repeat;
     background-position-y: center;
 }
 
 .chincheta {
-    padding-left: 1.2em;
-    background-image: url("../imagenes/icons/sobre.ico");
-    background-size: 1rem auto;
+    padding-left: 1em;
+    background-image: url("../imagenes/icons/chincheta.ico");
+    background-size: auto 1em;
     background-repeat: no-repeat;
     background-position-y: center;
 }
