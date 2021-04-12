@@ -1,5 +1,5 @@
 .breadcrumb {
-    display: none;
+    /* display: none; */
 }
 
 .counter {
@@ -24,9 +24,9 @@
     text-align: center;
 }
 
-.fa-2x {
-    margin: 0 auto;
-    float: none;
-    display: table;
-    color: #4ad1e5;
-}
+
+/* @media screen and (min-width: 1081) {
+    #ajusteTitulo {
+        display: none;
+    }
+} */

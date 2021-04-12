@@ -6,18 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - TradúceMe</title>
     <!-- BootstrapCDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- jQuery, Popper.js & B4JS-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
     <!-- Hojas de estilos -->
     <link rel="stylesheet" href="CSS/estructura.css">
@@ -95,26 +91,36 @@
 
     </header>
 
-    <nav class="breadcrumb">
+    <nav class="m-0 py-0  w-100 fg">
         <ul class="breadcrumb">
             <li>
-                &nbsp;<a href="#">Inicio</a>
+                <a href="#">Inicio</a>
             </li>
         </ul>
     </nav>
 
+
     <main class="">
 
-        <div id='cuerpo' class="container flex-c  my-4">
+        <h1 class="d-none" hidden>Inicio</h1>
+
+        <div id="tituloPagina" class="m-0 w-100">
+
+            <h2 class="tituloPagina">En TradúceMe <span id="ajusteTitulo"><br></span>te traducimos a ti
+            </h2>
+
+        </div>
+
+        <div id='cuerpo' class="flex-c m-4">
 
             <div id="contador" data-fuente="https://bootsnipp.com/snippets/4MByn" class="container">
 
                 <script>
-                    (function ($) {
-                        $.fn.countTo = function (options) {
+                    (function($) {
+                        $.fn.countTo = function(options) {
                             options = options || {};
 
-                            return $(this).each(function () {
+                            return $(this).each(function() {
                                 // set options for current element
                                 var settings = $.extend({}, $.fn.countTo.defaults, {
                                     from: $(this).data('from'),
@@ -152,7 +158,7 @@
 
                                     render(value);
 
-                                    if (typeof (settings.onUpdate) == 'function') {
+                                    if (typeof(settings.onUpdate) == 'function') {
                                         settings.onUpdate.call(self, value);
                                     }
 
@@ -162,7 +168,7 @@
                                         clearInterval(data.interval);
                                         value = settings.to;
 
-                                        if (typeof (settings.onComplete) == 'function') {
+                                        if (typeof(settings.onComplete) == 'function') {
                                             settings.onComplete.call(self, value);
                                         }
                                     }
@@ -191,10 +197,10 @@
                         }
                     }(jQuery));
 
-                    jQuery(function ($) {
+                    jQuery(function($) {
                         // custom formatting example
                         $('.count-number').data('countToOptions', {
-                            formatter: function (value, options) {
+                            formatter: function(value, options) {
                                 return value.toFixed(options.decimals).replace(
                                     /\B(?=(?:\d{3})+(?!\d))/g, ',');
                             }
@@ -213,12 +219,11 @@
 
                 <div class="row">
                     <div class="col text-center">
-                        <h2>Título(?)</h2>
-                        <p>En TradúceMe te traducimos a ti, y este es nuestro recorrido</p>
+                        <p>Este es nuestro recorrido:</p>
                     </div>
                 </div>
 
-                <div class="row text-center d-flex align-items-stretch">
+                <div class="row text-center d-flex align-items-stretch mb-4">
                     <div class="col-md-3 col-sm-6 col-12 my-1 ">
                         <div class="counter px-2 ">
                             <h2 class="timer count-title count-number" data-to="100" data-speed="2000">100</h2>
@@ -248,11 +253,8 @@
 
             <div class="container">
                 <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, facere! Quos commodi eveniet
-                    distinctio sequi deleniti totam natus quae perferendis delectus quisquam, impedit atque, in
-                    molestiae saepe consequatur fugit inventore? Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Hic earum asperiores voluptates inventore excepturi quaerat quasi
-                    ratione laboriosam, autem illo ea at totam magni labore eius quae? Ex, culpa sequi!
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, facere! Quos commodi eveniet distinctio sequi deleniti totam natus quae perferendis delectus quisquam, impedit atque, in molestiae saepe consequatur fugit inventore? Lorem ipsum dolor sit
+                    amet consectetur adipisicing elit. Hic earum asperiores voluptates inventore excepturi quaerat quasi ratione laboriosam, autem illo ea at totam magni labore eius quae? Ex, culpa sequi!
                 </p>
             </div>
 
