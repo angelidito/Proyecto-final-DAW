@@ -24,9 +24,34 @@
     text-align: center;
 }
 
+<<<<<<< Updated upstream
 
 /* @media screen and (min-width: 1081) {
     #ajusteTitulo {
         display: none;
     }
 } */
+=======
+.fa-2x {
+    margin: 0 auto;
+    float: none;
+    display: table;
+    color: #4ad1e5;
+}
+
+/* .carousel-control-next-icon,
+.carousel-control-prev-icon {
+    color: black;
+    background-color: blueviolet;
+} */
+
+#opiniones {
+    background-color: #f5f5f5;
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+    display: block;
+}
+>>>>>>> Stashed changes
