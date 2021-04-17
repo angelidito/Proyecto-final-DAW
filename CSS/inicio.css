@@ -31,12 +31,7 @@
     }
 } */
 
-.fa-2x {
-    margin: 0 auto;
-    float: none;
-    display: table;
-    color: #4ad1e5;
-}
+
 
 /* .carousel-control-next-icon,
 .carousel-control-prev-icon {
@@ -49,14 +44,43 @@
 
 /* ---------- CITAS ------------------ */
 
-.cita {
-    background-image: url(../imagenes/SVG/ico_comillas.svg);
-    background-size: 5rem;
-    background-repeat: no-repeat;
+
+.comilla-ini {
+    content: url(../imagenes/SVG/ico_comillas.svg);
+    transform: rotate(180deg);
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    position: absolute;
+    left: 1rem;
+    top: 2rem;
+}
+
+.comilla-fin {
+    content: url(../imagenes/SVG/ico_comillas.svg);
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+}
+
+q::after,
+q::before {
+    content: none;
+    /* position: absolute;
+    right: 1rem;
+    top: 2rem;
+    font-size: 8rem; */
 }
 
 #opiniones {
     background-color: #f5f5f5;
+}
+
+.autor-cita {
+    display: block;
 }
 
 .carousel-item.active,
