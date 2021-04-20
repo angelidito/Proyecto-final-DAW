@@ -91,7 +91,7 @@
 
     </header>
 
-    <nav class="m-0 py-0  w-100 fg">
+    <nav id="migas" class="m-0 py-0  w-100 ">
         <ul class="breadcrumb">
             <li>
                 <a href="#">Inicio</a>
@@ -101,6 +101,7 @@
 
 
     <main class="">
+
         <div id="titulo-SEO" class="d-none" hidden>
             <h1>Inicio</h1>
         </div>
@@ -181,6 +182,7 @@
                             });
                         };
 
+
                         $.fn.countTo.defaults = {
                             from: 0, // the number the element should start at
                             to: 0, // the number the element should end at
@@ -192,10 +194,14 @@
                             onComplete: null // callback method for when the element finishes updating
                         };
 
+
                         function formatter(value, settings) {
                             return value.toFixed(settings.decimals);
                         }
+
                     }(jQuery));
+
+
 
                     jQuery(function($) {
                         // custom formatting example
@@ -222,26 +228,20 @@
                 <div class="row d-flex align-items-stretch ">
                     <div class="col-md-4 col-sm-12 my-1 ">
                         <div class="counter px-2 ">
-                            <p class="heading timer count-title count-number" data-to="57" data-speed="2000">57</p>
+                            <p id="traducciones-realizadas" class="heading timer count-title count-number" data-to=57 data-speed="2000"></p>
                             <p class="count-text ">Traducciones realizadas</p>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12 my-1 ">
                         <div class="counter px-2 ">
-                            <p class="heading timer count-title count-number" data-to="55000" data-speed="2000">55000
+                            <p id="palabras-traducidas" class="heading timer count-title count-number" data-to=55000 data-speed="2000">
                             </p>
                             <p class="count-text ">Palabras traducidas o editadas</p>
                         </div>
                     </div>
-                    <!-- <div class="col-md-3 col-sm-6 col-12 my-1 ">
-                        <div class="counter px-2 ">
-                            <p class="heading timer count-title count-number" data-to="11900" data-speed="2000">11900</p>
-                            <p class="count-text ">Horas traduciendo</p>
-                        </div>
-                    </div> -->
                     <div class="col-md-4 col-sm-12 my-1 ">
                         <div class="counter px-2 ">
-                            <p class="heading timer count-title count-number" data-to="157" data-speed="2000">157</p>
+                            <p id="clietes-satisfechos" class="heading timer count-title count-number" data-to=157 data-speed="2000"></p>
                             <p class="count-text ">Clientes satisfechos</p>
                         </div>
                     </div>
@@ -255,7 +255,6 @@
                     amet consectetur adipisicing elit. Hic earum asperiores voluptates inventore excepturi quaerat quasi ratione laboriosam, autem illo ea at totam magni labore eius quae? Ex, culpa sequi!
                 </p>
             </div>
-
 
         </div>
         <hr>
