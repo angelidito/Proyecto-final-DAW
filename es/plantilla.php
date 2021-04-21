@@ -8,17 +8,16 @@
 
 
     <?php
+    include('_partials/cabecera.html');
+    ?>
 
+    <?php
     // echo $_SERVER['SERVER_NAME'];
     // echo $_SERVER['HTTP_HOST'];
-
-    include('_partials/cabecera.html');
-
-
     // iclude BREADCRUMB y MAIN
+    ?>
 
 
+    <?php
     include('_partials/pie.html');
-
-
     ?>

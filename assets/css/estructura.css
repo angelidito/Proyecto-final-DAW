@@ -748,6 +748,10 @@ footer address {
     #botonMenu {
         display: none;
     }
+    ul.breadcrumb {
+        padding-left: 0;
+        margin-left: 10%;
+    }
     #menu {
         display: flex !important;
         grid-area: menú;
@@ -849,6 +853,9 @@ footer address {
         align-items: center; */
     }
     /* TODO: footer */
+    .cuerpo {
+        width: 80%;
+    }
 }
 
 
