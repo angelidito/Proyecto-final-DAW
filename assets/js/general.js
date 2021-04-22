@@ -41,14 +41,15 @@ function mostrarMenu() {
 
 function asignarEnlaces() {
 
-    // Añadir enlaces de cada idioma    cambio de idioma.
+    // Añadir enlaces de cada idioma para el cambio de idioma.
     let enlacesCambioIdioma = document.getElementsByClassName('cambioIdioma');
     for (let i = 0; i < enlacesCambioIdioma.length; i++) {
         asignarEnlaceIdioma(enlacesCambioIdioma[i]);
     }
 
-    asignarEnlaceAClase('https://wa.me/34646894066?text=¡Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo…', 'telefono');
-    asignarEnlaceAClase('mailto:malena.traduceme@gmail.com', 'email');
+
+    asignarEnlaceAClase('telefono', 'https://wa.me/34646894066?text=¡Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo…');
+    asignarEnlaceAClase('email', 'mailto:malena.traduceme@gmail.com');
 
 }
 
@@ -84,10 +85,13 @@ function asignarEnlaceIdioma(enlace) {
     let idiomaActual = document.getElementsByTagName('html')[0].getAttribute('lang').toLowerCase();
 
 
-    if (idiomaObjetivo == 'es') {
-        enlace.innerHTML = 'ES'; // TODO: Cambiar esto por un icono
-    } else if (idiomaObjetivo == 'en') {
-        enlace.innerHTML = 'EN'; // TODO: Cambiar esto por un icono
+    // Comprobamos que no estamos en la versión movil:
+    if (enlace.getAttribute('id') != 'cambioIdiomaMovil') {
+        if (idiomaObjetivo == 'es') {
+            enlace.innerHTML = 'ES'; // TODO: Cambiar esto por un icono
+        } else if (idiomaObjetivo == 'en') {
+            enlace.innerHTML = 'EN'; // TODO: Cambiar esto por un icono
+        }
     }
 
 
@@ -137,10 +141,10 @@ function asignarEnlaceIdioma(enlace) {
  * Si algún elemento tiene la clase especificada, 
  * pero no es un elace, no le asigna el atributo `href`.
  * 
- * @param {string} enlace Enlace poner como `href` 
  * @param {string} clase Atributo `class` del elemento
+ * @param {string} enlace Enlace poner como `href` 
  */
-function asignarEnlaceAClase(enlace, clase) {
+function asignarEnlaceAClase(clase, enlace) {
 
     const elementos = document.getElementsByClassName(clase);
 
