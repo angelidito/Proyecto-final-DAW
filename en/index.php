@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,18 @@
     // echo $_SERVER['SERVER_NAME'];
     // echo $_SERVER['HTTP_HOST'];
     // iclude BREADCRUMB y MAIN
+    // header("Location: .");
     ?>
+
+    <h2 align="center" class="m-4 p-4" style="color: darkblue">
+        UNDER CONSTRUCTION
+    </h2>
+    <h2 align="center" class="m-4 p-4">
+        <a href="../es/" class="m-4 p-4">
+            CLICK ME TO GO TO SPANISH VERSION.
+        </a>
+    </h2>
+
 
 
     <?php

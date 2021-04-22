@@ -7,7 +7,7 @@
     <title><?php echo $title; ?></title>
 
     <?php
-    include('_partials/cabecera.html');
+    include('_partials/cabecera.php');
     ?>
 
     <nav class=" m-0 py-0 w-100 fg">
@@ -121,5 +121,5 @@
         </div>
     </main>
     <?php
-    include('_partials/pie.html');
+    include('_partials/pie.php');
     ?>

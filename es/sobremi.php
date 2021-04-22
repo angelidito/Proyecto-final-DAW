@@ -8,7 +8,7 @@
 
 
     <?php
-    include('_partials/cabecera.html');
+    include('_partials/cabecera.php');
     ?>
 
 
@@ -18,6 +18,10 @@
             <li> <a href="#">Sobre mí</a> </li>
         </ul>
     </nav>
+
+    <!-- <textarea id="my-textarea" class="form-control" name="" rows="3"> -->
+
+
 
     <main class="flex-c">
 
@@ -66,6 +70,8 @@
         </div>
     </main>
 
+
+    <!-- </textarea> -->
     <?php
-    include('_partials/pie.html');
+    include('_partials/pie.php');
     ?>

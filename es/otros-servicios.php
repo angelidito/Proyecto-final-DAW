@@ -8,7 +8,7 @@
 
 
     <?php
-    include('_partials/cabecera.html');
+    include('_partials/cabecera.php');
     ?>
 
 
@@ -32,5 +32,5 @@
         </h2>
     </main>
     <?php
-    include('_partials/pie.html');
+    include('_partials/pie.php');
     ?>

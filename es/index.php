@@ -10,8 +10,9 @@
 
 
     <?php
-    include('_partials/cabecera.html');
+    include('_partials/cabecera.php');
     ?>
+
 
 
     <nav id="migas" class="  ">
@@ -28,18 +29,18 @@
 
 
         <div id="tituloPagina" class="m-0 w-100">
+
             <div id="titulo-SEO-inicio" class="d-none" hidden>
                 <h1>Inicio</h1>
             </div>
 
             <h2 class="tituloPagina">
-                En TradúceMe
-                <span id="ajusteTituloInicio"><br></span> te traducimos a ti
+                En TradúceMe <span id="ajusteTituloInicio"><br></span> te traducimos a ti
             </h2>
 
         </div>
 
-        <div id="cuerpo-1" class="cuerpo">
+        <div id="cuerpo" class="cuerpo">
 
             <div id="bloque-contador-recorrido" data-fuente="https://bootsnipp.com/snippets/4MByn" class="container text-center my-4">
 
@@ -183,9 +184,8 @@
                 </p>
             </div>
 
-        </div>
-        <hr>
-        <div id="cuerpo-2" class="cuerpo">
+            <hr>
+
 
 
             <div id="bloque-servicios-ofrecidos" class="container my-4 ">
@@ -248,8 +248,14 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
     </main>
 
     <?php
-    include('_partials/pie.html');
+    include('_partials/pie.php');
     ?>
