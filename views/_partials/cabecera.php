@@ -1,7 +1,6 @@
 <?php
 
-session_start();
-$_SESSION['cookie_lang'] = 'en';
+$_SESSION['cookie_lang'] = 'es';
 
 ?>
 
@@ -60,6 +59,6 @@ $_SESSION['cookie_lang'] = 'en';
                 </ul>
             </li>
             <li> <a href="contacto.html">Contacto</a> </li>
-            <li> <a id="cambioIdiomaMovil" class='ES cambioIdioma'>Cambiar a la versión en Español</a> </li>
+            <li> <a id="cambioIdiomaMovil" class='EN cambioIdioma'>Change to English version</a> </li>
         </ul>
     </header>

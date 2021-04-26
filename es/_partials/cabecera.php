@@ -1,7 +1,6 @@
 <?php
 
-session_start();
-$_SESSION['cookie_lang'] = 'en';
+$_SESSION['cookie_lang'] = 'es';
 
 ?>
 

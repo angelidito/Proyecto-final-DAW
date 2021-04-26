@@ -10,6 +10,9 @@ function inicio() {
 
     // Enlaces
     asignarEnlaces();
+
+
+    hideVoidAlerts();
 }
 
 
@@ -57,6 +60,8 @@ function asignarEnlaces() {
  * Asigna el atributo href al enlace
  * correspondiente a la mísma página
  * pero en el otro idioma.
+ * 
+ * 
  * Usa las clases de los elementos.
  * 
  * La primera clase será el idioma:  
@@ -75,8 +80,6 @@ function asignarEnlaceIdioma(enlace) {
     // Nuestra url actual
     let urlActual = window.location.href;
 
-    // URL objetivo
-    let urlObjetivo = '';
 
     // Idioma al que queremos cambiar
     let idiomaObjetivo = enlace.getAttribute('class').split(' ')[0].toLowerCase();
@@ -88,9 +91,9 @@ function asignarEnlaceIdioma(enlace) {
     // Comprobamos que no estamos en la versión movil:
     if (enlace.getAttribute('id') != 'cambioIdiomaMovil') {
         if (idiomaObjetivo == 'es') {
-            enlace.innerHTML = 'ES'; // TODO: Cambiar esto por un icono
+            enlace.innerHTML = 'ES';
         } else if (idiomaObjetivo == 'en') {
-            enlace.innerHTML = 'EN'; // TODO: Cambiar esto por un icono
+            enlace.innerHTML = 'EN';
         }
     }
 
@@ -98,31 +101,37 @@ function asignarEnlaceIdioma(enlace) {
     // Si no estámos ya en la página del idioma...
     if (idiomaActual !== idiomaObjetivo) {
 
-        // Contemplamos el caso excepcional de la página de inicio index.html en español 
-        // donde no está escrito el idioma
-        if (idiomaActual === 'es' && !/\/es\//.test(urlActual)) {
-            // Le quitamos la parte de index.html por si por algun casual la tiene...
-            // y le metemos en/   (sin la primera barra, porque no se la quitamos a la url actual)
-            urlObjetivo = urlActual.split('index.html')[0] + 'en/';
-        }
 
-        // Si no es el caso excepcional, toca sustituir cosas
-        else {
-            // Dividimos el string por /es/ o /en/ segun corresponda
-            let partesURL = urlActual.split('/' + idiomaActual + '/');
-            // Creamos la nueva url con las partes del string anterior y metiendole /en/ o /es/ segun corresponda
-            urlObjetivo = partesURL[0] + '/' + idiomaObjetivo + '/' + partesURL[1];
-        }
+        // URL objetivo
+        // Partimos po
+        let urlObjetivo = urlActual.split('?')[0] + '?lang=' + idiomaObjetivo;
 
-        // console.log(
-        //     "Idioma objetivo: " + idiomaObjetivo +
-        //     '\n URL actual: ' + urlActual +
-        //     '\n Idioma actual: ' + idiomaActual +
-        //     '\n URL actual: ' + urlObjetivo);
+        // // Contemplamos el caso excepcional de la página de inicio index.html en español 
+        // // donde no está escrito el idioma
+        // if (idiomaActual === 'es' && !/\/es\//.test(urlActual)) {
+        //     // Le quitamos la parte de index.html por si por algun casual la tiene...
+        //     // y le metemos en/   (sin la primera barra, porque no se la quitamos a la url actual)
+        //     urlObjetivo = urlActual.split('index.html')[0] + 'en/';
+        // }
 
-        // Por ultimo vamos a la url del nuevo idioma.
+        // // Si no es el caso excepcional, toca sustituir cosas
+        // else {
+        //     // Dividimos el string por /es/ o /en/ segun corresponda
+        //     let dominio = partesURL[0];
+        //     let pagina = partesURL[1].split('?')[0];
+        //     // Creamos la nueva url con las partes del string anterior y metiendole /en/ o /es/ segun corresponda
+        //     urlObjetivo = dominio + '/' + idiomaObjetivo + '/' + pagina + '?lang=' + idiomaObjetivo;
+        // }
+
+        // // console.log(
+        // //     "Idioma objetivo: " + idiomaObjetivo +
+        // //     '\n URL actual: ' + urlActual +
+        // //     '\n Idioma actual: ' + idiomaActual +
+        // //     '\n URL actual: ' + urlObjetivo);
+
+        // // Por ultimo vamos a la url del nuevo idioma.
+        // enlace.setAttribute('href', urlObjetivo);
         enlace.setAttribute('href', urlObjetivo);
-
     } else {
         enlace.setAttribute('href', '#')
     }
@@ -131,8 +140,6 @@ function asignarEnlaceIdioma(enlace) {
     // obviamente no va a encontrarlos, pero no es porblema, porque 
     // Tan y como funcióna ahora, llevará a los archivos correctos cuando estén
 }
-
-
 
 /**
  * Asigna el un string como atributo `href` 
@@ -155,5 +162,18 @@ function asignarEnlaceAClase(clase, enlace) {
             element.setAttribute('href', enlace);
         }
 
+    }
+}
+
+
+function hideVoidAlerts() {
+    let alertas = document.getElementsByClassName('alert');
+
+    for (let i = 0; i < alertas.length; i++) {
+        const alerta = alertas[i];
+
+        if (alerta.innerHTML == "") {
+            alerta.classList.add("hidden");
+        }
     }
 }

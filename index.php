@@ -3,18 +3,7 @@
 session_start();
 // Si ya hay idioma en la sesión
 if (isset($_SESSION['cookie_lang'])) {
-
-    if ($_SESSION['cookie_lang'] == 'es') {
-
-        $_SESSION['cookie_lang'] = 'es';
-        header("Location: es/");
-
-        exit;
-    }
-
-    $_SESSION['cookie_lang'] = 'en';
-    header("Location: en/");
-
+    header("Location: ./controllers");
     exit;
 }
 
@@ -59,18 +48,18 @@ if (isset($langs['en'])) {
         $es_priority = $langs['es'];
 
         if ($es_priority > $en_priority) {
-            header("Location: es/");
-            exit;
+            $_SESSION['cookie_lang'] = 'es';
         }
+    } else {
+        $_SESSION['cookie_lang'] = 'en';
     }
-
-    header("Location: en/");
-    exit;
 }
-
-
 // Si no si el español tiene mas prioridad que el ingles
 // habrá entrado antes en un header. 
 // Entonces sólo nos queda la opción de que no comtemplaba en inglés. 
-header("Location: es/");
+else {
+    $_SESSION['cookie_lang'] = 'es';
+}
+
+header("Location: ./controllers");
 exit;
