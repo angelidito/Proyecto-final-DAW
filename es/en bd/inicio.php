@@ -102,7 +102,7 @@
 
                                 function render(value) {
                                     var formattedValue = settings.formatter.call(self, value, settings);
-                                    $self.html(formattedValue);
+                                    $self.php(formattedValue);
                                 }
                             });
                         };

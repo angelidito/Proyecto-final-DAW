@@ -8,6 +8,9 @@ class FormException extends Exception
 class LongitudInvalidaException extends FormException
 {
 }
+class DatoInvalidoException extends FormException
+{
+}
 
 
 // Excepciones BD

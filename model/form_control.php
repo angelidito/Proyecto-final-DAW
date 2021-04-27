@@ -12,7 +12,7 @@ class FormControl
      * @param string $e Mensaje de la excepción si se lanzase.
      * @return boolean `true` si la longitud está dentro del rango adecuado.
      * 
-     * @throws LongitudInvalidaException si la longitud de la cadena no está en el rango adecuado
+     * @throws LongitudInvalidaException si la longitud de la cadena no está en el rango adecuado.
      */
     public static function checkLength($str = null, $minLength = 0, $maxLength = 'inf', $e = 'default')
     {
@@ -27,6 +27,23 @@ class FormControl
 
         if ($len < $minLength || ($maxLength != 'inf' && $maxLength < $len))
             throw new LongitudInvalidaException($e);
+
+        return true;
+    }
+    /**
+     * Lanza excepción si la cadena no es `en` o `es`.
+     * 
+     *
+     * @param string $lang Lenguaje.
+     * @return boolean `true` si la longitud está dentro del rango adecuado.
+     * 
+     * @throws DatoInvalidoException si la longitud de la cadena no está en el rango adecuado.
+     */
+    public static function checkLang($lang)
+    {
+
+        if ($lang != 'es' &&  $lang != 'en')
+            throw new DatoInvalidoException("Lenguaje desconocido. ");
 
         return true;
     }

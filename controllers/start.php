@@ -19,3 +19,9 @@ if (isset($_GET['lang'])) {
 $lang = $_SESSION['cookie_lang'];
 
 $dominio = '127.0.0.1/Proyecto-final-DAW';
+
+$conn = new Consulta();
+
+$pagina = $conn->getPagina($page_name, $lang);
+
+require "../views/plantilla.php";

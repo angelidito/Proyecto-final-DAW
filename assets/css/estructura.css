@@ -92,6 +92,10 @@ hr {
     background-repeat: no-repeat;
 }
 
+.add-content-after::after {
+    content: attr(data-content-after)
+}
+
 
 /* ---------- Listas ---------- */
 

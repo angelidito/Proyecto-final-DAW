@@ -23,17 +23,25 @@ try {
         $title = $_POST['title'];
         $content = $_POST['content'];
 
-        FormControl::checkLength($page_name, 5, 40);
-        FormControl::checkLength($title, 5, 70);
-        FormControl::checkLength($content, 13, 65535);
-
-
         $conn = new Consulta();
-        $page = new Pagina($page_name, $lang, $title, $content);
-        if ($conn->añadirPagina($page))
-            $mensajeExito = "Página añadida";
-        else
+        // El control de formulario se lleva a cabo el constructor de página
+        $pagina = new Pagina($page_name, $lang, $title, $content);
+
+        if ($conn->añadirPagina($pagina)) {
+            $mensajeExito = "Página añadida de forma exitosa.";
+            if (isset($_POST['crear'])) {
+                $file = fopen("../controllers/$page_name.php", "w");
+                fwrite(
+                    $file,
+                    "<?php"
+                        . PHP_EOL . "\$page_name = '$page_name';"
+                        . PHP_EOL . "require 'start.php';"
+                );
+                fclose($file);
+            }
+        } else {
             $errores = "Algo ha fallado... No se ha insertado nada en la base de datos";
+        }
     }
 } catch (FormException $e) {
     $errores = $e->getMessage();
@@ -85,12 +93,30 @@ include('_partials/cabecera.php');
                         <label for="title">Título navegador</label>
                         <input id="title" class="form-control" type="text" name="title" minlength=5 maxlength=70 value="<?php echo $title ?>">
                     </div>
+                    <div class="form-group">
+                        <div class="form-check mb-0">
+                            <input class="form-check-input if-checked-then-show check" type="checkbox" value="" id="crear" name="crear">
+                            <label class="form-check-label " for="crear">
+                                Quiero que página sea accesible desde la web
+                            </label>
+                        </div>
+                        <div class="alert alert-secondary if-checked-then-show showme" for="crear" role="alert">
+                            <small id="texto-crear-pagina" class="add-content-after">Se creará: ../controllers/<wbr></small>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-9">
+                    <!-- <div class=" float-right">
+                        <div class="form-group">
+                            <input class="form-check-input" type="checkbox" value="" id="editable" name="">
+                            <label for="editable">Editable</label>
+                        </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="content">Contenido</label>
-                        <textarea id="content" class="form-control" name="content" rows="20" minlength=13 maxlength=65535><?php echo $content ?></textarea>
+                        <textarea id="content" class="form-control " name="content" rows="20" minlength=13 maxlength=65535><?php echo $content ?></textarea>
                     </div>
+                    <!--<textarea id="content" class="form-control editable" name="content" rows="20" minlength=13 maxlength=65535>-->
                 </div>
             </div>
             <div class="row">

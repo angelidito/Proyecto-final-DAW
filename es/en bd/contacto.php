@@ -17,7 +17,7 @@
     <nav class="breadcrumb m-0 py-0  w-100 fg">
         <ul class="breadcrumb">
             <li>
-                &nbsp;<a href="..">Inicio</a>
+                &nbsp;<a href="inicio.php">Inicio</a>
             </li>
             <li>
                 <a href="#">Contacto</a>

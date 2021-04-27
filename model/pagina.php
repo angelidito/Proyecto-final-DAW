@@ -6,8 +6,23 @@ class Pagina
     protected $title;
     protected $content;
 
+    /**
+     * Crea un objeto Pagina o lanza una excepción.
+     *
+     * @param string $_page_name
+     * @param string $_lang
+     * @param string $_title
+     * @param string $_content
+     * 
+     * @throws FormException Cuando los parámetros no son válidos.
+     */
     public function __construct($_page_name, $_lang, $_title, $_content)
     {
+        FormControl::checkLength($_page_name, 5, 40);
+        FormControl::checkLang($_lang);
+        FormControl::checkLength($_title, 5, 70);
+        FormControl::checkLength($_content, 13, 65535);
+
         $this->page_name = $_page_name;
         $this->lang = $_lang;
         $this->title = $_title;

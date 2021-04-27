@@ -39,7 +39,7 @@
 
                 <div class="cuadricula row m-0  w-100 justify-content-center">
                     <div class="col-xl-3 col-lg-5 col-md-5 col-sm-9 col-12 m-4 p-4 divEnlace">
-                        <a href="jurada.html" class="divEnlace"></a>
+                        <a href="traduccion-jurada.php" class="divEnlace"></a>
                         <h2>Traducción jurada</h2>
                         <ul class="list-unstyled mb-0">
                             <li>Una breve explicación</li>
@@ -48,7 +48,7 @@
                         </ul>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-sm-9 col-12 m-4 p-4 divEnlace">
-                        <a href="juridica.html" class="divEnlace"></a>
+                        <a href="traduccion-juridica.php" class="divEnlace"></a>
                         <h2>Traducción jurídica</h2>
                         <ul class="list-unstyled mb-0">
                             <li>Lorem ipsum dolor sit amet consectetur </li>
@@ -57,7 +57,7 @@
                         </ul>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-sm-9 col-12 m-4 p-4 divEnlace">
-                        <a href="economica.html" class="divEnlace"></a>
+                        <a href="traduccion-economica.php" class="divEnlace"></a>
                         <h2>Traducción económica</h2>
                         <ul class="list-unstyled mb-0">
                             <li>Una breve explicación</li>
@@ -66,7 +66,7 @@
                         </ul>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-sm-9 col-12 m-4 p-4 divEnlace">
-                        <a href="tec&esp.html" class="divEnlace"></a>
+                        <a href="traduccion-tecnica-y-especializada" class="divEnlace"></a>
                         <h2>Traducción técnica y especializada</h2>
                         <ul class="list-unstyled mb-0">
                             <li>Una breve explicación</li>
@@ -75,7 +75,7 @@
                         </ul>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-sm-9 col-12 m-4 p-4 divEnlace">
-                        <a href="audiovisual.html" class="divEnlace"></a>
+                        <a href="traduccion-audiovisual.php" class="divEnlace"></a>
                         <h2>Traducción audiovisual</h2>
                         <ul class="list-unstyled mb-0">
                             <li>Lorem ipsum dolor sit amet consectetur </li>
@@ -84,7 +84,7 @@
                         </ul>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-sm-9 col-12 m-4 p-4 divEnlace">
-                        <a href="webYSoftware.html" class="divEnlace"></a>
+                        <a href="traduccion-de-paginas-web-y-software.php" class="divEnlace"></a>
                         <h2>Traducción de páginas web y software</h2>
                         <ul class="list-unstyled mb-0">
                             <li>Una breve explicación</li>
@@ -120,6 +120,8 @@
 
         </div>
     </main>
+
+
     <?php
     include('_partials/pie.php');
     ?>
