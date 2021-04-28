@@ -88,25 +88,32 @@ class Consulta extends Conexion
     }
 
     /**
-     * Devuelve la información de la tabla tm_page.
+     * Devuelve información de la tabla tm_page.
      *
-     * Todos los campos.
+     * Si no se pasan parametros, devuelve toda la información de la tabla.
      * 
-     *
-     * @return array Array sociativo con 'page_name', 'lang', 'title' y 'content' como campos.
+     * Si algun campo es igual a `null` no se tendrá en cuenta a la hora 
+     * de buscar las páginas correspondientes.
+     * 
+     * @param string $page_name Nombre de la(s) página(s).
+     * @param string $lang Idioma de la(s) página(s).
+     * @return array Array sociativo con campos 'page_name', 'lang', 'title' 
+     *               y 'content' de la(s) página(s) buscada(s).
+     * 
      */
-    public function getPagina($page_name, $lang)
+    public function getPaginas($page_name = null, $lang = null)
     {
-        $select =
-            "SELECT
-                *
-            FROM
-                tm_page
-            WHERE
-                page_name = '$page_name'
-                and
-                lang = '$lang'
-            ;";
+        if ($page_name != null) {
+
+            if ($lang != null)
+                $select = "SELECT  * FROM  tm_page WHERE  page_name = '$page_name' and lang = '$lang' ;";
+
+            else
+                $select = "SELECT  * FROM  tm_page WHERE  page_name = '$page_name' ;";
+        }
+        $select = "SELECT  * FROM  tm_page WHERE  page_name = '$page_name' and lang = '$lang' ;";
+
+
         $resultados = $this->conn->query($select);
 
         $pagina = $resultados->fetch_all(MYSQLI_ASSOC)[0];

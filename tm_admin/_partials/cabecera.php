@@ -33,14 +33,15 @@ $_SESSION['cookie_lang'] = 'es';
 <body>
     <header>
         <div id="logoYTitulo">
-            <a href=".."> <img src="../img/logo.png" alt="logo" id="logoCabecera" class="logo">
+            <a href="."> <img src="../img/logo.png" alt="logo" id="logoCabecera" class="logo">
             </a>
-            <a href="..">
+            <a href=".">
                 <p id="tituloWeb" class="m-0">TradúceMe</p>
             </a> <span id="botonMenu" class="m-4"> &#9776; </span>
         </div>
         <ul id="menu">
-            <li> <a href="añadir-pagina.php">Añadir página a BD</a> </li>
-
+            <li> <a href="..">Volver a la web</a> </li>
+            <li> <a href="añadir-pagina.php">Añadir página</a> </li>
+            <li> <a href="editar-pagina.php">Editar páginas</a> </li>
         </ul>
     </header>

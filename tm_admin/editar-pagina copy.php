@@ -1,7 +1,9 @@
 <?php
 
 require '../model/excepciones.php';
+require '../model/form_control.php';
 require '../model/pagina.php';
+require '../model/db/traduceme_content/conexion.php';
 
 $errores = '';
 $mensajeExito = '';
@@ -21,12 +23,21 @@ try {
         $title = $_POST['title'];
         $content = $_POST['content'];
 
+        $conn = new Consulta();
+        // El control de formulario se lleva a cabo el constructor de página
         $pagina = new Pagina($page_name, $lang, $title, $content);
 
-        if ($pagina->crear()) {
-            $mensajeExito .= "Página guardada de forma exitosa.";
+        if ($conn->añadirPagina($pagina)) {
+            $mensajeExito = "Página añadida de forma exitosa.";
             if (isset($_POST['crear'])) {
-                $pagina->crear("../controllers");
+                $file = fopen("../controllers/$page_name.php", "w");
+                fwrite(
+                    $file,
+                    "<?php"
+                        . PHP_EOL . "\$page_name = '$page_name';"
+                        . PHP_EOL . "require 'start.php';"
+                );
+                fclose($file);
             }
         } else {
             $errores = "Algo ha fallado... No se ha insertado nada en la base de datos. Quizá ya exista la página en el idioma selecionado.";
@@ -59,8 +70,8 @@ include('_partials/cabecera.php');
 
 <main class="my-4 py-4 center">
 
-    <div class="container mb-4">
 
+    <div class="container mb-4">
         <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
         <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
         <form method="post" action="">
@@ -69,7 +80,13 @@ include('_partials/cabecera.php');
 
                     <div class="form-group">
                         <label for="page_name">Nombre de la página</label>
-                        <input id="page_name" class="form-control" type="text" name="page_name" minlength=5 maxlength=40 value="<?php echo $page_name ?>">
+                        <select id="page_name" class="form-control" name="page_name">
+                            <?php
+                            for ($i = 0; $i < count($paginas); $i++) {
+                                # code...
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="lang">Idioma</label>
@@ -82,17 +99,7 @@ include('_partials/cabecera.php');
                         <label for="title">Título navegador</label>
                         <input id="title" class="form-control" type="text" name="title" minlength=5 maxlength=70 value="<?php echo $title ?>">
                     </div>
-                    <div class="form-group">
-                        <div class="form-check mb-0">
-                            <input class="form-check-input if-checked-then-show check" type="checkbox" value="" id="crear" name="crear">
-                            <label class="form-check-label " for="crear">
-                                Quiero que página sea accesible desde la web
-                            </label>
-                        </div>
-                        <div class="alert alert-secondary if-checked-then-show showme" for="crear" role="alert">
-                            <small id="texto-crear-pagina" class="add-content-after">Se creará: ../controllers/<wbr></small>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="col-md-9">
                     <!-- <div class=" float-right">
@@ -103,7 +110,7 @@ include('_partials/cabecera.php');
                     </div> -->
                     <div class="form-group">
                         <label for="content">Contenido</label>
-                        <textarea id="content" class="form-control " name="content" rows="20" minlength=13 maxlength=65535><?php echo $content ?></textarea>
+                        <textarea id="content" class="form-control editable" name="content" rows="20" minlength=13 maxlength=65535><?php echo $content ?></textarea>
                     </div>
                     <!--<textarea id="content" class="form-control editable" name="content" rows="20" minlength=13 maxlength=65535>-->
                 </div>

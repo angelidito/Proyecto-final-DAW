@@ -22,6 +22,6 @@ $dominio = '127.0.0.1/Proyecto-final-DAW';
 
 $conn = new Consulta();
 
-$pagina = $conn->getPagina($page_name, $lang);
+$pagina = $conn->getPaginas($page_name, $lang);
 
 require "../views/plantilla.php";

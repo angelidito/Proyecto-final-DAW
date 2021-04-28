@@ -32,7 +32,7 @@ if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
     }
 }
 
-var_dump($langs);
+// var_dump($langs);
 // exit;
 
 // Si el navegador contempla el inglés y 
@@ -42,17 +42,13 @@ var_dump($langs);
 if (isset($langs['en'])) {
 
     $en_priority = $langs['en'];
-
     if (isset($langs['es'])) {
 
         $es_priority = $langs['es'];
-
-        if ($es_priority > $en_priority) {
+        if ($es_priority > $en_priority)
             $_SESSION['cookie_lang'] = 'es';
-        }
-    } else {
+    } else
         $_SESSION['cookie_lang'] = 'en';
-    }
 }
 // Si no si el español tiene mas prioridad que el ingles
 // habrá entrado antes en un header. 
