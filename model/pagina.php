@@ -1,7 +1,6 @@
 <?php
 
-require './db/traduceme_content/conexion.php';
-require 'form_control.php';
+require_once 'form_control.php';
 
 class Pagina
 {
@@ -9,6 +8,7 @@ class Pagina
     protected $lang;
     protected $title;
     protected $content;
+    static $conn;
 
     /**
      * Crea un objeto Pagina o lanza una excepción.
@@ -25,6 +25,7 @@ class Pagina
         $this->lang = $_lang;
         $this->title = $_title;
         $this->content = $_content;
+        self::$conn = new Consulta();
     }
 
     public function getPage_name()
@@ -47,13 +48,36 @@ class Pagina
         return $this->content;
     }
 
+    /**
+     * TODO.
+     * 
+     * Crea un array de objetos `Pagina` con cada una las páginas existentes de la web.
+     * 
+     * Genera y devuelve un array de objetos `Pagina` a parir de cada uno 
+     * de los registros de la tabla tm_page.
+     * 
+     * @return array Array con los registros de la tabla tm_page qeu coincidan.
+     * 
+     */
+    public static function getPaginas()
+    {
+        throw new Exception("TODO: <pre>Pagina::getPaginas()</pre>", 1);
+
+        $filas = self::$conn->getPaginas();
+
+        $paginas = array();
+
+        foreach ($filas as $fila) {
+            // $paginas[$fila] = 
+        }
+    }
+
 
     /**
      * Lanza una excepción si no es válido el objeto para la base de datos.
      *
-     * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
-     * 
      * @return void
+     * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
      */
     private function validarPagina()
     {
@@ -66,24 +90,44 @@ class Pagina
     /**
      * Crea a partir de si misma, un registro en la base de datos en la tabla tm_page.
      *
-     * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
-     * 
      * @return boolean `true` si se ha añadido, `false` si no.
+     * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
      */
     public function crear()
     {
         $this->validarPagina();
 
-        $conn = new Consulta();
+        return self::$conn->añadirPagina($this);
+    }
 
-        return $conn->añadirPagina($this);
+    /**
+     * Actualiza un registro en la base de datos en la tabla tm_page.
+     * 
+     * El registro que se modificará será aquel que coincida la clave primaria (page_name, lang)
+     * con los atributos del objeto $page_name y $lang.
+     *
+     * 
+     * @param string $_title Título de la página en la pestaña del navegador.
+     * @param string $_content Contenido HTML de la página.
+     * @return boolean `true` si se ha añadido, `false` si no.
+     * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
+     */
+    public function actualizar($_title, $_content)
+    {
+
+        $this->title = $_title;
+        $this->content = $_content;
+
+        $this->validarPagina();
+
+        return self::$conn->actualizarPagina($this);
     }
 
 
     /**
      * Undocumented function
      *
-     * @param string $controllersRel Ucación donde estará disponible la página.
+     * @param string $controllersRel Ubicación donde estará disponible la página.
      * @return void
      */
     public function habilitar($path)
@@ -99,15 +143,19 @@ class Pagina
     }
 
     /**
-     * Devuelve los datos del objeto como un array
-     *
+     * Devuelve array con los atributos del objeto.
+     * 
+     * Los atributos son, en orden: page_name, lang, title y content.
+     * 
+     *@param boolean $associative Si se omite o es `false`, devuelve array no asociativo. 
+     *                            Si es `true`, lo de vuelve asociativo.
      * @return array Array de datos del objeto.
      */
     public function toArray($associative = false)
     {
-        if ($associative)
-            return array('page_name' => $this->page_name, 'lang' => $this->lang, 'title' => $this->title, 'content' => $this->content);
+        if (!$associative)
+            return array($this->page_name, $this->lang,  $this->title, $this->content);
 
-        return array($this->page_name, $this->lang,  $this->title, $this->content);
+        return array('page_name' => $this->page_name, 'lang' => $this->lang, 'title' => $this->title, 'content' => $this->content);
     }
 }

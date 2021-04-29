@@ -181,7 +181,7 @@
                 </p>
             </div>
 
-            <hr>
+            <hr class="margarita">
 
 
 

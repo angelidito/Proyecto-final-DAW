@@ -1,7 +1,7 @@
 <?php
 
-require '../model/excepciones.php';
-require '../model/pagina.php';
+require_once '../model/excepciones.php';
+require_once '../model/pagina.php';
 
 $errores = '';
 $mensajeExito = '';
@@ -23,6 +23,8 @@ try {
 
         $pagina = new Pagina($page_name, $lang, $title, $content);
 
+
+        // El control de formulario se lleva a cabo el constructor de página
         if ($pagina->crear()) {
             $mensajeExito .= "Página guardada de forma exitosa.";
             if (isset($_POST['crear'])) {
@@ -37,9 +39,7 @@ try {
 } catch (Exception $e) {
     $errores = $e->getMessage();
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -50,8 +50,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir página a la BD</title>
 </head>
-
-
 
 <?php
 include('_partials/cabecera.php');
@@ -117,7 +115,6 @@ include('_partials/cabecera.php');
             </div>
         </form>
     </div>
-
 
 </main>
 

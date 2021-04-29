@@ -98,7 +98,7 @@
 
         </div>
 
-        <hr>
+        <hr class="margarita">
 
         <div id="cuerpo-2" class="cuerpo container-fluid my-4">
 

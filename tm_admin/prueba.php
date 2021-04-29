@@ -1,13 +1,37 @@
+<a href=".">Volver al backoffice</a>
+<br><br>
+<hr class="margarita"><br>
+
 <?php
 
+// echo '<pre>';
+require_once '../model/db/traduceme_content/conexion.php';
 
-$page_name = 'pagina-de-prueba';
+$conn = new Consulta();
 
-$file = fopen("../controllers/" . $page_name . ".php", "w");
-fwrite(
-    $file,
-    "<?php"
-        . PHP_EOL . "\$page_name = '$page_name';"
-        . PHP_EOL . "require 'start.php';"
-);
-fclose($file);
+// print_r($conn->getPaginas(null, 'es'));
+var_dump($conn->getPaginas());
+// var_dump($conn->getPage_names());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>

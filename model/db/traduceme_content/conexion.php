@@ -4,7 +4,7 @@ require 'datos_config.php';
 
 
 /**
- * Clase con conexión a la BD perros_raza.
+ * Clase con conexión a la BD tm_page.
  *
  * @param mysqli $conn
  */
@@ -38,7 +38,7 @@ class Conexion
 }
 
 /**
- * Clase para realizar consultas en la BD perro_raza.
+ * Clase para realizar consultas en la BD tm_page.
  *
  * Contiene multitud de métodos.
  *
@@ -63,63 +63,131 @@ class Consulta extends Conexion
      *
      * @return boolean `true` si la página se ha añadido a la base de datos. `false` si no.
      */
-    //  * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
     public function añadirPagina($pagina)
     {
-        $datosPagina = $pagina->toArray();
+        $datos = $pagina->toArray(false);
 
         $insert =
             "INSERT INTO
                 tm_page (page_name, lang, title, content)
             VALUES
-                ('$datosPagina[0]', '$datosPagina[1]', '$datosPagina[2]', '" . addslashes($datosPagina[3]) . "');";
+                ('$datos[0]', '$datos[1]', '$datos[2]', '" . addslashes($datos[3]) . "');";
 
-        // echo $insert;
 
         $this->conn->query($insert);
 
-        if ($this->conn->affected_rows < 1) {
-            // No sé qué podría hacer que se lanzase. Creo que nada, pero por si acaso.
-            // throw new NoFilasAfectadasException('Aparentemente algo a ido mal y no se ha realizado el insert.');
+        if ($this->conn->affected_rows < 1)
             return false;
-        }
 
         return true;
     }
 
     /**
-     * Devuelve información de la tabla tm_page.
+     * Actualiza información de un registro la tabla tm_page.
+     * 
+     * @param Pagina $pagina Página a actualizar.
+     * @return boolean `true` si se ha añadido, `false` si no.
+     */
+    public function actualizarPagina($pagina)
+    {
+        $datos = $pagina->toArray(false);
+        $select =
+            "UPDATE tm_page 
+                SET title='$datos[2]', content='$datos[3]' 
+                WHERE page_name = '$datos[0]' and content = '$datos[1]' 
+                ;";
+
+        $this->conn->query($select);
+
+        if ($this->conn->affected_rows < 1)
+            return false;
+
+        return true;
+    }
+
+    /**
+     * Devuelve la información de la tabla tm_page qeu coincida con los parámetros pasados.
      *
      * Si no se pasan parametros, devuelve toda la información de la tabla.
      * 
      * Si algun campo es igual a `null` no se tendrá en cuenta a la hora 
      * de buscar las páginas correspondientes.
      * 
+     * Cada elemento del array devuelto es a su vez un array sociativo 
+     * con los campos 'page_name', 'lang', 'title' y 'content'.
+     * 
      * @param string $page_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).
-     * @return array Array sociativo con campos 'page_name', 'lang', 'title' 
-     *               y 'content' de la(s) página(s) buscada(s).
+     * @return array Array con los registros de la tabla tm_page que coincidan.
      * 
      */
     public function getPaginas($page_name = null, $lang = null)
     {
         if ($page_name != null) {
-
             if ($lang != null)
-                $select = "SELECT  * FROM  tm_page WHERE  page_name = '$page_name' and lang = '$lang' ;";
-
+                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' and lang = '$lang' ;";
             else
-                $select = "SELECT  * FROM  tm_page WHERE  page_name = '$page_name' ;";
+                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' ;";
+        } else if ($lang != null) {
+            $select = "SELECT * FROM tm_page WHERE lang = '$lang' ;";
+        } else {
+            $select = "SELECT * FROM tm_page ;";
         }
-        $select = "SELECT  * FROM  tm_page WHERE  page_name = '$page_name' and lang = '$lang' ;";
-
 
         $resultados = $this->conn->query($select);
 
-        $pagina = $resultados->fetch_all(MYSQLI_ASSOC)[0];
-
-        return $pagina;
+        return $resultados->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * Devuelve los nombres del páginas que hay en la web.
+     * 
+     * Llamamos nombre a la columna `page_name` de la table tm_page.
+     * 
+     * @return array Array con los nombres del páginas que hay en la web.
+     * 
+     */
+    public function getPage_names()
+    {
+
+        $select = "SELECT DISTINCT page_name FROM tm_page  ;";
+
+        $resultados = $this->conn->query($select);
+
+        $page_names = [];
+
+        foreach ($resultados->fetch_all() as $fila) {
+            $page_names[] = $fila[0];
+        };
+
+        return $page_names;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Duevuelve el ID del último perro añadido a la BD.
      *
