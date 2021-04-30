@@ -24,8 +24,8 @@ tinymce.init({
         }
     },
     menubar: 'favs edit view insert format help',
-    content_css: 'css/content.css,https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css,../assets/css/estructura.css',
-    allow_script_urls: true
+    content_css: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css,../assets/css/estructura.css',
+    allow_script_urls: true,
 });
 
 /** 
@@ -48,9 +48,13 @@ function inicio() {
     checkUncheck();
 
     editContentAfter();
-    document.getElementById('page_name').addEventListener('input', editContentAfter);
+    if (document.getElementById('texto-crear-pagina') != null) {
+        document.getElementById('page_name').addEventListener('input', editContentAfter);
+    }
+
 
 }
+
 
 
 /**
@@ -273,16 +277,17 @@ function checkUncheck() {
 }
 
 
-
-
 /**
  * Edita el `style.content` aplicado a los pseudo elemento ::after
  * de algunos elementos de la clase `add-content-after`.
  */
 function editContentAfter() {
 
-    let texto = document.getElementById('page_name').value + '.php';
-    document.getElementById('texto-crear-pagina').setAttribute('data-content-after', texto);
+    let textoCrearPagina = document.getElementById('texto-crear-pagina');
+    if (textoCrearPagina != null) {
+        let texto = document.getElementById('page_name').value + '.php';
+        textoCrearPagina.setAttribute('data-content-after', texto);
+    }
 
     // elemento.setAttribute('data-content-after', texto);
 }

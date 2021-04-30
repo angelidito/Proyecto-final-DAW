@@ -20,6 +20,9 @@ class BDException extends Exception
 class UsuarioNoRegistradoException extends BDException
 {
 }
+class NoExistenRegistrosException extends BDException
+{
+}
 class NoFilasAfectadasException extends BDException
 {
 }

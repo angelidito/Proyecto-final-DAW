@@ -11,15 +11,13 @@
 
 <!-- TinyMCE -->
 <script src="https://cdn.tiny.cloud/1/6bhuqx89rm55uhit2zmiyx5y2vl4pufzhuycvki63e0e7d46/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<!-- <script src="../assets/js/tinymce.inc.js"></script>
-<script src="../assets/js/tiny_mce/tinymce.min.js"></script> -->
 
+<!-- Mis Scripts -->
+<script src="../assets/js/general.js"></script>
 
 <!-- Mis Hojas de Estilos -->
 <link rel="stylesheet" href="../assets/css/estructura.css">
 
-<!-- Mis Scripts -->
-<script src="../assets/js/general.js"></script>
 
 </head>
 

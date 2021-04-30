@@ -57,6 +57,18 @@ class Consulta extends Conexion
 
 
     /**
+     * Comprueba si se han visto afectada alguna fila con la última operacion en la BD.
+     *
+     * @return boolean `true` si se han visto afectadas filas de la BD; `false` si no.
+     */
+    private function anyRowAffected()
+    {
+        if ($this->conn->affected_rows < 1)
+            return false;
+        return true;
+    }
+
+    /**
      * Añade una página a la base de datos.
      *
      * @param Pagina $pagina Página a añadir.
@@ -76,10 +88,8 @@ class Consulta extends Conexion
 
         $this->conn->query($insert);
 
-        if ($this->conn->affected_rows < 1)
-            return false;
 
-        return true;
+        return $this->anyRowAffected();
     }
 
     /**
@@ -94,15 +104,12 @@ class Consulta extends Conexion
         $select =
             "UPDATE tm_page 
                 SET title='$datos[2]', content='$datos[3]' 
-                WHERE page_name = '$datos[0]' and content = '$datos[1]' 
+                WHERE page_name = '$datos[0]' and lang = '$datos[1]' 
                 ;";
 
         $this->conn->query($select);
 
-        if ($this->conn->affected_rows < 1)
-            return false;
-
-        return true;
+        return $this->anyRowAffected();
     }
 
     /**
@@ -118,7 +125,7 @@ class Consulta extends Conexion
      * 
      * @param string $page_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).
-     * @return array Array con los registros de la tabla tm_page que coincidan.
+     * @return mixed Array con los registros de la tabla tm_page que coincidan.
      * 
      */
     public function getPaginas($page_name = null, $lang = null)
@@ -135,6 +142,10 @@ class Consulta extends Conexion
         }
 
         $resultados = $this->conn->query($select);
+
+        if (!$this->anyRowAffected())
+            throw new NoExistenRegistrosException("No existen páginas con estos parámetros. ");
+
 
         return $resultados->fetch_all(MYSQLI_ASSOC);
     }
