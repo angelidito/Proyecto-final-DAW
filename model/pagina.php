@@ -1,6 +1,7 @@
 <?php
 
 require_once 'form_control.php';
+require_once 'db/traduceme_content/conexion.php';
 
 class Pagina
 {
@@ -8,7 +9,7 @@ class Pagina
     protected $lang;
     protected $title;
     protected $content;
-    static $conn;
+    public static $conn;
 
     /**
      * Crea un objeto Pagina o lanza una excepción.
@@ -17,7 +18,7 @@ class Pagina
      * @param string $_lang
      * @param string $_title
      * @param string $_content
-     * 
+     *
      */
     public function __construct($_page_name, $_lang, $_title, $_content)
     {
@@ -50,14 +51,14 @@ class Pagina
 
     /**
      * TODO.
-     * 
+     *
      * Crea un array de objetos `Pagina` con cada una las páginas existentes de la web.
-     * 
-     * Genera y devuelve un array de objetos `Pagina` a parir de cada uno 
+     *
+     * Genera y devuelve un array de objetos `Pagina` a parir de cada uno
      * de los registros de la tabla tm_page.
-     * 
+     *
      * @return array Array con los registros de la tabla tm_page qeu coincidan.
-     * 
+     *
      */
     public static function getPaginas()
     {
@@ -68,7 +69,7 @@ class Pagina
         $paginas = array();
 
         foreach ($filas as $fila) {
-            // $paginas[$fila] = 
+            // $paginas[$fila] =
         }
     }
 
@@ -102,11 +103,11 @@ class Pagina
 
     /**
      * Actualiza un registro en la base de datos en la tabla tm_page.
-     * 
+     *
      * El registro que se modificará será aquel que coincida la clave primaria (page_name, lang)
      * con los atributos del objeto $page_name y $lang.
      *
-     * 
+     *
      * @param string $_title Título de la página en la pestaña del navegador.
      * @param string $_content Contenido HTML de la página.
      * @return boolean `true` si se ha añadido, `false` si no.
@@ -114,7 +115,6 @@ class Pagina
      */
     public function actualizar($_title, $_content)
     {
-
         $this->title = $_title;
         $this->content = $_content;
 
@@ -144,17 +144,18 @@ class Pagina
 
     /**
      * Devuelve array con los atributos del objeto.
-     * 
+     *
      * Los atributos son, en orden: page_name, lang, title y content.
-     * 
-     *@param boolean $associative Si se omite o es `false`, devuelve array no asociativo. 
+     *
+     *@param boolean $associative Si se omite o es `false`, devuelve array no asociativo.
      *                            Si es `true`, lo de vuelve asociativo.
      * @return array Array de datos del objeto.
      */
     public function toArray($associative = false)
     {
-        if (!$associative)
+        if (!$associative) {
             return array($this->page_name, $this->lang,  $this->title, $this->content);
+        }
 
         return array('page_name' => $this->page_name, 'lang' => $this->lang, 'title' => $this->title, 'content' => $this->content);
     }
