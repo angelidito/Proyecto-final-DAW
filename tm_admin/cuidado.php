@@ -4,24 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradúceMe - Administración</title>
+    <title>Administración - TradúceMe</title>
 
 
     <?php
+
+    $tituloPaginaAdmin = "Zona de administración";
     include('_partials/cabecera.php');
     ?>
 
-    <main class="m-4 p-4 center">
 
-        <div class="m-4 p-4">
-            <p class="display-1  m-4 p-4 ">
-                <q>Ten cuidado con lo que tocas y no toques si no tienes cuidado.</q>
-                <br>
-                Mori M.
-            </p>
-        </div>
+    <div class="container-fluid row  text-center">
+        <p class="col-sm-12 col-md-10 col-lg-10 col-xl-8 display-4   my-4 mx-auto  ">
+            <q>Ten cuidado con lo que tocas y no toques si no tienes cuidado.</q>
+            <br>
+            Mori M.
+        </p>
+    </div>
 
-    </main>
 
     <?php
     include('_partials/pie.php');

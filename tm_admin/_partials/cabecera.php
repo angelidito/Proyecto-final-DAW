@@ -23,19 +23,21 @@
 
 <body>
     <header>
+
         <div id="logoYTitulo">
             <a href="."> <img src="../img/logo.png" alt="logo" id="logoCabecera" class="logo">
             </a>
             <a href=".">
-                <p id="tituloWeb" class="m-0">TradúceMe</p>
-            </a> <span id="botonMenu" class="m-4"> &#9776; </span>
+                <p id="tituloWeb" class="m-0">Administración de páginas</p>
+            </a>
+            <span id="botonMenu" class="m-4"> &#9776; </span>
         </div>
         <ul id="menu">
+            <li> <a href="cuidado.php">Inicio</a></li>
+            <li> <a href="añadir-pagina.php">Añadir nueva</a></li>
+            <li> <a href="editar-pagina.php">Editar y traducir</a></li>
+            <li> <a href="info.php">Información</a></li>
             <li> <a href="..">Volver a la web</a></li>
-            <li> <a href="añadir-pagina.php">Añadir página</a></li>
-            <li> <a href="editar-pagina.php">Editar páginas</a></li>
-            <li> <a href="traducir-pagina.php">Traducir páginas</a></li>
-            <li> <a href="info.php">Información BD</a></li>
         </ul>
     </header>
 

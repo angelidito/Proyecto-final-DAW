@@ -28,7 +28,20 @@ try {
         $page_name = $_POST['page_name'];
         $lang = $_POST['lang'];
 
-        $pagina = $conn->getPaginas($page_name, $lang)[0];
+        try {
+            $pagina = $conn->getPaginas($page_name, $lang)[0];
+        } catch (NoExistenRegistrosException $e) {
+            // Si llega hasta aquí cuando se escoge una página 
+            // en un idioma en el que no está creada.
+            // Lo que hacemos es devolver la página en el idioma 
+            // en el que sí que está, para que la pueda traducir.
+            if ($lang == 'es')
+                $lang_traducir = 'en';
+            else
+                $lang_traducir = 'es';
+            // No puede no estar en ningún idioma, porque si no, no te la darían a elegir
+            $pagina = $conn->getPaginas($page_name, $lang_traducir)[0];
+        }
 
         $title = $pagina['title'];
         $content = $pagina['content'];
@@ -57,36 +70,16 @@ try {
 
         if ($pagina->actualizar($title, $content))
             $mensajeExito = '¡Los cambios en la página se han guardado correctamente!';
-        else
-            $errores = 'No se han podido guardar los cambios... ';
+        // Si no se realiza el update es que no existe, así que la creamos
+        else {
+            if ($pagina->crear())
+                $mensajeExito .= "Página guardada de forma exitosa.";
+            else
+                $errores = "Algo ha fallado... No se ha insertado nada en la base de datos. Quizá ya exista la página en el idioma selecionado.";
+        }
     }
 } catch (FormException $e) {
     $errores = $e->getMessage();
-} catch (NoExistenRegistrosException $e) {
-    // Si puede llegar hasta aquí cuando se escoge 
-    // una página en un idioma en el que no está creada
-    // En ese caso, vamos a darle la página en el idioma 
-    // en el que sí que está, para que la pueda traducir.
-    try {
-        if ($lang == 'en') {
-            $lang_traducir = 'es';
-        } else {
-            $lang_traducir = 'en';
-        }
-
-        $pagina = $conn->getPaginas($page_name, $lang_traducir)[0];
-
-        $title = $pagina['title'];
-        $content = $pagina['content'];
-
-
-        $hidden_selecionar = 'hidden';
-        $hidden_editar = '';
-    } catch (NoExistenRegistrosException $e) {
-        $errores = $e->getMessage();
-    } catch (BDException $e) {
-        $errores = $e->getMessage();
-    }
 } catch (BDException $e) {
     $errores = $e->getMessage();
 } catch (Exception $e) {
@@ -147,7 +140,7 @@ include('_partials/cabecera.php');
     </form>
 </div>
 
-<div class="container">
+<div id="alertas" class="container">
     <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
     <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
 </div>
@@ -165,10 +158,14 @@ include('_partials/cabecera.php');
             <div class="col-md-3 ">
                 <div class="form-group">
                     <label for="lang_editar">Idioma</label>
-                    <select id="lang_editar" class="form-control center text-center" name="lang">
-                        <option value="es" <?php echo $lang == 'es' ? 'selected' : '' ?>>español</option>
-                        <option value="en" <?php echo $lang == 'en' ? 'selected' : '' ?>>inglés</option>
-                    </select>
+                    <!-- <select id="lang_editar" class="form-control center text-center" name="lang">
+                        <option value="es" <?php //echo $lang == 'es' ? 'selected' : '' 
+                                            ?>>español</option>
+                        <option value="en" <?php //echo $lang == 'en' ? 'selected' : '' 
+                                            ?>>inglés</option>
+                    </select> -->
+                    <input id="lang_muestra" class="form-control" type="text" name="lang_muestra" value="<?php echo ($lang == 'es') ? "español" : "inglés" ?>" readonly>
+                    <input id="lang_editar" class="d-none form-control hidden" type="text" name="lang" value="<?php echo $lang ?>" hidden readonly>
 
                 </div>
             </div>
