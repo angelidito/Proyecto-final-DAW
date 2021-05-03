@@ -19,16 +19,18 @@ if (!isset($_SESSION['cookie_lang'])) {
             $langs = array_combine($lang_parse[1], $lang_parse[4]);
             // Fija la prioridad en 1 si no tiene valor
             foreach ($langs as $lang => $val) {
-                if ($val === '') $langs[$lang] = 1;
+                if ($val === '') {
+                    $langs[$lang] = 1;
+                }
             }
             // Con más idiomas me interesaría ordenarlo, pero con dos no.. arsort($langs, SORT_NUMERIC);
         }
     }
 
     $_SESSION['cookie_lang'] = 'es';
-    // Si el navegador contempla el inglés y 
-    //      ( tiene mas prioridad que el español 
-    //        o no contempla el español ), 
+    // Si el navegador contempla el inglés y
+    //      ( tiene mas prioridad que el español
+    //        o no contempla el español ),
     // entonces, redirige a la pagina en inglés
     if (isset($langs['en'])) {
         if (!isset($langs['es']) || $langs['en'] > $langs['es']) {
@@ -50,7 +52,7 @@ if (isset($_GET['lang'])) {
 $lang = $_SESSION['cookie_lang'];
 
 
-echo $_SESSION['cookie_lang'];
+// echo $_SESSION['cookie_lang'];
 
 // $dominio = '127.0.0.1/Proyecto-final-DAW';
 
@@ -60,7 +62,12 @@ try {
     $pagina = $conn->getPaginas($page_name, $lang)[0];
 } catch (NoExistenRegistrosException $e) {
     $lang = ($lang == 'es') ? 'en' : 'es';
-    $pagina = $conn->getPaginas($page_name, $lang)[0];
+    try {
+        $pagina = $conn->getPaginas($page_name, $lang)[0];
+    } catch (NoExistenRegistrosException $e) {
+        header("Location: page-not-found.php");
+        exit;
+    }
 }
 
 require "../views/plantilla.php";
