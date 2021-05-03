@@ -31,8 +31,15 @@
             </a> <span id="botonMenu" class="m-4"> &#9776; </span>
         </div>
         <ul id="menu">
-            <li> <a href="..">Volver a la web</a> </li>
-            <li> <a href="añadir-pagina.php">Añadir página</a> </li>
-            <li> <a href="editar-pagina.php">Editar páginas</a> </li>
+            <li> <a href="..">Volver a la web</a></li>
+            <li> <a href="añadir-pagina.php">Añadir página</a></li>
+            <li> <a href="editar-pagina.php">Editar páginas</a></li>
+            <li> <a href="traducir-pagina.php">Traducir páginas</a></li>
+            <li> <a href="info.php">Información BD</a></li>
         </ul>
     </header>
+
+    <main class="my-4 py-4 center">
+        <div class="container">
+            <h1><?php echo $tituloPaginaAdmin ?></h1>
+        </div>

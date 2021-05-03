@@ -5,7 +5,7 @@ require_once '../model/form_control.php';
 require_once '../model/pagina.php';
 require_once '../model/db/traduceme_content/conexion.php';
 
-$tituloPaginaAdmin = "Edita o traduce una página";
+$tituloPaginaAdmin = "¡Traduce una página!";
 $errores = '';
 $mensajeExito = '';
 
@@ -62,31 +62,6 @@ try {
     }
 } catch (FormException $e) {
     $errores = $e->getMessage();
-} catch (NoExistenRegistrosException $e) {
-    // Si puede llegar hasta aquí cuando se escoge 
-    // una página en un idioma en el que no está creada
-    // En ese caso, vamos a darle la página en el idioma 
-    // en el que sí que está, para que la pueda traducir.
-    try {
-        if ($lang == 'en') {
-            $lang_traducir = 'es';
-        } else {
-            $lang_traducir = 'en';
-        }
-
-        $pagina = $conn->getPaginas($page_name, $lang_traducir)[0];
-
-        $title = $pagina['title'];
-        $content = $pagina['content'];
-
-
-        $hidden_selecionar = 'hidden';
-        $hidden_editar = '';
-    } catch (NoExistenRegistrosException $e) {
-        $errores = $e->getMessage();
-    } catch (BDException $e) {
-        $errores = $e->getMessage();
-    }
 } catch (BDException $e) {
     $errores = $e->getMessage();
 } catch (Exception $e) {
@@ -111,7 +86,8 @@ include('_partials/cabecera.php');
 ?>
 
 
-<div id="selecionar-pagina" class="container mb-4  <?php echo $hidden_selecionar ?>">
+
+<div id="selecionar-pagina" class="container my-4  <?php echo $hidden_selecionar ?>">
     <form method="post" action="">
         <div class="row">
             <div class="col-md-3 ">
@@ -130,8 +106,8 @@ include('_partials/cabecera.php');
                 <div class="form-group">
                     <label for="lang_selecion">Idioma</label>
                     <select id="lang_selecion" class="form-control center text-center" name="lang">
-                        <option value="es" <?php echo $lang == 'es' ? 'selected' : '' ?>>español</option>
-                        <option value="en" <?php echo $lang == 'en' ? 'selected' : '' ?>>inglés</option>
+                        <option value="es">español</option>
+                        <option value="en">inglés</option>
                     </select>
                 </div>
 
@@ -164,11 +140,9 @@ include('_partials/cabecera.php');
 
             <div class="col-md-3 ">
                 <div class="form-group">
-                    <label for="lang_editar">Idioma</label>
-                    <select id="lang_editar" class="form-control center text-center" name="lang">
-                        <option value="es" <?php echo $lang == 'es' ? 'selected' : '' ?>>español</option>
-                        <option value="en" <?php echo $lang == 'en' ? 'selected' : '' ?>>inglés</option>
-                    </select>
+                    <label for="lang_muestra">Idioma</label>
+                    <input id="lang_muestra" class="form-control" type="text" name="lang_muestra" value="<?php echo $lang == 'es' ? "español" : "inglés" ?>" readonly>
+                    <input id="lang_editar" class="form-control" type="text" name="lang" value="<?php echo $lang ?>" hidden readonly>
 
                 </div>
             </div>

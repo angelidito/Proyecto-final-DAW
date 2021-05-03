@@ -127,18 +127,19 @@ class Consulta extends Conexion
      * @param string $lang Idioma de la(s) página(s).
      * @return mixed Array con los registros de la tabla tm_page que coincidan.
      * 
+     * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
      */
     public function getPaginas($page_name = null, $lang = null)
     {
         if ($page_name != null) {
             if ($lang != null)
-                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' and lang = '$lang' ;";
+                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' and lang = '$lang' ORDER BY page_name, lang ;";
             else
-                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' ;";
+                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' ORDER BY page_name, lang ;";
         } else if ($lang != null) {
-            $select = "SELECT * FROM tm_page WHERE lang = '$lang' ;";
+            $select = "SELECT * FROM tm_page WHERE lang = '$lang' ORDER BY page_name, lang ;";
         } else {
-            $select = "SELECT * FROM tm_page ;";
+            $select = "SELECT * FROM tm_page ORDER BY page_name, lang ;";
         }
 
         $resultados = $this->conn->query($select);
