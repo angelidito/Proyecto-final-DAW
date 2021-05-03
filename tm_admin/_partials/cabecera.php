@@ -41,7 +41,7 @@
         </ul>
     </header>
 
-    <main class="my-4 py-4 center">
+    <main class="mt-4 pt-4 center">
         <div class="container">
             <h1><?php echo $tituloPaginaAdmin ?></h1>
         </div>
