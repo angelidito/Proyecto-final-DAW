@@ -1,6 +1,6 @@
 <?php
 
-$_SESSION['cookie_lang'] = 'en';
+// $_SESSION['cookie_lang'] = 'en';
 
 ?>
 
@@ -12,8 +12,7 @@ $_SESSION['cookie_lang'] = 'en';
             <p id="tituloWeb" class="m-0">TradúceMe</p>
         </a> <span id="botonMenu" class="m-4"> &#9776; </span>
     </div>
-    <div id="cambioIdiomaEscritorio"> <a class='ES cambioIdioma'>&#x1f1ea;&#x1f1f8;</a> <a
-            class='EN cambioIdioma'>&#x1f1ec;&#x1f1e7;</a> </div>
+    <div id="cambioIdiomaEscritorio"> <a class='ES cambioIdioma'>&#x1f1ea;&#x1f1f8;</a> <a class='EN cambioIdioma'>&#x1f1ec;&#x1f1e7;</a> </div>
     <ul id="menu">
         <li> <a href="..">Home</a> </li>
         <li> <a href="sobremi.php">About me</a> </li>
