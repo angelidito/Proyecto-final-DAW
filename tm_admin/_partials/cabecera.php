@@ -34,9 +34,9 @@
         </div>
         <ul id="menu">
             <li> <a href="cuidado.php">Inicio</a></li>
-            <li> <a href="añadir-pagina.php">Añadir</a></li>
-            <li> <a href="editar-pagina.php">Editar</a></li>
-            <li> <a href="comparar-traducciones.php">Comparar</a></li>
+            <li> <a href="añadir.php">Añadir</a></li>
+            <li> <a href="editar.php">Editar</a></li>
+            <li> <a href="comparar.php">Comparar</a></li>
             <li> <a href="info.php">Información</a></li>
             <li> <a href=".." target="_blank">Ver mi web</a></li>
         </ul>

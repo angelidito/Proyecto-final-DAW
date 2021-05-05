@@ -5,13 +5,13 @@ require_once '../model/form_control.php';
 require_once '../model/pagina.php';
 require_once '../model/db/traduceme_content/conexion.php';
 
-$tituloPaginaAdmin = "Edita o traduce una página";
+$tituloPaginaAdmin = "¡Edita una página! ¡O traduce!";
 $errores = '';
 $mensajeExito = '';
 
 $conn = new Consulta();
 
-$paginas = $conn->getPage_namesEN_ES();;
+$paginas = $conn->getPage_names();;
 $page_name = '';
 $lang = '';
 $title = '';
@@ -107,7 +107,7 @@ include('_partials/cabecera.php');
 <div id="selecionar-pagina" class="container mb-4  <?php echo $hidden_selecionar ?>">
     <form method="post" action="">
         <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-md-3 ">
                 <div class="form-group">
                     <label for="page_name_selecion">Nombre de la página</label>
                     <select id="page_name_selecion" class="form-control" name="page_name">
@@ -119,8 +119,19 @@ include('_partials/cabecera.php');
                 </div>
             </div>
 
+            <div class="col-md-3 ">
+                <div class="form-group">
+                    <label for="lang_selecion">Idioma</label>
+                    <select id="lang_selecion" class="form-control center text-center" name="lang">
+                        <option value="es" <?php echo $lang == 'es' ? 'selected' : '' ?>>español</option>
+                        <option value="en" <?php echo $lang == 'en' ? 'selected' : '' ?>>inglés</option>
+                    </select>
+                </div>
+
+            </div>
+
             <div class="col-md-6 ">
-                <div class="form-group float-left ">
+                <div class="form-group float-right ">
                     <label for="">&nbsp;</label>
                     <button name="selecion_pagina" type="submit" class="btn btn-primary">Selecionar</button>
                 </div>
@@ -144,7 +155,7 @@ include('_partials/cabecera.php');
                 </div>
             </div>
 
-            <div class="col-md-3 ">
+            <div class="col-md-2 ">
                 <div class="form-group">
                     <label for="lang_editar">Idioma</label>
                     <!-- <select id="lang_editar" class="form-control center text-center" name="lang">
@@ -159,23 +170,23 @@ include('_partials/cabecera.php');
                 </div>
             </div>
 
-            <div class="col-md-3 ">
+            <div class="col-md-3 col-lg-4 ">
                 <div class="form-group">
                     <label for="title_editar">Título navegador</label>
                     <input id="title_editar" class="form-control" type="text" name="title" minlength=5 maxlength=70 value="<?php echo $title ?>">
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <!-- <div class="col-md-3">
                 <div class="form-group float-right ">
                     <label for="">&nbsp;</label>
-                    <button type="submit" class="btn btn-primary">Atrás</button>
                 </div>
-            </div>
-            <div class="col-md-1 ">
+            </div> -->
+            <div class="col-md-4 col-lg-3 ">
                 <div class="form-group float-right ">
                     <label for="">&nbsp;</label>
                     <button name="actualizar_pagina" type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Atrás</button>
                 </div>
             </div>
         </div>
