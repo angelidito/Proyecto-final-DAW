@@ -1,6 +1,7 @@
 /* ---------- FUENTES ---------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto');
+
 * {
     font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
@@ -89,6 +90,7 @@ hr {
     margin-bottom: 40px; */
 }
 
+hr,
 hr.margarita {
     display: block;
     /* margin: 50px 0; */
@@ -708,6 +710,7 @@ footer address {
 }
 
 @media screen and (min-width: 768px) {
+
     /* body {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -730,6 +733,7 @@ footer address {
         /* background: linear-gradient(#c5c5c5, #fff 75%); */
         background: linear-gradient(#012169, #fff 75%);
     }
+
     #logoYTitulo {
         width: max-content;
         display: flex;
@@ -743,6 +747,7 @@ footer address {
         margin-top: 7px;
         margin-right: 18%;
     }
+
     #logoCabecera {
         /* height: 5rem;
         width: 5rem;
@@ -750,21 +755,26 @@ footer address {
         /* margin: 2px; */
         margin-bottom: 7px;
     }
+
     #logoCabecera:hover {
         background-color: rgb(245, 245, 245);
         cursor: pointer;
     }
+
     #logoYTitulo h1:hover {
         background-color: rgb(245, 245, 245);
         cursor: pointer;
     }
+
     #botonMenu {
         display: none;
     }
+
     ul.breadcrumb {
         padding-left: 0;
         margin-left: 10%;
     }
+
     #menu {
         display: flex !important;
         grid-area: menú;
@@ -779,17 +789,21 @@ footer address {
         justify-content: center;
         border-bottom: 1px solid #f40;
     }
+
     #menu li {
         box-sizing: content-box;
         height: min-content;
         border: none;
     }
+
     #menu a {
         padding: 1rem 1.3rem;
     }
+
     #menu li:not(:last-child) {
         border-right: none;
     }
+
     #tiposTraduccion {
         background-color: rgb(252, 252, 252);
         list-style: none;
@@ -800,9 +814,11 @@ footer address {
         z-index: 1;
         width: max-content;
     }
+
     #traduccion:hover #tiposTraduccion {
         display: block;
     }
+
     #listaServicios {
         background-color: rgb(252, 252, 252);
         list-style: none;
@@ -813,12 +829,15 @@ footer address {
         z-index: 1;
         width: max-content;
     }
+
     #otrosServicios:hover #listaServicios {
         display: block;
     }
+
     #menu #cambioIdiomaMovil {
         display: none;
     }
+
     /* ---------- CAMBIO DE IDIOMA ---------- */
     #cambioIdiomaEscritorio {
         display: block;
@@ -828,9 +847,11 @@ footer address {
         right: 0;
         z-index: 1;
     }
+
     #cambioIdiomaEscritorio .ES {
         visibility: hidden;
     }
+
     #cambioIdiomaEscritorio .ES::after {
         visibility: visible;
         padding-right: 1.65em;
@@ -839,9 +860,11 @@ footer address {
         background-size: auto 1.1em;
         background-repeat: no-repeat;
     }
+
     #cambioIdiomaEscritorio .EN {
         visibility: hidden;
     }
+
     #cambioIdiomaEscritorio .EN::before {
         visibility: visible;
         padding-right: 2em;
@@ -850,6 +873,7 @@ footer address {
         background-size: auto 1em;
         background-repeat: no-repeat;
     }
+
     /* .es {
         margin-right: 0.1rem;
     } */
@@ -858,6 +882,7 @@ footer address {
     #tituloPagina .tituloPagina {
         font-size: 4rem;
     }
+
     footer {
         /* display: flex;
         flex-wrap: wrap-reverse;
@@ -866,6 +891,7 @@ footer address {
         justify-content: space-between;
         align-items: center; */
     }
+
     /* TODO: footer */
     .cuerpo {
         /* width: 80%; */
@@ -876,6 +902,7 @@ footer address {
 /* ---------- VERSIONES DESDE PANTALLAS AÚN MÁS GRANDES ---------- */
 
 @media screen and (min-width: 1023px) {
+
     #tituloPagina h1,
     #tituloPagina .tituloPagina {
         font-size: 5rem;
