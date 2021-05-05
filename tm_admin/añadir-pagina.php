@@ -57,7 +57,6 @@ include('_partials/cabecera.php');
 ?>
 
 <div class="container">
-
     <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
     <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
     <form method="post" action="">

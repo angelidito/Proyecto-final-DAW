@@ -154,7 +154,7 @@ class Consulta extends Conexion
     /**
      * Devuelve los nombres del páginas que hay en la web.
      * 
-     * Llamamos nombre a la columna `page_name` de la table tm_page.
+     * Lista con los datos de la columna `page_name` de la table tm_page.
      * 
      * @return array Array con los nombres del páginas que hay en la web.
      * 
@@ -163,6 +163,30 @@ class Consulta extends Conexion
     {
 
         $select = "SELECT DISTINCT page_name FROM tm_page  ;";
+
+        $resultados = $this->conn->query($select);
+
+        $page_names = [];
+
+        foreach ($resultados->fetch_all() as $fila) {
+            $page_names[] = $fila[0];
+        };
+
+        return $page_names;
+    }
+
+    /**
+     * Devuelve los nombres del páginas que están en ambos idiomas.
+     * 
+     * Llamamos nombre a la columna `page_name` de la table tm_page.
+     * 
+     * @return array Array con los nombres del páginas que hay en la web.
+     * 
+     */
+    public function getPage_namesEN_ES()
+    {
+
+        $select = "SELECT page_name FROM tm_page WHERE lang='es' AND page_name IN (SELECT page_name FROM tm_page WHERE lang='en') ;";
 
         $resultados = $this->conn->query($select);
 
