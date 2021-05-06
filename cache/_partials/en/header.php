@@ -1,9 +1,3 @@
-<?php
-
-// $_SESSION['cookie_lang'] = 'en';
-
-?>
-
 <header>
     <div id="logoYTitulo">
         <a href=".."> <img src="../img/logo.png" alt="logo" id="logoCabecera" class="logo">

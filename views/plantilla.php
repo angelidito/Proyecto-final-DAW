@@ -35,15 +35,23 @@
 <body>
 
     <?php
-    include '_partials/' . $lang . '/header.php';
+    if (isset($header))
+        echo $header;
+    else
+        include "../cache/_partials/$lang/header.php";
 
-    // echo $_SERVER['SERVER_NAME'];
-    // echo $_SERVER['HTTP_HOST'];
-    // iclude BREADCRUMB y MAIN
 
-    echo  $pagina['content'];
+    if (isset($pagina['content']))
+        echo  $pagina['content'];
+    else
+        include "../cache/$page_name.html";
 
-    include '_partials/' . $lang . '/footer.php';
+
+
+    if (isset($footer))
+        echo $footer;
+    else
+        include "../cache/_partials/$lang/footer.php";
     ?>
 
 

@@ -3,11 +3,12 @@
 require_once '../model/excepciones.php';
 require_once '../model/pagina.php';
 
+$id_admin_page = "admin_añadir";
 $tituloPaginaAdmin = "Añade una página";
 $errores = '';
 $mensajeExito = '';
 
-$page_name = '';
+$p_name = '';
 $lang = '';
 $title = '';
 $content = '';
@@ -17,28 +18,27 @@ try {
     if (isset($_POST['enviar'])) {
 
         // Cogemos los datos
-        $page_name = $_POST['page_name'];
+        $p_name = $_POST['p_name'];
         $lang = $_POST['lang'];
         $title = $_POST['title'];
         $content = $_POST['content'];
 
-        $pagina = new Pagina($page_name, $lang, $title, $content);
-
+        $pagina = new Pagina($p_name, $lang, $title, $content);
 
         // El control de formulario se lleva a cabo el constructor de página
         if ($pagina->crear()) {
-            $mensajeExito .= "Página guardada de forma exitosa.";
+            $mensajeExito .= "<p class='m-0'>Página guardada de forma exitosa.</p>";
             if (isset($_POST['crear'])) {
-                $pagina->crear("../controllers");
+                $pagina->habilitar("../controllers");
             }
         } else {
-            $errores = "Algo ha fallado... No se ha insertado nada en la base de datos. Quizá ya exista la página en el idioma selecionado.";
+            $errores .= "<p class='m-0'>Advertencia: no se ha insertado nada en la base de datos; quizá ya exista la página <strong>$p_name</strong> en <strong> $lang</strong>.</p>";
         }
     }
 } catch (FormException $e) {
-    $errores = $e->getMessage();
+    $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 } catch (Exception $e) {
-    $errores = $e->getMessage();
+    $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 }
 ?>
 
@@ -64,8 +64,8 @@ include('_partials/cabecera.php');
             <div class="col-md-3">
 
                 <div class="form-group">
-                    <label for="page_name">Nombre de la página</label>
-                    <input id="page_name" class="form-control" type="text" name="page_name" minlength=5 maxlength=40 value="<?php echo $page_name ?>">
+                    <label for="p_name">Nombre de la página</label>
+                    <input id="p_name" class="form-control" type="text" name="p_name" minlength=5 maxlength=40 value="<?php echo $p_name ?>">
                 </div>
                 <div class="form-group">
                     <label for="lang">Idioma</label>

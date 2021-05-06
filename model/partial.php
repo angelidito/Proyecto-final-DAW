@@ -3,46 +3,38 @@
 require_once 'form_control.php';
 require_once 'db/traduceme_content/conexion.php';
 
-class Pagina
+class Partial
 {
-    protected $page_name;
+    protected $partial_name;
     protected $lang;
-    protected $title;
     protected $content;
     public static $conn;
 
     /**
-     * Crea un objeto Pagina.
+     * Crea un objeto Partial.
      *
-     * @param string $_page_name
+     * @param string $_partial_name
      * @param string $_lang
-     * @param string $_title
      * @param string $_content
      *
      */
-    public function __construct($_page_name, $_lang, $_title, $_content)
+    public function __construct($_partial_name, $_lang, $_content)
     {
-        $this->page_name = $_page_name;
+        $this->partial_name = $_partial_name;
         $this->lang = $_lang;
-        $this->title = $_title;
         $this->content = $_content;
         if (!isset(self::$conn))
             self::$conn = new Consulta();
     }
 
-    public function getPage_name()
+    public function getPartial_name()
     {
-        return $this->page_name;
+        return $this->partial_name;
     }
 
     public function getLang()
     {
         return $this->lang;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     public function getContent()
@@ -56,7 +48,7 @@ class Pagina
      * Español o inglés si el contenido de `$lang` es 'es' o 'en, respectivamente.
      * En caso de que no sea ninguno, devuelve el contenido de esta variable.
      *
-     * @return string El idioma de la página.
+     * @return string El idioma del partial
      */
     public function getIdioma()
     {
@@ -71,24 +63,24 @@ class Pagina
     /**
      * TODO.
      *
-     * Crea un array de objetos `Pagina` con cada una las páginas existentes de la web.
+     * Crea un array de objetos `Partial` con cada una las partials existentes de la web.
      *
-     * Genera y devuelve un array de objetos `Pagina` a parir de cada uno
+     * Genera y devuelve un array de objetos `Partial` a parir de cada uno
      * de los registros de la tabla tm_page.
      *
      * @return array Array con los registros de la tabla tm_page qeu coincidan.
      *
      */
-    public static function getPaginas()
+    public static function getPartials()
     {
-        throw new Exception("TODO: <pre>Pagina::getPaginas()</pre>", 1);
+        throw new Exception("<pre>TODO: Partial::getPArtials()</pre>", 1);
 
-        $filas = self::$conn->getPaginas();
+        $filas = self::$conn->getPartials();
 
-        $paginas = array();
+        $partials = array();
 
         foreach ($filas as $fila) {
-            // $paginas[$fila] =
+            // $partials[$fila] =
         }
     }
 
@@ -96,79 +88,61 @@ class Pagina
     /**
      * Lanza una excepción si alguno de los parámetros del objeto no es válido para la base de datos.
      * 
-     * @param boolean $_page_name Si se quiere validar o no.
+     * @param boolean $_partial_name Si se quiere validar o no.
      * @param boolean $_lang Si se quiere validar o no.
-     * @param boolean $_title Si se quiere validar o no.
      * @param boolean $_content Si se quiere validar o no.
      * @return void
      * @throws FormException Cuando alguno de los atributos del objeto no son validos.
      */
 
-    protected function validarPagina($_page_name = true, $_lang = true, $_title = true, $_content = true)
+    protected function validarPartial($_partial_name = true, $_lang = true,  $_content = true)
     {
-        FormControl::checkPage_Name($_page_name);
-        if ($_page_name)
-            FormControl::checkLength($this->page_name, 5, 40, 'nombre de la página');
+        if ($_partial_name)
+            FormControl::checkLength($this->partial_name, 5, 40, 'nombre de la partial');
         if ($_lang)
             FormControl::checkLang($this->lang);
-        if ($_title)
-            FormControl::checkLength($this->title, 5, 70, 'título navegador');
         if ($_content)
             FormControl::checkLength($this->content, 13, 65535, 'contenido');
-    }
-
-    /**
-     * Crea a partir de si misma, un registro en la base de datos en la tabla tm_page.
-     *
-     * @return boolean `true` si se ha añadido, `false` si no.
-     * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
-     */
-    public function crear()
-    {
-        $this->validarPagina();
-
-        return self::$conn->añadirPagina($this);
     }
 
     /**
      * Actualiza un registro en la base de datos en la tabla tm_page.
      * 
      * El registro que se modificará será aquel que coincidan los atributos 
-     * del objeto $page_name y $lang con la clave primaria (page_name, lang).
+     * del objeto $partial_name y $lang con la clave primaria (partial_name, lang).
      * 
      * Si se omiten los parámetros, se actualizará con el contenido de los atributos del objeto.
      * 
-     * @param string $_title Título de la página en la pestaña del navegador.
-     * @param string $_content Contenido HTML de la página.
+     * @param string $_title Título de la partial en la pestaña del navegador.
+     * @param string $_content Contenido HTML de la partial.
      * @return boolean `true` si se ha añadido, `false` si no.
      * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
      */
-    public function actualizar($_title = null, $_content = null)
+    public function actualizar($_content = null)
     {
-        if ($_title != null)
-            $this->title = $_title;
+
         if ($_content != null)
             $this->content = $_content;
 
-        $this->validarPagina();
+        $this->validarPartial();
 
-        return self::$conn->actualizarPagina($this);
+        return self::$conn->actualizarPartial($this);
     }
 
 
     /**
      * Undocumented function
      *
-     * @param string $controllersRel Ubicación donde estará disponible la página.
+     * @param string $controllersRel Ubicación donde estará disponible la partial.
      * @return void
      */
     public function habilitar($path)
     {
-        $file = fopen("$path/$this->page_name.php", "w");
+        $file = fopen("$path/$this->partial_name.php", "w");
         fwrite(
             $file,
             "<?php"
-                . PHP_EOL . "\$page_name = '$this->page_name';"
+                . PHP_EOL . "\$partial_name = '$this->partial_name';"
                 . PHP_EOL . "require 'start.php';"
         );
         fclose($file);
@@ -177,7 +151,7 @@ class Pagina
     /**
      * Devuelve array con los atributos del objeto.
      *
-     * Los atributos son, en orden: page_name, lang, title y content.
+     * Los atributos son, en orden: partial_name, lang, title y content.
      *
      *@param boolean $associative Si se omite o es `false`, devuelve array no asociativo.
      *                            Si es `true`, lo de vuelve asociativo.
@@ -186,9 +160,9 @@ class Pagina
     public function toArray($associative = false)
     {
         if (!$associative) {
-            return array($this->page_name, $this->lang,  $this->title, $this->content);
+            return array($this->partial_name, $this->lang,  $this->title, $this->content);
         }
 
-        return array('page_name' => $this->page_name, 'lang' => $this->lang, 'title' => $this->title, 'content' => $this->content);
+        return array('partial_name' => $this->partial_name, 'lang' => $this->lang, 'title' => $this->title, 'content' => $this->content);
     }
 }

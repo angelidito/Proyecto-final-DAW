@@ -2,6 +2,7 @@
 
 require '../model/db/traduceme_content/conexion.php';
 require '../model/excepciones.php';
+require '../cache/vars/titles.php';
 /**
  * Provee de variables útiles y necesarias para el programa.
  */
@@ -58,15 +59,24 @@ $lang = $_SESSION['cookie_lang'];
 
 $conn = new Consulta();
 
-try {
-    $pagina = $conn->getPaginas($page_name, $lang)[0];
-} catch (NoExistenRegistrosException $e) {
-    $lang = ($lang == 'es') ? 'en' : 'es';
+// Cargamos footer y header
+
+
+if (!file_exists('../cache/pages/$lang/$page_name.php')) {
+    // Cargamos contenido de la pagina
     try {
         $pagina = $conn->getPaginas($page_name, $lang)[0];
+        $file = fopen("../cache/pages/$lang/$page_name.php", "w");
+        fwrite($file, $pagina['content']);
+        fclose($file);
     } catch (NoExistenRegistrosException $e) {
-        header("Location: page-not-found.php");
-        exit;
+        $lang = ($lang == 'es') ? 'en' : 'es';
+        try {
+            $pagina = $conn->getPaginas($page_name, $lang)[0];
+        } catch (NoExistenRegistrosException $e) {
+            header("Location: page-not-found.php");
+            exit;
+        }
     }
 }
 

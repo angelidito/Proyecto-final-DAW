@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body id="<?php echo $id_admin_page ?>">
     <header>
 
         <div id="logoYTitulo">

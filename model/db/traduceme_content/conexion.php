@@ -38,7 +38,7 @@ class Conexion
 }
 
 /**
- * Clase para realizar consultas en la BD tm_page.
+ * Clase para realizar consultas en la BD tm_content.
  *
  * Contiene multitud de métodos.
  *
@@ -100,11 +100,10 @@ class Consulta extends Conexion
      */
     public function actualizarPagina($pagina)
     {
-        $datos = $pagina->toArray(false);
         $select =
             "UPDATE tm_page 
-                SET title='$datos[2]', content='$datos[3]' 
-                WHERE page_name = '$datos[0]' and lang = '$datos[1]' 
+                SET title='" . $pagina->getTitle() . "', content='" . addslashes($pagina->getContent()) . "' 
+                WHERE page_name = '" . $pagina->getPage_name() . "' and lang = '" . $pagina->getLang() . "' 
                 ;";
 
         $this->conn->query($select);
@@ -113,7 +112,25 @@ class Consulta extends Conexion
     }
 
     /**
-     * Devuelve la información de la tabla tm_page qeu coincida con los parámetros pasados.
+     * Actualiza información de un registro la tabla tm_partials.
+     * 
+     * @param Partial $partial Página a actualizar.
+     * @return boolean `true` si se ha añadido, `false` si no.
+     */
+    public function actualizarPartial($partial)
+    {
+        $select =
+            "UPDATE tm_partials 
+                SET  content='" . addslashes($partial->getContent()) . "' 
+                WHERE partial_name = '" . $partial->getpartial_name() . "' and lang = '" . $partial->getLang() . "' 
+                ;";
+
+        $this->conn->query($select);
+        return $this->anyRowAffected();
+    }
+
+    /**
+     * Devuelve la información de la tabla tm_page que coincida con los parámetros pasados.
      *
      * Si no se pasan parametros, devuelve toda la información de la tabla.
      * 
@@ -150,13 +167,51 @@ class Consulta extends Conexion
 
         return $resultados->fetch_all(MYSQLI_ASSOC);
     }
+    /**
+     * Devuelve la información de la tabla tm_partials que coincida con los parámetros pasados.
+     *
+     * Si no se pasan parametros, devuelve toda la información de la tabla.
+     * 
+     * Si algun campo es igual a `null` no se tendrá en cuenta a la hora 
+     * de buscar las páginas correspondientes.
+     * 
+     * Cada elemento del array devuelto es a su vez un array sociativo 
+     * con los campos 'partial_name', 'lang', 'title' y 'content'.
+     * 
+     * @param string $partial_name Nombre de la(s) página(s).
+     * @param string $lang Idioma de la(s) página(s).
+     * @return mixed Array con los registros de la tabla tm_partials que coincidan.
+     * 
+     * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
+     */
+    public function getPartials($partial_name = null, $lang = null)
+    {
+        if ($partial_name != null) {
+            if ($lang != null)
+                $select = "SELECT * FROM tm_partials WHERE partial_name = '$partial_name' and lang = '$lang' ORDER BY partial_name, lang ;";
+            else
+                $select = "SELECT * FROM tm_partials WHERE partial_name = '$partial_name' ORDER BY partial_name, lang ;";
+        } else if ($lang != null) {
+            $select = "SELECT * FROM tm_partials WHERE lang = '$lang' ORDER BY partial_name, lang ;";
+        } else {
+            $select = "SELECT * FROM tm_partials ORDER BY partial_name, lang ;";
+        }
+
+        $resultados = $this->conn->query($select);
+
+        if (!$this->anyRowAffected())
+            throw new NoExistenRegistrosException("No existe ningún partial con estos parámetros: $partial_name $lang. ");
+
+
+        return $resultados->fetch_all(MYSQLI_ASSOC);
+    }
 
     /**
      * Devuelve los nombres del páginas que hay en la web.
      * 
      * Lista con los datos de la columna `page_name` de la table tm_page.
      * 
-     * @return array Array con los nombres del páginas que hay en la web.
+     * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
      * 
      */
     public function getPage_names()
@@ -169,10 +224,34 @@ class Consulta extends Conexion
         $page_names = [];
 
         foreach ($resultados->fetch_all() as $fila) {
-            $page_names[] = $fila[0];
+            $page_names[$fila[0]] = $fila[0];
         };
 
         return $page_names;
+    }
+
+    /**
+     * Devuelve los nombres del páginas que hay en la web.
+     * 
+     * Lista con los datos de la columna `partial_name` de la table tm_partials.
+     * 
+     * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
+     * 
+     */
+    public function getPartial_names()
+    {
+
+        $select = "SELECT DISTINCT partial_name FROM tm_partials  ;";
+
+        $resultados = $this->conn->query($select);
+
+        $partial_names = [];
+
+        foreach ($resultados->fetch_all() as $fila) {
+            $partial_names[$fila[0]] = $fila[0];
+        };
+
+        return $partial_names;
     }
 
     /**
@@ -197,125 +276,5 @@ class Consulta extends Conexion
         };
 
         return $page_names;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Duevuelve el ID del último perro añadido a la BD.
-     *
-     * @return int ID del último perro añadido.
-     */
-    public function getUltimoIdPerro()
-    {
-        return $this->conn->query("SELECT id FROM perro ORDER BY id DESC LIMIT 1;")->fetch_all(MYSQLI_NUM)[0][0];
-    }
-
-    /**
-     * Busca y devuelve los perros la raza elegida.
-     *
-     * Busca en la base de datos a todos los perros con el ID de raza pasado como parámetro.
-     *
-     * @param int $id_raza ID de la raza a buscar
-     *
-     * @return mixed Array de arrays asociativos, esto últimos tendrán con los campos 'id', 'nombre', 'horas_paseo' y 'dueño'.
-     *
-     * * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
-     */
-    public function getPerrosPorRaza($id_raza)
-    {
-        $select =
-            "SELECT 
-                id, nombre, horas_paseo, dueño
-            FROM 
-                perro
-            WHERE
-                id_raza = '$id_raza'
-            ;";
-
-        $resultados = $this->conn->query($select);
-
-        if ($this->conn->affected_rows < 1) {
-            // $id_raza se obtiene de las propia base de datos, por lo que no debería lanzarase por su culpa.
-            // No sé qué podría hacer que se lanzase. Creo que nada, pero por si acaso.
-            throw new NoFilasAfectadasException('Aparentemente algo a ido mal y no se ha encontrado ningún perro de la raza escojida. Contacte con el administrador para que se asegure de que existen perros de esta raza. <br> De cualquier forma, tenga en cuenta que es posible que no haya sido añadido todavía ninguno.');
-        }
-
-        return $resultados->fetch_all(MYSQLI_ASSOC);
-    }
-
-    /**
-     * Actualiza los cuidados especiales de una raza.
-     *
-     * @param int $id_raza ID de la raza a actualizar.
-     * @param Raza $raza Raza a cambiar los cuidados.
-     *
-     * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
-     */
-    public function actualizarCuidados($id_raza, $raza)
-    {
-
-        $cuidados = $raza->getCuidadosEspeciales();
-        $update =
-            "UPDATE 
-                raza 
-            SET 
-                cuidados_especiales = '$cuidados'
-            WHERE id = $id_raza
-            ;";
-
-        $this->conn->query($update);
-
-        if ($this->conn->affected_rows < 1) {
-            // $id_raza se obtiene de las propia base de datos, por lo que no debería lanzarase por su culpa.
-            // No sé qué podría hacer que se lanzase. Creo que nada, pero por si acaso.
-            throw new NoFilasAfectadasException("No se ha actulizado ningun registro. Compruebe que el texto insertado es distinto del existente.");
-        }
-    }
-
-    /**
-     * Borra un perro de la BD.
-     *
-     * @param int $id_perro ID del perro a borrar.
-     *
-     * @throws NoFilasAfectadasException Si no se ha visto afectada ninguna fila de la BD.
-     */
-    public function eliminarPerro($id_perro)
-    {
-        $delete =
-            "DELETE FROM 
-                perro 
-            WHERE 
-                id = $id_perro
-            ;";
-
-        $this->conn->query($delete);
-
-        if ($this->conn->affected_rows < 1) {
-            throw new NoFilasAfectadasException("No se ha encontrado el ID en la base de datos, por lo que no ha sido posible eliminar el registro.");
-        }
     }
 }

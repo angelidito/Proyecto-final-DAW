@@ -20,9 +20,9 @@ try {
     $tablaES = tabularMatrizN($paginasES, ['Página', 'Idioma', 'Título',], 'table caption-top', 'Páginas en español');
     $tablaEN = tabularMatrizN($paginasEN, ['Página', 'Idioma', 'Título',], 'table caption-top', 'Páginas en inglés');
 } catch (BDException $e) {
-    $errores .= $e->getMessage();
+    $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 } catch (Exception $e) {
-    $errores .= $e->getMessage();
+    $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 }
 ?>
 
