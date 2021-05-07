@@ -52,27 +52,80 @@ if (isset($_GET['lang'])) {
 }
 $lang = $_SESSION['cookie_lang'];
 
+// *****************************************
+// *****************************************
+// *****************************************
+// ******** PREPARACIÓN DE LA CACHE ********
+// *****************************************
+// *****************************************
+// *****************************************
+$directorios = [
+    '../cache/pages',
+    '../cache/pages/es',
+    '../cache/pages/en',
+    '../cache/pages/_partials/es',
+    '../cache/pages/_partials/en',
+    '../cache/vars',
 
-// echo $_SESSION['cookie_lang'];
-
-// $dominio = '127.0.0.1/Proyecto-final-DAW';
+];
+foreach ($directorios as $dir) {
+    if (!file_exists($dir)) {
+        mkdir($dir, 0777, true);
+        $file = fopen($dir . '/index.php', "w");
+        fwrite($file, '<?php header("Location: ../"); exit;');
+        fclose($file);
+    }
+}
 
 $conn = new Consulta();
 
-// Cargamos footer y header
 
+$cache_header = "../cache/pages/_partials/$lang/header.html";
+$cache_footer = "../cache/pages/_partials/$lang/footer.html";
+$cache_page = "../cache/pages/$lang/$page_name.html";
 
-if (!file_exists('../cache/pages/$lang/$page_name.php')) {
+// Cargamos el header en la caché si no lo están todavía 
+if (!file_exists($cache_header)) {
     // Cargamos contenido de la pagina
     try {
+        $header = $conn->getPartials('header', $lang)[0];
+        $file = fopen($cache_header, "w");
+        fwrite($file, $header['content']);
+        fclose($file);
+    } catch (BDException $e) {
+        echo $e->getMessage();
+    }
+}
+// Cargamos el footer en la caché si no lo están todavía 
+if (!file_exists($cache_footer)) {
+    // Cargamos contenido de la pagina
+    try {
+        $footer = $conn->getPartials('footer', $lang)[0];
+        $file = fopen($cache_footer, "w");
+        fwrite($file, $footer['content']);
+        fclose($file);
+    } catch (BDException $e) {
+        echo $e->getMessage();
+    }
+}
+
+// Cargamos la página en la caché si no lo está todavía 
+if (!file_exists($cache_page)) {
+    try {
         $pagina = $conn->getPaginas($page_name, $lang)[0];
-        $file = fopen("../cache/pages/$lang/$page_name.php", "w");
+        $file = fopen($cache_page, "w");
         fwrite($file, $pagina['content']);
         fclose($file);
     } catch (NoExistenRegistrosException $e) {
+        // Si no existe en el idioma que se quiere, 
+        // se carga el contenido del otro idioma 
         $lang = ($lang == 'es') ? 'en' : 'es';
+        $cache_page = "../cache/pages/$lang/$page_name.html";
         try {
             $pagina = $conn->getPaginas($page_name, $lang)[0];
+            $file = fopen($cache_page, "w");
+            fwrite($file, $pagina['content']);
+            fclose($file);
         } catch (NoExistenRegistrosException $e) {
             header("Location: page-not-found.php");
             exit;

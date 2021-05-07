@@ -176,7 +176,7 @@ class Consulta extends Conexion
      * de buscar las páginas correspondientes.
      * 
      * Cada elemento del array devuelto es a su vez un array sociativo 
-     * con los campos 'partial_name', 'lang', 'title' y 'content'.
+     * con los campos 'partial_name', 'lang' y 'content'.
      * 
      * @param string $partial_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).

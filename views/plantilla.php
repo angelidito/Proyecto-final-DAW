@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $pagina['title'] ?></title>
+    <title><?php echo $title ?></title>
 
 
     <!-- BootstrapCDN -->
@@ -35,23 +35,17 @@
 <body>
 
     <?php
-    if (isset($header))
-        echo $header;
-    else
-        include "../cache/_partials/$lang/header.php";
 
-
-    if (isset($pagina['content']))
-        echo  $pagina['content'];
-    else
-        include "../cache/$page_name.html";
+    include "../cache/pages/_partials/$lang/header.html";
 
 
 
-    if (isset($footer))
-        echo $footer;
-    else
-        include "../cache/_partials/$lang/footer.php";
+    include "../cache/pages/$lang/$page_name.html";
+
+
+
+
+    include "../cache/pages/_partials/$lang/footer.html";
     ?>
 
 
