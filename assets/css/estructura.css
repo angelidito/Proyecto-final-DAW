@@ -1,0 +1,901 @@
+/* ---------- FUENTES ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+* {
+    font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+
+/* 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Verdana, Times, serif;
+} */
+
+
+/* ---------- GENERAL ---------- */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    overflow-y: scroll visible;
+    overflow-x: scroll visible;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 2rem;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+body {
+    /* IE and Edge */
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading,
+#tituloWeb {
+    /* font-size: 44px; */
+    line-height: normal;
+    font-weight: normal;
+    text-transform: capitalize;
+    font-variant: small-caps;
+}
+
+#tituloWeb {
+    font-size: 2rem;
+}
+
+#tituloPagina {
+    background: url(../../img/laptopcoffenotebook.jpg) fixed 50% 50%;
+    background-size: cover;
+    background-position: absolute;
+    background-position-y: -50px;
+    background-repeat: no-repeat;
+}
+
+#tituloPagina h1,
+#tituloPagina .tituloPagina {
+    background-color: rgb(0, 0, 0, 0.5);
+    text-align: center;
+    color: red;
+    padding: 25px 10px;
+    margin: 0;
+    font-size: 2.4rem;
+}
+
+
+/* address {
+    font-style: normal;
+    font-weight: normal;
+} */
+
+hr {
+    display: block;
+    /* margin: 50px 0; */
+    /* border: 1px solid black; */
+    /* margin-top: 20px;
+    margin-bottom: 40px; */
+}
+
+hr,
+hr.margarita {
+    display: block;
+    /* margin: 50px 0; */
+    /* border: 1px solid black; */
+    height: 200px;
+    background: url(../../img/libroflorllave.jpg) fixed 100% 100%;
+    background-size: cover;
+    background-position: absolute;
+    background-repeat: no-repeat;
+}
+
+.add-content-after::after {
+    content: attr(data-content-after)
+}
+
+
+/* ---------- Listas ---------- */
+
+ul {
+    padding-left: 0;
+}
+
+.list-inline li+li::before {
+    content: " » ";
+}
+
+.list-inline .list-inline-item {
+    margin-right: 0;
+}
+
+
+/* ---------- Citas ---------- */
+
+q {
+    font-style: italic;
+}
+
+
+/* *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    } */
+
+.bold {
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+
+/* en uso */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* en uso */
+
+.flex {
+    display: flex !important;
+}
+
+.block {
+    display: block;
+}
+
+.inline,
+.inline * {
+    display: inline;
+}
+
+.nospace {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.superpuesto {
+    z-index: 1;
+    position: relative;
+}
+
+
+/* .overlay::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    z-index: -1;
+} */
+
+.circular {
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+
+img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    /* line-height: normal;
+    vertical-align: middle; */
+}
+
+
+/* ---------- FORMULARIOS ---------- */
+
+form,
+fieldset,
+legend {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+
+/* legend {
+    display: none;
+} */
+
+label,
+input,
+textarea,
+select,
+button {
+    display: block;
+    resize: none;
+    outline: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    /* vertical-align: middle; */
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+
+/* 
+:rehruired,
+:invalid {
+    outline: none;
+    box-shadow: none;
+} */
+
+
+/* ---------- ENLACES ---------- */
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #f40;
+}
+
+div.divEnlace:hover {
+    position: relative;
+    background-color: #f76;
+    border-color: #f76;
+}
+
+.divEnlace a.divEnlace {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+
+/* ---------- INFO CONTACTO ---------- */
+
+.telefono {
+    padding-left: 1.3em;
+    background-image: url("../../img/icons/was.ico");
+    background-size: 1.1em auto;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+.email {
+    padding-left: 1.2em;
+    background-image: url("../../img/icons/sobre.ico");
+    background-size: 1em auto;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+.chincheta {
+    padding-left: 1em;
+    background-image: url("../../img/icons/chincheta.ico");
+    background-size: auto 1em;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+
+/* ---------- VERSIÓN MOVIL ---------- */
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content min-content auto min-content min-content;
+    grid-template-areas: 'cabecera''menú''migas''cuerpo''aside''pie';
+}
+
+
+/* HEADER */
+
+header {
+    grid-area: cabecera;
+    background-color: white;
+    align-items: center;
+    width: 100%;
+    height: min-content;
+    /* color: #f40; */
+    display: flex;
+    /* justify-content: flex-end; */
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: min-content;
+    border-bottom: 1px solid #f40;
+}
+
+header a {
+    color: red;
+}
+
+#logoYTitulo {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logoCabecera {
+    height: 5rem;
+    width: 5rem;
+    margin: 0.5rem;
+}
+
+#logoYTitulo .heading {
+    width: min-content;
+    margin: auto;
+    padding-right: 7px;
+}
+
+#botonMenu {
+    width: 0rem;
+    font-size: 2rem;
+    /* font-size: 40px; */
+    /* margin: auto 0; */
+    /* text-align: center; */
+    color: red;
+}
+
+#botonMenu:hover,
+#botonMenu:focus {
+    color: #f40;
+}
+
+#botonMenu:active {
+    color: rgb(200, 0, 0);
+}
+
+#menu {
+    display: none;
+    grid-area: menú;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: max-content;
+    text-align: center;
+    flex-direction: column;
+}
+
+#menu li {
+    box-sizing: content-box;
+    height: min-content;
+    border-top: 1px solid #f40;
+    /* border-bottom: 1px solid #f40; */
+}
+
+#menu a {
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-decoration: none;
+    /* color: red; */
+}
+
+
+/* 
+#menu li:not(:last-child) {
+    border-bottom: none;
+} */
+
+
+/* #menu a:focus {
+    color: white;
+} */
+
+#menu li a:hover {
+    color: white;
+    background-color: #f76;
+}
+
+#menu a:active {
+    color: black;
+}
+
+#tiposTraduccion {
+    display: none;
+}
+
+#listaServicios {
+    display: none;
+}
+
+#cambioIdiomaEscritorio {
+    display: none;
+}
+
+
+/* BREADCRUMB */
+
+.breadcrumb {
+    background-color: transparent !important;
+    max-width: 100%;
+}
+
+ul.breadcrumb {
+    display: block;
+    grid-area: migas;
+    list-style: none;
+    width: max-content;
+    /* margin: 0.5rem 0 0.5rem 0rem; */
+    margin-bottom: 0;
+}
+
+ul.breadcrumb li {
+    display: inline;
+}
+
+ul.breadcrumb li+li::before {
+    content: ">";
+}
+
+
+/* Sólo para el último */
+
+ul.breadcrumb li a {
+    color: black;
+}
+
+
+/* Para todos menos el último */
+
+ul.breadcrumb li:not(:last-child) a {
+    color: darkblue;
+    text-decoration: underline;
+}
+
+
+/* Para todos menos el último */
+
+ul.breadcrumb li:not(:last-child) a:hover {
+    color: blue;
+}
+
+
+/*  */
+
+main {
+    grid-area: cuerpo;
+    /* background-color: rgba(255, 255, 255, 0); */
+    /* background-size: cover; */
+    /* padding: 1rem; */
+    /* display: flex;
+    flex-direction: column;
+    text-align: center; */
+}
+
+
+/* AAAAAAAAAAAHHHHHHHHHHHHHHHHHHH */
+
+main div {}
+
+main p {}
+
+main div {
+    /* border: 3px dashed red; */
+    /* border: 3px solid red; */
+    /* margin: 0.5rem; */
+    /* width: fit-content; */
+}
+
+main div img {
+    display: inline;
+    max-width: 200px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+}
+
+
+/*  */
+
+aside {
+    grid-area: aside;
+    background-color: purple;
+    display: none;
+}
+
+
+/*  */
+
+footer {
+    /* border-top: 1px solid rgb(255 255 255 / 88%); */
+    background: linear-gradient(#fff, #B5B5B5);
+    grid-area: pie;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    /* justify-items: flex-start; */
+    /* align-content: flex-start; */
+    /* justify-content: space-evenly; */
+    align-items: center;
+    padding: 1rem calc(5% - 0.5rem) 0 calc(5% - 0.5rem);
+}
+
+#logoYCopyR {
+    margin: 0 auto 1rem 0;
+    min-width: min-content;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+#logoYCopyR .logo {
+    width: 70px;
+    height: auto;
+    margin: auto;
+}
+
+footer address {
+    text-align: center;
+}
+
+.botonPresupuesto {
+    display: block;
+    background-color: blueviolet;
+    border-radius: 40% 1mm;
+    text-align: center;
+    color: white;
+    width: max-content;
+    height: min-content;
+    /* position: absolute;
+    left: calc(100% - 10rem); */
+    margin-left: auto;
+    margin-right: 0.5rem;
+    padding: 1.2rem;
+}
+
+
+/* ---------- Pagina de inicio ------------------ */
+
+
+/* ---------- Pagina de inicio ------------------ */
+
+
+/* ---------- Pagina de inicio ------------------ */
+
+
+/* ---------- Pagina de inicio ------------------ */
+
+.counter {
+    background-color: #f5f5f5;
+    padding: 20px 0;
+    border-radius: 5px;
+}
+
+.count-title {
+    font-size: 40px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.count-text {
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+
+/* @media screen and (min-width: 1081) {
+        #ajusteTituloInicio {
+            display: none;
+        }
+    } */
+
+
+/* ---------- CITAS y OPINIONES ---------- */
+
+.comilla-ini {
+    content: url(../../img/SVG/ico_comillas.svg);
+    transform: rotate(180deg);
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+}
+
+.comilla-fin {
+    content: url(../../img/SVG/ico_comillas.svg);
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+}
+
+#opiniones {
+    background-color: #f5f5f5;
+}
+
+#opiniones q::after,
+#opiniones q::before {
+    content: none;
+}
+
+#opiniones .opinion {
+    padding: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.autor-cita {
+    display: block;
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+    display: block;
+}
+
+
+/* ---------- Pagina Servicios de traducción ------------------ */
+
+
+/* ---------- Pagina Servicios de traducción ------------------ */
+
+
+/* ---------- Pagina Servicios de traducción ------------------ */
+
+
+/* ---------- Pagina Servicios de traducción ------------------ */
+
+.cuadricula>div {
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+
+/* ---------- VERSIONES DESDE ORDENADOR PEQUEÑO/TABLET ---------- */
+
+@media screen and (min-width: 630px) {
+    #menu a {
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    /* body {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows:ƒ
+            min-content min-content min-content auto min-content min-content;
+        grid-template-areas:
+            'cabecera cabecera'
+            'menú     menú'
+            'migas    migas'
+            'cuerpo   aside'
+            'pie      pie';
+    } */
+    /* HEADER */
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: none;
+        /* background: linear-gradient(#c5c5c5, #fff 75%); */
+        background: linear-gradient(#012169, #fff 75%);
+    }
+    #logoYTitulo {
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        /* justify-content: flex-start;
+        align-items: flex-start;
+        justify-items: flex-start;
+        align-content: flex-start; */
+        justify-items: flex-end;
+        align-content: flex-end;
+        margin-top: 7px;
+        margin-right: 18%;
+    }
+    #logoCabecera {
+        /* height: 5rem;
+        width: 5rem;
+        margin: 0.5rem; */
+        /* margin: 2px; */
+        margin-bottom: 7px;
+    }
+    #logoCabecera:hover {
+        background-color: rgb(245, 245, 245);
+        cursor: pointer;
+    }
+    #logoYTitulo h1:hover {
+        background-color: rgb(245, 245, 245);
+        cursor: pointer;
+    }
+    #botonMenu {
+        display: none;
+    }
+    ul.breadcrumb {
+        padding-left: 0;
+        margin-left: 10%;
+    }
+    #menu {
+        display: flex !important;
+        grid-area: menú;
+        list-style: none;
+        margin: auto;
+        padding: 0;
+        width: max-content;
+        height: max-content;
+        text-align: center;
+        flex-direction: row;
+        width: 80%;
+        justify-content: center;
+        border-bottom: 1px solid #f40;
+    }
+    #menu li {
+        box-sizing: content-box;
+        height: min-content;
+        border: none;
+    }
+    #menu a {
+        padding: 1rem 1.3rem;
+    }
+    #menu li:not(:last-child) {
+        border-right: none;
+    }
+    #tiposTraduccion {
+        background-color: rgb(252, 252, 252);
+        list-style: none;
+        border: 1px solid #f40;
+        border-top: none;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        width: max-content;
+    }
+    #traduccion:hover #tiposTraduccion {
+        display: block;
+    }
+    #listaServicios {
+        background-color: rgb(252, 252, 252);
+        list-style: none;
+        border: 1px solid #f40;
+        border-top: none;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        width: max-content;
+    }
+    #otrosServicios:hover #listaServicios {
+        display: block;
+    }
+    #menu #cambioIdiomaMovil {
+        display: none;
+    }
+    /* ---------- CAMBIO DE IDIOMA ---------- */
+    #cambioIdiomaEscritorio {
+        display: block;
+        position: absolute;
+        font-size: 1rem;
+        top: 1rem;
+        right: 0;
+        z-index: 1;
+    }
+    #cambioIdiomaEscritorio .ES {
+        visibility: hidden;
+    }
+    #cambioIdiomaEscritorio .ES::after {
+        visibility: visible;
+        padding-right: 1.65em;
+        content: '';
+        background-image: url(../../img/icons/es.ico);
+        background-size: auto 1.1em;
+        background-repeat: no-repeat;
+    }
+    #cambioIdiomaEscritorio .EN {
+        visibility: hidden;
+    }
+    #cambioIdiomaEscritorio .EN::before {
+        visibility: visible;
+        padding-right: 2em;
+        content: '';
+        background-image: url(../../img/icons/en.ico);
+        background-size: auto 1em;
+        background-repeat: no-repeat;
+    }
+    /* .es {
+        margin-right: 0.1rem;
+    } */
+    /*  */
+    #tituloPagina h1,
+    #tituloPagina .tituloPagina {
+        font-size: 4rem;
+    }
+    footer {
+        /* display: flex;
+        flex-wrap: wrap-reverse;
+        justify-items: flex-start;
+        align-content: flex-start;
+        justify-content: space-between;
+        align-items: center; */
+    }
+    /* TODO: footer */
+    .cuerpo {
+        /* width: 80%; */
+    }
+}
+
+
+/* ---------- VERSIONES DESDE PANTALLAS AÚN MÁS GRANDES ---------- */
+
+@media screen and (min-width: 1023px) {
+    #tituloPagina h1,
+    #tituloPagina .tituloPagina {
+        font-size: 5rem;
+    }
+}

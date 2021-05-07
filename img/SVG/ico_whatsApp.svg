@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg994"
+   sodipodi:docname="iconowhatsapp.svg"
+   inkscape:version="1.0beta2 (2b71d25, 2019-12-03)"
+   inkscape:export-filename="/Users/angel/Documents/GitHub/Proteecto-FCT/img/iconowhatsapp.png"
+   inkscape:export-xdpi="1585.3"
+   inkscape:export-ydpi="1585.3">
+  <defs
+     id="defs988" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.7158979"
+     inkscape:cx="33.888024"
+     inkscape:cy="72.730902"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="1022"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata991">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1045">
+      <path
+         id="path996"
+         style="fill:#64f064;fill-opacity:1;stroke:#ffffff;stroke-width:1.49824;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;fill-rule:nonzero;stroke-opacity:1"
+         d="M 29.233257,14.982377 A 14.25088,14.25088 0 0 1 14.982377,29.233257 14.25088,14.25088 0 0 1 0.73149681,14.982377 14.25088,14.25088 0 0 1 14.982377,0.73149681 14.25088,14.25088 0 0 1 29.233257,14.982377" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path998"
+         d="M 2.5127892,21.945637 0.4141029,29.171794 7.7713496,27.354507"
+         style="fill:#64f064;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.68306;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         transform="scale(0.26458333)"
+         inkscape:connector-curvature="0"
+         id="path1006"
+         d="m 18.684323,95.764607 -4.932093,-7.405481 -1.7272,-2.799337 0.637741,-3.012144 c 0.05569,-0.548868 -0.09268,-0.140183 0,0 0.72424,0.371268 12.743223,5.538484 14.713348,7.57334 2.853725,2.947489 2.041381,1.748709 2.614235,9.685069 l 0.03052,0.422826 -0.61474,0.10199 c -0.307041,-0.0308 -0.825104,-0.17309 -1.699037,0.2011 -0.618876,0.44081 -1.31585,0.24027 -1.338177,0.23898 -0.02233,-0.001 -4.167517,-1.63285 -7.684597,-5.006343 z"
+         style="fill:#64f064;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.377953;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:nodetypes="cccccssccccc" />
+    </g>
+    <path
+       style="fill:#ffffff;stroke:#fffff2;stroke-width:0.299635;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 11.26862,11.242709 C 11.438508,11.409752 10.387732,8.2815261 9.4643794,7.8349076 8.8248375,7.8885001 8.243466,7.991601 7.755072,8.5470999 c 0,0 -0.6136407,0.6139511 -0.6991469,1.4103733 -0.080989,0.6746128 -0.093387,1.2384508 -0.044986,1.8644738 0.5055165,6.538387 8.0635666,10.574317 13.0166426,9.958678 0.839108,-0.104296 1.683614,-0.425169 2.132429,-1.030406 0.799585,-1.396307 0.642685,-1.983955 0.377154,-2.672265 l -3.212126,-1.016747 c 0,0 -0.548934,-0.510263 -0.976831,1.905851 -4.833138,-0.464781 -6.524899,-3.288136 -8.033329,-5.881626 -0.169386,-0.129133 0.548203,-1.141252 0.953741,-1.842723"
+       id="path1010"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccscsscccccc"
+       inkscape:export-xdpi="1585.3"
+       inkscape:export-ydpi="1585.3" />
+  </g>
+</svg>
