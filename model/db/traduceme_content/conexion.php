@@ -7,6 +7,8 @@ require 'datos_config.php';
  * Clase con conexión a la BD tm_page.
  *
  * @param mysqli $conn
+ *
+ * @author Ángel M. M. Díez
  */
 class Conexion
 {
@@ -18,6 +20,8 @@ class Conexion
      *
      * Establece una conexión con la BD perros_raza según la configuración del archivo datos_config.php.
      *
+     *
+     * @author Ángel M. M. Díez
      */
     public function __construct()
     {
@@ -42,6 +46,8 @@ class Conexion
  *
  * Contiene multitud de métodos.
  *
+ *
+ * @author Ángel M. M. Díez
  */
 class Consulta extends Conexion
 {
@@ -49,6 +55,8 @@ class Consulta extends Conexion
      * Constructor de la clase.
      *
      * Establece una conexión con la BD perro_raza.
+     *
+     * @author Ángel M. M. Díez
      */
     public function __construct()
     {
@@ -60,6 +68,8 @@ class Consulta extends Conexion
      * Comprueba si se han visto afectada alguna fila con la última operacion en la BD.
      *
      * @return boolean `true` si se han visto afectadas filas de la BD; `false` si no.
+     *
+     * @author Ángel M. M. Díez
      */
     private function anyRowAffected()
     {
@@ -74,6 +84,8 @@ class Consulta extends Conexion
      * @param Pagina $pagina Página a añadir.
      *
      * @return boolean `true` si la página se ha añadido a la base de datos. `false` si no.
+     *
+     * @author Ángel M. M. Díez
      */
     public function añadirPagina($pagina)
     {
@@ -97,6 +109,8 @@ class Consulta extends Conexion
      * 
      * @param Pagina $pagina Página a actualizar.
      * @return boolean `true` si se ha añadido, `false` si no.
+     *
+     * @author Ángel M. M. Díez
      */
     public function actualizarPagina($pagina)
     {
@@ -116,6 +130,8 @@ class Consulta extends Conexion
      * 
      * @param Partial $partial Página a actualizar.
      * @return boolean `true` si se ha añadido, `false` si no.
+     *
+     * @author Ángel M. M. Díez
      */
     public function actualizarPartial($partial)
     {
@@ -145,6 +161,8 @@ class Consulta extends Conexion
      * @return mixed Array con los registros de la tabla tm_page que coincidan.
      * 
      * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
+     *
+     * @author Ángel M. M. Díez
      */
     public function getPaginas($page_name = null, $lang = null)
     {
@@ -183,6 +201,8 @@ class Consulta extends Conexion
      * @return mixed Array con los registros de la tabla tm_partials que coincidan.
      * 
      * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
+     *
+     * @author Ángel M. M. Díez
      */
     public function getPartials($partial_name = null, $lang = null)
     {
@@ -213,6 +233,8 @@ class Consulta extends Conexion
      * 
      * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
      * 
+     *
+     * @author Ángel M. M. Díez
      */
     public function getPage_names()
     {
@@ -237,6 +259,8 @@ class Consulta extends Conexion
      * 
      * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
      * 
+     *
+     * @author Ángel M. M. Díez
      */
     public function getPartial_names()
     {
@@ -261,6 +285,8 @@ class Consulta extends Conexion
      * 
      * @return array Array con los nombres del páginas que hay en la web.
      * 
+     *
+     * @author Ángel M. M. Díez
      */
     public function getPage_namesEN_ES()
     {

@@ -1,1 +1,2 @@
-<?php $titles = array();
+<?php $titles = [];
+$titles['es-inicio'] = 'Inicio - TradúceMe';

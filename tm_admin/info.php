@@ -1,10 +1,11 @@
 <?php
 
+require_once 'adminSessionControl.php';
+require_once 'adminFunctions.php';
+require_once '../model/pagina.php';
 require_once '../model/excepciones.php';
 require_once '../model/form_control.php';
-require_once '../model/pagina.php';
 require_once '../model/db/traduceme_content/conexion.php';
-require_once 'funciones.php';
 
 $tituloPaginaAdmin = "¡Traduce una página!";
 $errores = '';
@@ -24,6 +25,19 @@ try {
 } catch (Exception $e) {
     $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 }
+
+if (isset($_POST['noCache']))
+    borrarCache();
+
+
+$rutaCache = '../cache/pages';
+if (file_exists($rutaCache))
+    $fechaCache = date("d-m-Y H:i:s", filectime($rutaCache));
+else
+    $fechaCache = 'NO DATA';
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -50,13 +64,24 @@ include('_partials/cabecera.php');
     <div class="row text-left">
         <div class="col-xs-12 col-md-6">
             <?php echo $tablaES ?>
-            <hr>
+            <hr class="clasic">
         </div>
         <div class="col-xs-12 col-md-6 ">
             <?php echo $tablaEN ?>
-            <hr>
+            <hr class="clasic">
         </div>
     </div>
+</div>
+<div class="container">
+    <h2 class="mb-4 ">Caché</h2>
+    <p>
+        Último borrado de caché: <?php echo $fechaCache ?>.
+    </p>
+    <form method="post" action="">
+        <div class="form-group center">
+            <button name="noCache" type="submit" class="btn btn-primary">Borrar caché</button>
+        </div>
+    </form>
 </div>
 
 

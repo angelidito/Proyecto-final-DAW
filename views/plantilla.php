@@ -40,8 +40,10 @@
 
 
 
-    include "../cache/pages/$lang/$page_name.html";
-
+    if (isset($not_found) && $not_found)
+        echo $content;
+    else
+        include "../cache/pages/$lang/$page_name.html";
 
 
 

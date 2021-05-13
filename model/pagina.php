@@ -19,6 +19,8 @@ class Pagina
      * @param string $_title
      * @param string $_content
      *
+     *
+     * @author Ángel M. M. Díez
      */
     public function __construct($_page_name, $_lang, $_title, $_content)
     {
@@ -57,6 +59,8 @@ class Pagina
      * En caso de que no sea ninguno, devuelve el contenido de esta variable.
      *
      * @return string El idioma de la página.
+     *
+     * @author Ángel M. M. Díez
      */
     public function getIdioma()
     {
@@ -78,6 +82,8 @@ class Pagina
      *
      * @return array Array con los registros de la tabla tm_page qeu coincidan.
      *
+     *
+     * @author Ángel M. M. Díez
      */
     public static function getPaginas()
     {
@@ -102,11 +108,14 @@ class Pagina
      * @param boolean $_content Si se quiere validar o no.
      * @return void
      * @throws FormException Cuando alguno de los atributos del objeto no son validos.
+     *
+     * @author Ángel M. M. Díez
      */
 
     protected function validarPagina($_page_name = true, $_lang = true, $_title = true, $_content = true)
     {
-        FormControl::checkPage_Name($_page_name);
+        FormControl::checkPage_Name($this->page_name);
+
         if ($_page_name)
             FormControl::checkLength($this->page_name, 5, 40, 'nombre de la página');
         if ($_lang)
@@ -122,6 +131,8 @@ class Pagina
      *
      * @return boolean `true` si se ha añadido, `false` si no.
      * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
+     *
+     * @author Ángel M. M. Díez
      */
     public function crear()
     {
@@ -142,6 +153,8 @@ class Pagina
      * @param string $_content Contenido HTML de la página.
      * @return boolean `true` si se ha añadido, `false` si no.
      * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
+     *
+     * @author Ángel M. M. Díez
      */
     public function actualizar($_title = null, $_content = null)
     {
@@ -161,6 +174,8 @@ class Pagina
      *
      * @param string $controllersRel Ubicación donde estará disponible la página.
      * @return void
+     *
+     * @author Ángel M. M. Díez
      */
     public function habilitar($path)
     {
@@ -182,6 +197,8 @@ class Pagina
      *@param boolean $associative Si se omite o es `false`, devuelve array no asociativo.
      *                            Si es `true`, lo de vuelve asociativo.
      * @return array Array de datos del objeto.
+     *
+     * @author Ángel M. M. Díez
      */
     public function toArray($associative = false)
     {

@@ -1,10 +1,60 @@
 <?php
-// Este fichero contiene tres funciones nada más.
-// A la primera se le llama en control_select.php y control_update.php
-// A la segunda, sólamente en control_menu.php.
-// Podría haberla escrito sólamente ahí, pero me pareció
-// interesante usar un fichero como una "librería".
-// La tercera no la uso, la creé al plantearme admitir también imágenes PNG en la BD
+require_once 'adminSessionControl.php';
+
+/**
+ * Borra la caché.
+ * 
+ * Al acabar crea de nuevo únicamente el directorio pages y su index.php.
+ * 
+ * @param boolean $dirs_only Por defecto (`true`) borra solo directorios. Si `false`, borra también archivos
+ * @return boolean `true` si la caché se ha borrado con exito; `false` si no.
+ *
+ * @author Ángel M. M. Díez
+ */
+function borrarCache($dirs_only = true)
+{
+    $cache_borrada = true;
+
+    if ($files = glob('../cache/*'))  //obtenemos todos los nombres de los ficheros
+        foreach ($files as $file)
+            if (is_dir($file) || !$dirs_only)
+                $cache_borrada = deleteDirectory($file);
+
+    $dirPages = "../cache/pages/";
+    if (!file_exists("../cache/pages/")) {
+        mkdir($dirPages, 0777, true);
+        $file = fopen($dirPages . '/index.php', "w");
+        fwrite($file, '<?php header("Location: ../"); exit;');
+        fclose($file);
+    }
+
+    return $cache_borrada;
+}
+
+/**
+ * Borrar recursivamente un directorio y su contenido.
+ *
+ * @param string $dir Directorio a borrar.
+ * @return boolean `true` si se ha borrado con exito el directorio y su contenido; `false` si no.
+ */
+function deleteDirectory($dir)
+{
+    if (!file_exists($dir))
+        return true;
+
+    if (!is_dir($dir))
+        return unlink($dir);
+
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..')
+            continue;
+
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item))
+            return false;
+    }
+
+    return rmdir($dir);
+}
 
 
 /**

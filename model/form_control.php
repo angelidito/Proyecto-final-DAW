@@ -13,6 +13,8 @@ class FormControl
      * @return boolean `true` si la longitud está dentro del rango adecuado.
      * 
      * @throws LongitudInvalidaException si la longitud de la cadena no está en el rango adecuado.
+     *
+     * @author Ángel M. M. Díez
      */
     public static function checkLength($str = null, $minLength = 0, $maxLength = 'inf', $param = '')
     {
@@ -39,6 +41,8 @@ class FormControl
      * @return boolean `true` si la longitud está dentro del rango adecuado.
      * 
      * @throws DatoInvalidoException si la longitud de la cadena no está en el rango adecuado.
+     *
+     * @author Ángel M. M. Díez
      */
     public static function checkLang($lang)
     {
@@ -54,15 +58,17 @@ class FormControl
      * Lanza excepción si la cadena es `header` o `footer`.
      * 
      *
-     * @param string $lang Lenguaje.
-     * @return boolean `true` si la longitud está dentro del rango adecuado.
+     * @param string $page_name Nombre de la página.
+     * @return boolean `true` si no lanza excepción.
      * 
      * @throws DatoInvalidoException si la longitud de la cadena no está en el rango adecuado.
+     *
+     * @author Ángel M. M. Díez
      */
     public static function checkPage_Name($page_name)
     {
-        if ($lang == 'header' &&  $lang == 'footer')
-            throw new DatoInvalidoException("Error: no puedes crear una página 'header' o 'footer'. ");
+        if ($page_name == 'header' ||  $page_name == 'footer')
+            throw new DatoInvalidoException(" . Error: no puedes crear una página con nombre'header' o 'footer'. ");
 
         return true;
     }

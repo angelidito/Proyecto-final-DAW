@@ -1,5 +1,6 @@
 <?php
-
+require_once 'adminSessionControl.php';
+require_once './adminFunctions.php';
 require_once '../model/excepciones.php';
 require_once '../model/form_control.php';
 require_once '../model/pagina.php';
@@ -10,6 +11,13 @@ $id_admin_page = "admin_editar";
 $tituloPaginaAdmin = "¡Edita una página! ¡O traduce!";
 $errores = '';
 $mensajeExito = '';
+/**
+ * 0 - No se ha pedido borrar
+ * 1 - Petición de borrar
+ * 2 - No borrar
+ * 3 - Borrar (código especial para comparar.php)
+ */
+$borrarCacheCode = isset($_POST['nocache']) ? 1 : 0;
 
 $conn = new Consulta();
 
@@ -108,6 +116,17 @@ try {
     $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 } catch (Exception $e) {
     $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
+}
+if ($errores != '')
+    $borrarCacheCode = 2;
+
+if (isset($_POST['nocache'])) {
+    if ($borrarCacheCode == 2)
+        $errores .= "<p class='m-0'>No se ha borrado la caché.</p>";
+    else if ($borrarCacheCode == 1 && borrarCache())
+        $mensajeExito .= "<p class='m-0'>Se ha borrado la caché.</p>";
+    else
+        $errores .= "<p class='m-0'><strong>No se ha podido borrar la caché</strong>.</p>";
 }
 ?>
 
@@ -217,6 +236,16 @@ include('_partials/cabecera.php');
                 <div class="form-group">
                     <label for="content">Contenido</label>
                     <textarea id="content" class="form-control editable" name="content" rows="30" minlength=13 maxlength=65535><?php echo $content ?></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col form-group ">
+                <div class="form-check float-right">
+                    <input class="form-check-input if-checked-then-show check" type="checkbox" value="" id="nocache" name="nocache">
+                    <label class="form-check-label text-left " for="nocache">
+                        Borrar caché
+                    </label>
                 </div>
             </div>
         </div>

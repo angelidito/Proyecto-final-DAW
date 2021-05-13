@@ -23,7 +23,7 @@ class Conexion
         // else {
         //     echo "Consexión establecida.<br>";
         // }
-        
+
         // Asigna el charset
         $this->conn->set_charset(BD_CHARSET);
     }
@@ -45,6 +45,8 @@ class Consulta extends Conexion
      * @param $usuario Usuario cuya imagen buscamos.
      *
      * @return string Imagen codificada en base64.
+     *
+     * @author Ángel M. M. Díez
      */
     public function getImagen($usuario)
     {
@@ -55,13 +57,15 @@ class Consulta extends Conexion
         )->fetch_all()[0][0];
     }
 
-    
+
     /**
      * Comprueba que exista un usuario en la BD.
      *
      * @param string $usuario Usuario a comprobar.
      *
      * @return boolean True si ya existe; false si no.
+     *
+     * @author Ángel M. M. Díez
      */
     public function existeUsiario($usuario)
     {
@@ -83,6 +87,8 @@ class Consulta extends Conexion
      *
      * @throws UsuarioYaRegistradoException Si ya existe el usuario que se pretende introducir.
      * @throws Exception Si no se ha realizado la inserción en la BD.
+     *
+     * @author Ángel M. M. Díez
      */
     public function añadirUsuario($usuario, $contraseña, $imagen)
     {
@@ -99,10 +105,10 @@ class Consulta extends Conexion
             ";
 
         // echo $insert;
-        
+
         $this->conn->query($insert);
-        
-        if ($this->conn->affected_rows<1) {
+
+        if ($this->conn->affected_rows < 1) {
             throw new Exception("Algo no ha ido bien en la inserción en la base de datos: quizá no esté creada o esté mal creada.");
         }
     }
@@ -121,6 +127,8 @@ class Consulta extends Conexion
      * @throws Exception Si se encuentra más de un usuario. No debería ocurrir si la BD está bien diseñada.
      *
      * @return boolean Si coinciden los datos con la BD true; false si no.
+     *
+     * @author Ángel M. M. Díez
      */
     public function logIn($usuario, $contraseña)
     {
@@ -135,9 +143,9 @@ class Consulta extends Conexion
 
         $resultado = $this->conn->query($select);
 
-        if ($this->conn->affected_rows<1) {
+        if ($this->conn->affected_rows < 1) {
             throw new UsuarioNoRegistradoException("No se ha podido encontrar el usuario \"$usuario\". Si no está registrado, puede hacerlo <a href='control_registro.php'>aquí</a>.");
-        } elseif ($this->conn->affected_rows>1) {
+        } elseif ($this->conn->affected_rows > 1) {
             throw new Exception("Si estás viendo este error es que algo ha ido rematadamente mal y hay dos usuarios con el mismo nombre. Lo cual no debería ser posible ya que es la clave primaria, pero vamos a contemplarlo por si las moscas.");
         }
 

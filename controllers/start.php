@@ -2,9 +2,11 @@
 
 require '../model/db/traduceme_content/conexion.php';
 require '../model/excepciones.php';
-require '../cache/vars/titles.php';
+
 /**
  * Provee de variables útiles y necesarias para el programa.
+ *
+ * @author Ángel M. M. Díez
  */
 
 session_start();
@@ -109,13 +111,29 @@ if (!file_exists($cache_footer)) {
     }
 }
 
+
+$rutaTitles = '../cache/vars/titles.php';
+if (!file_exists($rutaTitles)) {
+    $file = fopen($rutaTitles, "w");
+    fwrite($file, '<?php $titles = [];' . PHP_EOL);
+    fclose($file);
+}
+require $rutaTitles;
 // Cargamos la página en la caché si no lo está todavía 
-if (!file_exists($cache_page)) {
+$t_code = $lang . '-' . $page_name;
+if (!file_exists($cache_page) || !isset($titles[$t_code])) {
     try {
+
         $pagina = $conn->getPaginas($page_name, $lang)[0];
         $file = fopen($cache_page, "w");
         fwrite($file, $pagina['content']);
         fclose($file);
+
+        // Guardamos el titulo de la página en la caché si no lo está ya
+        if (!isset($titles[$t_code])) {
+            $title = $pagina['title'];
+            file_put_contents($rutaTitles,  "\$titles['$t_code'] = '$title';" . PHP_EOL, FILE_APPEND);
+        }
     } catch (NoExistenRegistrosException $e) {
         // Si no existe en el idioma que se quiere, 
         // se carga el contenido del otro idioma 
@@ -127,10 +145,12 @@ if (!file_exists($cache_page)) {
             fwrite($file, $pagina['content']);
             fclose($file);
         } catch (NoExistenRegistrosException $e) {
+            $page_name = 'asdfasdfs';
             header("Location: page-not-found.php");
             exit;
         }
     }
-}
+} else $title = $titles[$t_code];
+
 
 require "../views/plantilla.php";

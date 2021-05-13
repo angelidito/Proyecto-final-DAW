@@ -108,14 +108,18 @@ hr {
 
 hr,
 hr.margarita {
-    display: block;
-    /* margin: 50px 0; */
-    /* border: 1px solid black; */
     height: 200px;
     background: url(../../img/libroflorllave.jpg) fixed 100% 100%;
     background-size: cover;
     background-position: absolute;
     background-repeat: no-repeat;
+}
+
+hr.clasic {
+    height: 0px;
+    border-top: 1px solid rgb(165, 165, 165);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .add-content-after::after {

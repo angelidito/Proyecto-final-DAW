@@ -17,6 +17,8 @@ class Partial
      * @param string $_lang
      * @param string $_content
      *
+     *
+     * @author Ángel M. M. Díez
      */
     public function __construct($_partial_name, $_lang, $_content)
     {
@@ -49,6 +51,8 @@ class Partial
      * En caso de que no sea ninguno, devuelve el contenido de esta variable.
      *
      * @return string El idioma del partial
+     *
+     * @author Ángel M. M. Díez
      */
     public function getIdioma()
     {
@@ -70,6 +74,8 @@ class Partial
      *
      * @return array Array con los registros de la tabla tm_page qeu coincidan.
      *
+     *
+     * @author Ángel M. M. Díez
      */
     public static function getPartials()
     {
@@ -93,6 +99,8 @@ class Partial
      * @param boolean $_content Si se quiere validar o no.
      * @return void
      * @throws FormException Cuando alguno de los atributos del objeto no son validos.
+     *
+     * @author Ángel M. M. Díez
      */
 
     protected function validarPartial($_partial_name = true, $_lang = true,  $_content = true)
@@ -117,6 +125,8 @@ class Partial
      * @param string $_content Contenido HTML de la partial.
      * @return boolean `true` si se ha añadido, `false` si no.
      * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
+     *
+     * @author Ángel M. M. Díez
      */
     public function actualizar($_content = null)
     {
@@ -135,6 +145,8 @@ class Partial
      *
      * @param string $controllersRel Ubicación donde estará disponible la partial.
      * @return void
+     *
+     * @author Ángel M. M. Díez
      */
     public function habilitar($path)
     {
@@ -156,6 +168,8 @@ class Partial
      *@param boolean $associative Si se omite o es `false`, devuelve array no asociativo.
      *                            Si es `true`, lo de vuelve asociativo.
      * @return array Array de datos del objeto.
+     *
+     * @author Ángel M. M. Díez
      */
     public function toArray($associative = false)
     {

@@ -52,6 +52,6 @@
                 </ul>
             </li>
             <li> <a href="contacto.php">Contacto</a> </li>
-            <li> <a id="cambioIdiomaMovil" class='EN cambioIdioma'><span>Change to English version</span> </a> </li>
+            <li> <a href="" id="cambioIdiomaMovil" class='EN cambioIdioma'><span class="needed">Change to English version</span> </a> </li>
         </ul>
     </header>
