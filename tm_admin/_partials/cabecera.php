@@ -14,6 +14,7 @@
 
 <!-- Mis Scripts -->
 <script src="../assets/js/general.js"></script>
+<script src="../assets/js/tinymce_config.js"></script>
 
 <!-- Mis Hojas de Estilos -->
 <link rel="stylesheet" href="../assets/css/estructura.css">

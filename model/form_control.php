@@ -23,7 +23,11 @@ class FormControl
         if ($maxLength != null && $maxLength < $minLength)
             $maxLength = $minLength;
 
-        $e = ($param != '' ?  "El parámetro '<strong>$param</strong>' tiene una longitud invalida. Contiene \"$str\" y" : "Hay un parámetro con longitud inválida. El texto con contenido \"<strong>$str</strong>\"") . " tiene una longitud de <strong>" . strlen($str) . " caracteres</strong> y debe estar entre <strong>$minLength y $maxLength caracteres</strong>. ";
+        $e =
+            ($param != '' ? "El parámetro '<strong>$param</strong>' tiene una longitud invalida. Contiene \"$str\" y" : "Hay un parámetro con longitud inválida. El texto con contenido \"<strong>$str</strong>\"") .
+            " tiene una longitud de <strong>" .
+            strlen($str) .
+            " caracteres</strong> y debe estar entre <strong>$minLength y $maxLength caracteres</strong>. ";
 
         $len = strlen($str);
 
@@ -59,7 +63,7 @@ class FormControl
      * 
      *
      * @param string $page_name Nombre de la página.
-     * @return boolean `true` si no lanza excepción.
+     * @return boolean `true` si la el parámetro no tiene como valor 'header' ni 'footer'.
      * 
      * @throws DatoInvalidoException si la longitud de la cadena no está en el rango adecuado.
      *
@@ -69,6 +73,27 @@ class FormControl
     {
         if ($page_name == 'header' ||  $page_name == 'footer')
             throw new DatoInvalidoException(" . Error: no puedes crear una página con nombre'header' o 'footer'. ");
+
+        return true;
+    }
+
+    /**
+     * Compruba que la cadena no sea  null o esté vacía.
+     * 
+     *
+     * @param string $str Cadena a comprobar.
+     * @return boolean `true` si la cadena no es null o ni está vacía.
+     *
+     * @throws FormException si la cadena es null o está vacía.
+     *
+     * @author Ángel M. M. Díez
+     */
+    public static function notNullOrVoid($str)
+    {
+        if ($str == null)
+            throw new DatoInvalidoException("Cadena con valor <pre>null</pre>. ");
+        if ($str == '')
+            throw new LongitudInvalidaException("Cadena vacía. ");
 
         return true;
     }

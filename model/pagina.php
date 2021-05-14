@@ -1,7 +1,7 @@
 <?php
 
 require_once 'form_control.php';
-require_once 'db/traduceme_content/conexion.php';
+require_once 'db/traduceme/conexion.php';
 
 class Pagina
 {
@@ -66,7 +66,7 @@ class Pagina
     {
         if ($this->lang == 'es')
             return 'español';
-        else if ($this->lang == 'en')
+        elseif ($this->lang == 'en')
             return 'inglés';
         else
             return $this->lang;
@@ -78,9 +78,9 @@ class Pagina
      * Crea un array de objetos `Pagina` con cada una las páginas existentes de la web.
      *
      * Genera y devuelve un array de objetos `Pagina` a parir de cada uno
-     * de los registros de la tabla tm_page.
+     * de los registros de la tabla tm_pages.
      *
-     * @return array Array con los registros de la tabla tm_page qeu coincidan.
+     * @return array Array con los registros de la tabla tm_pages que coincidan.
      *
      *
      * @author Ángel M. M. Díez
@@ -127,7 +127,7 @@ class Pagina
     }
 
     /**
-     * Crea a partir de si misma, un registro en la base de datos en la tabla tm_page.
+     * Crea a partir de si misma, un registro en la base de datos en la tabla tm_pages.
      *
      * @return boolean `true` si se ha añadido, `false` si no.
      * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
@@ -142,7 +142,7 @@ class Pagina
     }
 
     /**
-     * Actualiza un registro en la base de datos en la tabla tm_page.
+     * Actualiza un registro en la base de datos en la tabla tm_pages.
      * 
      * El registro que se modificará será aquel que coincidan los atributos 
      * del objeto $page_name y $lang con la clave primaria (page_name, lang).

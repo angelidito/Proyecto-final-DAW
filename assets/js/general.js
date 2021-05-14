@@ -1,43 +1,17 @@
 document.addEventListener("DOMContentLoaded", inicio);
 
-tinymce.init({
-    selector: '.editable',
-    plugins: [
-        'advlist autolink link image lists charmap preview hr anchor',
-        'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking fullpage',
-        'emoticons template paste help'
-    ],
-    toolbar: 'undo redo | ' +
-        'styleselect | ' +
-        'bold italic | ' +
-        'forecolor backcolor |' +
-        'emoticons |' +
-        'outdent indent | ' +
-        'bullist numlist | ' +
-        'alignleft aligncenter alignright alignjustify |' +
-        'link image | ' +
-        'media  | ',
-    menu: {
-        favs: {
-            title: 'Dev',
-            items: 'code | wordcount searchreplace | emoticons'
-        }
-    },
-    menubar: 'favs edit view insert format help',
-    content_css: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css,../assets/css/estructura.css',
-    allow_script_urls: true,
-});
+
 
 /** 
  * Inicia diversos mecanismos necesarios para página. 
  */
 function inicio() {
 
-    // Preview con estilos en Tiny CME
-    // document.body.addEventListener('DOMNodeInserted', aplicarEstilosVistaPreviaTiny);
 
     // Ocultar/mostrar menu en versión movil
-    document.getElementById('botonMenu').addEventListener('click', mostrarMenu);
+    let botonMenu = document.getElementById('botonMenu');
+    if (botonMenu != null)
+        botonMenu.addEventListener('click', mostrarMenu);
 
     // Enlaces
     asignarEnlaces();
@@ -82,7 +56,6 @@ function mostrarMenu() {
 //         div.style.display = "none";
 //     }
 // }
-
 
 function asignarEnlaces() {
 
@@ -134,7 +107,8 @@ function asignarEnlaceIdioma(enlace) {
     if (enlace.getAttribute('id') != 'cambioIdiomaMovil') {
         if (idiomaObjetivo == 'es') {
             enlace.innerHTML = 'ES';
-        } else if (idiomaObjetivo == 'en') {
+        }
+        elseif(idiomaObjetivo == 'en') {
             enlace.innerHTML = 'EN';
         }
     }
@@ -325,31 +299,6 @@ function hideVoidAlerts() {
         }
     }
 }
-
-
-function aplicarEstilosVistaPreviaTiny(e) {
-
-    let toxes = document.getElementsByClassName('tox-tinymce-aux');
-
-    for (let i = 0; i < toxes.length; i++) {
-        const tox = toxes[i];
-        tox.addEventListener('DOMNodeInserted', () => {
-            this.getElementsByTagName('head')[0].innerHTML +=
-                '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">' +
-                '<script src = "https://code.jquery.com/jquery-3.5.1.slim.min.js"integrity = "sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"crossorigin = "anonymous" > < /script>' +
-                ' <script src = "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"integrity = "sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"crossorigin = "anonymous" > < /script>' +
-                ' <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"integrity = "sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"crossorigin = "anonymous" > < /script>' +
-                ' <script src = "https://cdn.tiny.cloud/1/6bhuqx89rm55uhit2zmiyx5y2vl4pufzhuycvki63e0e7d46/tinymce/5/tinymce.min.js"referrerpolicy = "origin" > < /script>' +
-                ' <link rel = "stylesheet"href = "../assets/css/estructura.css" > ' +
-                ' <script src = "../assets/js/general.js" > < /script>';
-
-            console.log('al menos lo he intentado');
-        });
-    }
-
-
-}
-
 
 function checkUncheck() {
 

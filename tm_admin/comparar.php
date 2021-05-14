@@ -5,7 +5,7 @@ require_once '../model/excepciones.php';
 require_once '../model/form_control.php';
 require_once '../model/pagina.php';
 require_once '../model/partial.php';
-require_once '../model/db/traduceme_content/conexion.php';
+require_once '../model/db/traduceme/conexion.php';
 
 $id_admin_page = "admin_comparar";
 $tituloPaginaAdmin = "¡Compara y edita! ¡O traduce!";
@@ -43,7 +43,7 @@ try {
                 if ($pagina['lang'] == 'es') {
                     $title_es   = $pagina['title'];
                     $content_es = $pagina['content'];
-                } else if ($pagina['lang'] == 'en') {
+                } elseif ($pagina['lang'] == 'en') {
                     $title_en   = $pagina['title'];
                     $content_en = $pagina['content'];
                 } else
@@ -54,7 +54,7 @@ try {
             if (!isset($title_en)) {
                 $title_en   = $title_es;
                 $content_en = $content_es;
-            } else if (!isset($title_es)) {
+            } elseif (!isset($title_es)) {
                 $title_es   = $title_en;
                 $content_es = $content_en;
             }
@@ -64,7 +64,7 @@ try {
             foreach ($conn->getPartials($p_name) as $pagina) {
                 if ($pagina['lang'] == 'es') {
                     $content_es = $pagina['content'];
-                } else if ($pagina['lang'] == 'en') {
+                } elseif ($pagina['lang'] == 'en') {
                     $content_en = $pagina['content'];
                 } else
                     throw new FormException("Idioma desconocido");
@@ -150,7 +150,7 @@ try {
 if (isset($_POST['nocache'])) {
     if ($borrarCacheCode == 2)
         $errores .= "<p class='m-0'>No se ha borrado la caché.</p>";
-    else if (($borrarCacheCode == 1 || $borrarCacheCode == 3) && borrarCache())
+    elseif (($borrarCacheCode == 1 || $borrarCacheCode == 3) && borrarCache())
         $mensajeExito .= "<p class='m-0'>Se ha borrado la caché.</p>";
     else
         $errores .= "<p class='m-0'><strong>No se ha podido borrar la caché</strong>.</p>";

@@ -5,7 +5,7 @@ require_once 'adminFunctions.php';
 require_once '../model/pagina.php';
 require_once '../model/excepciones.php';
 require_once '../model/form_control.php';
-require_once '../model/db/traduceme_content/conexion.php';
+require_once '../model/db/traduceme/conexion.php';
 
 $tituloPaginaAdmin = "¡Traduce una página!";
 $errores = '';

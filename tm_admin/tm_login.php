@@ -1,3 +1,58 @@
+<?php
+// Control de sesión
+session_start();
+if (isset($_SESSION['logged_admin'])) {
+    header("Location: controlador/control_menu.php");
+}
+
+// require('../modelo/db_usuarios/db/traduceme/conexion.php');
+require_once('../modelo/excepciones.php');
+
+$errores = 'Constaseña incorrecta.';
+
+$usuario = '';
+$contraseña = '';
+
+try {
+    //Control de errores
+    if (isset($_POST['acceder'])) {
+
+        // Cogemos los datos
+        $usuario = $_POST['usuario'];
+        $contraseña = $_POST['contraseña'];
+
+        $conn = new Consulta();
+
+        if (strlen($usuario) < 1 || strlen($contraseña) < 1) {
+        }
+
+        // Comprobamos si el usuario y la contraseña coinciden.
+        // Esta función puede lanzar excepciones
+        $autorizado = $conn->logIn($usuario, $contraseña);
+
+        // Si coincicen...
+        if ($autorizado) {
+
+            // Guardamos el usuario y su imagen en la sesión
+            $_SESSION['logged_admin'] = $usuario;
+
+            // Carga el menú de consultas de la base de dados PR (perro_raza)
+            header('Location: cuidado.php');
+            exit;
+        }
+
+        $errores = "Constaseña incorrecta.";
+    }
+    // Fin del if (isset($_POST['enviar']));
+} catch (UsuarioNoRegistradoException $e) {
+    $errores = $e->getMessage();
+} catch (Exception $e) {
+    $errores = $e->getMessage();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,10 +75,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
-    <style>
 
-    </style>
+    <!-- Mis Scripts -->
+    <script src="../assets/js/general.js"></script>
+
+    <!-- Mis Hojas de Estilos -->
+    <!-- <link href="../assets/css/estructura.css" rel="stylesheet"> -->
+    <link href="../assets/css/login.css" rel="stylesheet">
+
 </head>
 
 <body class="text-center">
@@ -34,11 +93,13 @@
         <input type="text" id="usuario" class="form-control" placeholder="Usuario" required autofocus="">
 
         <label for="contraseña" class="sr-only">Contraseña</label>
-        <input type="password" id="contraseña" class="form-control" placeholder="Contraseña" required>
+        <input type="password" id="contraseña" class="form-control mb-4 " placeholder="Contraseña" required>
 
-        <p class="my-2 text-muted">admin access only</p>
+        <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Acceder</button>
+        <p class="text-muted">admin access only</p>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="acceder">Acceder</button>
 
     </form>
 

@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS traduceme_content;
+CREATE DATABASE IF NOT EXISTS traduceme;
 
-CREATE TABLE IF NOT EXISTS tm_page  (
+CREATE TABLE IF NOT EXISTS tm_pages  (
     page_name VARCHAR(40) NOT NULL,
     lang VARCHAR(2) NOT NULL,
     title VARCHAR(70) NOT NULL,
@@ -13,4 +13,10 @@ CREATE TABLE IF NOT EXISTS tm_partials  (
     lang VARCHAR(2) NOT NULL,
     content longtext NOT NULL,
     PRIMARY KEY (partial_name, lang)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS tm_admins (
+    user VARCHAR(16),
+    pass VARCHAR(64) NOT NULL,
+    PRIMARY KEY (user)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_general_ci;

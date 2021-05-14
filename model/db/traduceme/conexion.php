@@ -4,7 +4,7 @@ require 'datos_config.php';
 
 
 /**
- * Clase con conexión a la BD tm_page.
+ * Clase con conexión a la BD tm_pages.
  *
  * @param mysqli $conn
  *
@@ -63,7 +63,6 @@ class Consulta extends Conexion
         parent::__construct();
     }
 
-
     /**
      * Comprueba si se han visto afectada alguna fila con la última operacion en la BD.
      *
@@ -93,7 +92,7 @@ class Consulta extends Conexion
 
         $insert =
             "INSERT INTO
-                tm_page (page_name, lang, title, content)
+                tm_pages (page_name, lang, title, content)
             VALUES
                 ('$datos[0]', '$datos[1]', '$datos[2]', '" . addslashes($datos[3]) . "');";
 
@@ -105,7 +104,7 @@ class Consulta extends Conexion
     }
 
     /**
-     * Actualiza información de un registro la tabla tm_page.
+     * Actualiza información de un registro la tabla tm_pages.
      * 
      * @param Pagina $pagina Página a actualizar.
      * @return boolean `true` si se ha añadido, `false` si no.
@@ -115,7 +114,7 @@ class Consulta extends Conexion
     public function actualizarPagina($pagina)
     {
         $select =
-            "UPDATE tm_page 
+            "UPDATE tm_pages 
                 SET title='" . $pagina->getTitle() . "', content='" . addslashes($pagina->getContent()) . "' 
                 WHERE page_name = '" . $pagina->getPage_name() . "' and lang = '" . $pagina->getLang() . "' 
                 ;";
@@ -146,7 +145,7 @@ class Consulta extends Conexion
     }
 
     /**
-     * Devuelve la información de la tabla tm_page que coincida con los parámetros pasados.
+     * Devuelve la información de la tabla tm_pages que coincida con los parámetros pasados.
      *
      * Si no se pasan parametros, devuelve toda la información de la tabla.
      * 
@@ -158,7 +157,7 @@ class Consulta extends Conexion
      * 
      * @param string $page_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).
-     * @return mixed Array con los registros de la tabla tm_page que coincidan.
+     * @return mixed Array con los registros de la tabla tm_pages que coincidan.
      * 
      * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
      *
@@ -168,13 +167,13 @@ class Consulta extends Conexion
     {
         if ($page_name != null) {
             if ($lang != null)
-                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' and lang = '$lang' ORDER BY page_name, lang ;";
+                $select = "SELECT * FROM tm_pages WHERE page_name = '$page_name' and lang = '$lang' ORDER BY page_name, lang ;";
             else
-                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' ORDER BY page_name, lang ;";
-        } else if ($lang != null) {
-            $select = "SELECT * FROM tm_page WHERE lang = '$lang' ORDER BY page_name, lang ;";
+                $select = "SELECT * FROM tm_pages WHERE page_name = '$page_name' ORDER BY page_name, lang ;";
+        } elseif ($lang != null) {
+            $select = "SELECT * FROM tm_pages WHERE lang = '$lang' ORDER BY page_name, lang ;";
         } else {
-            $select = "SELECT * FROM tm_page ORDER BY page_name, lang ;";
+            $select = "SELECT * FROM tm_pages ORDER BY page_name, lang ;";
         }
 
         $resultados = $this->conn->query($select);
@@ -185,6 +184,7 @@ class Consulta extends Conexion
 
         return $resultados->fetch_all(MYSQLI_ASSOC);
     }
+
     /**
      * Devuelve la información de la tabla tm_partials que coincida con los parámetros pasados.
      *
@@ -211,7 +211,7 @@ class Consulta extends Conexion
                 $select = "SELECT * FROM tm_partials WHERE partial_name = '$partial_name' and lang = '$lang' ORDER BY partial_name, lang ;";
             else
                 $select = "SELECT * FROM tm_partials WHERE partial_name = '$partial_name' ORDER BY partial_name, lang ;";
-        } else if ($lang != null) {
+        } elseif ($lang != null) {
             $select = "SELECT * FROM tm_partials WHERE lang = '$lang' ORDER BY partial_name, lang ;";
         } else {
             $select = "SELECT * FROM tm_partials ORDER BY partial_name, lang ;";
@@ -229,7 +229,7 @@ class Consulta extends Conexion
     /**
      * Devuelve los nombres del páginas que hay en la web.
      * 
-     * Lista con los datos de la columna `page_name` de la table tm_page.
+     * Lista con los datos de la columna `page_name` de la table tm_pages.
      * 
      * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
      * 
@@ -239,7 +239,7 @@ class Consulta extends Conexion
     public function getPage_names()
     {
 
-        $select = "SELECT DISTINCT page_name FROM tm_page  ;";
+        $select = "SELECT DISTINCT page_name FROM tm_pages  ;";
 
         $resultados = $this->conn->query($select);
 
@@ -281,7 +281,7 @@ class Consulta extends Conexion
     /**
      * Devuelve los nombres del páginas que están en ambos idiomas.
      * 
-     * Llamamos nombre a la columna `page_name` de la table tm_page.
+     * Llamamos nombre a la columna `page_name` de la table tm_pages.
      * 
      * @return array Array con los nombres del páginas que hay en la web.
      * 
@@ -291,7 +291,7 @@ class Consulta extends Conexion
     public function getPage_namesEN_ES()
     {
 
-        $select = "SELECT page_name FROM tm_page WHERE lang='es' AND page_name IN (SELECT page_name FROM tm_page WHERE lang='en') ;";
+        $select = "SELECT page_name FROM tm_pages WHERE lang='es' AND page_name IN (SELECT page_name FROM tm_pages WHERE lang='en') ;";
 
         $resultados = $this->conn->query($select);
 
@@ -302,5 +302,70 @@ class Consulta extends Conexion
         };
 
         return $page_names;
+    }
+
+    /**
+     * Devuelve el hash de contraseña del usuario.
+     *
+     * @param string $usuario Usuario que pretende iniciar sesión.
+     *
+     * @return string Hash de la contraseña del admin.
+     * 
+     * @throws UsuarioNoRegistradoException Si el usuario no existe en la tabla tm_users.
+     * @throws BDException Si se encuentra más de un usuario. No debería ocurrir si la BD está bien diseñada.
+     *
+     * 
+     * @author Ángel M. M. Díez
+     */
+    public function getHash($usuario)
+    {
+        $select =
+            "SELECT
+                pass
+            FROM
+                tm_users
+            WHERE
+                user = '$usuario'
+            ;";
+
+        $resultado = $this->conn->query($select);
+
+        if ($this->conn->affected_rows < 1)
+            throw new UsuarioNoRegistradoException("No se ha podido encontrar el usuario \"$usuario\". Si no está registrado, puede hacerlo <a href='control_registro.php'>aquí</a>.");
+        elseif ($this->conn->affected_rows > 1)
+            throw new BDException("Si estás viendo este error es que algo ha ido rematadamente mal y hay dos usuarios con el mismo nombre. Lo cual no debería ser posible ya que es la clave primaria, pero vamos a contemplarlo por si las moscas.");
+
+
+        return $resultado->fetch_array()['contraseña'];
+    }
+
+
+    /**
+     * Añade un usuario a la base de datos.
+     *
+     * @param string $usuario Nombre de usuario.
+     * @param string $hash Contraseña.
+     *
+     * @return boolean Si se ha añadido a la BD `true`; si no, `false`.
+     * 
+     * @author Ángel M. M. Díez
+     */
+    public function añadirAdmin($usuario = null, $hash = null)
+    {
+
+        $insert =
+            "INSERT 
+                INTO 
+                    tm_admins
+                VALUES
+                    ('$usuario', '$hash');
+            ";
+
+        $this->conn->query($insert);
+
+        if ($this->conn->affected_rows < 1)
+            return false;
+
+        return true;
     }
 }

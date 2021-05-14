@@ -5,7 +5,7 @@ require_once '../model/excepciones.php';
 require_once '../model/form_control.php';
 require_once '../model/pagina.php';
 require_once '../model/partial.php';
-require_once '../model/db/traduceme_content/conexion.php';
+require_once '../model/db/traduceme/conexion.php';
 
 $id_admin_page = "admin_editar";
 $tituloPaginaAdmin = "¡Edita una página! ¡O traduce!";
@@ -123,7 +123,7 @@ if ($errores != '')
 if (isset($_POST['nocache'])) {
     if ($borrarCacheCode == 2)
         $errores .= "<p class='m-0'>No se ha borrado la caché.</p>";
-    else if ($borrarCacheCode == 1 && borrarCache())
+    elseif ($borrarCacheCode == 1 && borrarCache())
         $mensajeExito .= "<p class='m-0'>Se ha borrado la caché.</p>";
     else
         $errores .= "<p class='m-0'><strong>No se ha podido borrar la caché</strong>.</p>";

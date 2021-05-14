@@ -1,7 +1,7 @@
 <?php
 
 require_once 'form_control.php';
-require_once 'db/traduceme_content/conexion.php';
+require_once 'db/traduceme/conexion.php';
 
 class Partial
 {
@@ -58,7 +58,7 @@ class Partial
     {
         if ($this->lang == 'es')
             return 'español';
-        else if ($this->lang == 'en')
+        elseif ($this->lang == 'en')
             return 'inglés';
         else
             return $this->lang;
@@ -70,9 +70,9 @@ class Partial
      * Crea un array de objetos `Partial` con cada una las partials existentes de la web.
      *
      * Genera y devuelve un array de objetos `Partial` a parir de cada uno
-     * de los registros de la tabla tm_page.
+     * de los registros de la tabla tm_pages.
      *
-     * @return array Array con los registros de la tabla tm_page qeu coincidan.
+     * @return array Array con los registros de la tabla tm_pages que coincidan.
      *
      *
      * @author Ángel M. M. Díez
@@ -114,7 +114,7 @@ class Partial
     }
 
     /**
-     * Actualiza un registro en la base de datos en la tabla tm_page.
+     * Actualiza un registro en la base de datos en la tabla tm_pages.
      * 
      * El registro que se modificará será aquel que coincidan los atributos 
      * del objeto $partial_name y $lang con la clave primaria (partial_name, lang).

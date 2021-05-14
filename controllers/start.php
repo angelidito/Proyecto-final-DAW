@@ -1,6 +1,6 @@
 <?php
 
-require '../model/db/traduceme_content/conexion.php';
+require '../model/db/traduceme/conexion.php';
 require '../model/excepciones.php';
 
 /**

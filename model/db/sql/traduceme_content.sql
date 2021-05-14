@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `traduceme_content`
+-- Base de datos: `traduceme`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tm_page`
+-- Estructura de tabla para la tabla `tm_pages`
 --
 
-CREATE TABLE `tm_page` (
+CREATE TABLE `tm_pages` (
   `page_name` varchar(40) NOT NULL,
   `lang` varchar(2) NOT NULL,
   `title` varchar(70) NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `tm_page` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tm_page`
+-- Volcado de datos para la tabla `tm_pages`
 --
 
-INSERT INTO `tm_page` (`page_name`, `lang`, `title`, `content`) VALUES
+INSERT INTO `tm_pages` (`page_name`, `lang`, `title`, `content`) VALUES
 ('contacto', 'en', 'Contact - TradúceMe', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<nav class=\"breadcrumb m-0 py-0  w-100 fg\">\r\n<ul class=\"breadcrumb\">\r\n<li>&nbsp;<a href=\"inicio.php\">Inicio</a></li>\r\n<li><a href=\"#\">Contacto</a></li>\r\n</ul>\r\n</nav><main class=\"flex-c\">\r\n<div id=\"tituloPagina\" class=\"m-0 w-100\">\r\n<h1 class=\"display-3 p-5 m-0\">Contact</h1>\r\n</div>\r\n<div id=\"cuerpo\" class=\"cuerpo m-4 text-center d-flex flex-wrap justify-content-center \">\r\n<div id=\"bloque-texto-contacto\" class=\"p-4 align-self-start w-50 \">\r\n<h2 class=\"\">Need More information?</h2>\r\n<p>Escr&iacute;beme un correo, ll&aacute;mame o m&aacute;ndame un mensaje de Whatsapp y te responder&eacute; lo antes posible.</p>\r\n</div>\r\n<address id=\"bloque-datos-contacto\" class=\"container p-4 w-50  align-self-start\">\r\n<h2 class=\"\">Here i Am</h2>\r\n<!-- <p class=\"my-1\">Escríbeme y te responeré lo antes posible:</p> -->\r\n<ul class=\"list-unstyled\">\r\n<li>Malena Mart&iacute;nez D&iacute;ez</li>\r\n<li><a class=\"email\" href=\"mailto:malena.traduceme@gmail.com\"> malena.traduceme@gmail.com </a></li>\r\n<li><a class=\"telefono\" href=\"https://wa.me/34646894066?text=&iexcl;Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo&hellip;\" target=\"_blank\" rel=\"noopener\"> +34 646 89 40 66</a></li>\r\n<li><span class=\"chincheta\"> Burgos, Espa&ntilde;a</span></li>\r\n</ul>\r\n</address></div>\r\n</main>\r\n</body>\r\n</html>'),
 ('contacto', 'es', 'Contacto - TradúceMe', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<nav class=\"breadcrumb m-0 py-0  w-100 fg\">\r\n<ul class=\"breadcrumb\">\r\n<li>&nbsp;<a href=\"inicio.php\">Inicio</a></li>\r\n<li><a href=\"#\">Contacto</a></li>\r\n</ul>\r\n</nav><main class=\"flex-c\">\r\n<div id=\"tituloPagina\" class=\"m-0 w-100\">\r\n<h1 class=\"display-3 p-5 m-0\">Contacto</h1>\r\n</div>\r\n<div id=\"cuerpo\" class=\"cuerpo m-4 text-center d-flex flex-wrap justify-content-center \">\r\n<div id=\"bloque-texto-contacto\" class=\"p-4 align-self-start w-50 \">\r\n<h2 class=\"\">&iquest;Necesitas m&aacute;s informaci&oacute;n?</h2>\r\n<p>Escr&iacute;beme un correo, ll&aacute;mame o m&aacute;ndame un mensaje de Whatsapp y te responder&eacute; lo antes posible.</p>\r\n</div>\r\n<address id=\"bloque-datos-contacto\" class=\"container p-4 w-50  align-self-start\">\r\n<h2 class=\"\">Aqu&iacute; estoy</h2>\r\n<!-- <p class=\"my-1\">Escríbeme y te responeré lo antes posible:</p> -->\r\n<ul class=\"list-unstyled\">\r\n<li>Malena Mart&iacute;nez D&iacute;ez</li>\r\n<li><a class=\"email\" href=\"mailto:malena.traduceme@gmail.com\"> malena.traduceme@gmail.com </a></li>\r\n<li><a class=\"telefono\" href=\"https://wa.me/34646894066?text=&iexcl;Hola%21%20Estaba%20viendo%20web%2C%20me%20llamo&hellip;\" target=\"_blank\" rel=\"noopener\"> +34 646 89 40 66</a></li>\r\n<li><span class=\"chincheta\"> Burgos, Espa&ntilde;a</span></li>\r\n</ul>\r\n</address></div>\r\n</main>\r\n</body>\r\n</html>'),
 ('inicio', 'en', 'Home - TradúceMe', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<nav id=\"migas\" class=\"  \">\r\n<ul class=\"breadcrumb\">\r\n<li><a href=\"#\">Inicio</a></li>\r\n</ul>\r\n</nav><main class=\"\">\r\n<div id=\"tituloPagina\" class=\"m-0 w-100\">\r\n<div id=\"titulo-SEO-inicio\" class=\"d-none\" hidden=\"\">\r\n<h1>Inicio</h1>\r\n</div>\r\n<h2 class=\"tituloPagina\">En Trad&uacute;ceMe <span id=\"ajusteTituloInicio\"><br /></span> te traducimos a ti</h2>\r\n</div>\r\n<div id=\"cuerpo\" class=\"cuerpo\">\r\n<div id=\"bloque-contador-recorrido\" class=\"container text-center my-4\" data-fuente=\"https://bootsnipp.com/snippets/4MByn\">\r\n<h3>Mi recorrido</h3>\r\n<div class=\"row d-flex align-items-stretch \">\r\n<div class=\"col-md-4 col-sm-12 my-1 \">\r\n<div class=\"counter px-2 \">\r\n<p id=\"traducciones-realizadas\" class=\"heading timer count-title count-number\" data-to=\"57\" data-speed=\"2000\"></p>\r\n<p class=\"count-text \">Traducciones realizadas</p>\r\n</div>\r\n</div>\r\n<div class=\"col-md-4 col-sm-12 my-1 \">\r\n<div class=\"counter px-2 \">\r\n<p id=\"palabras-traducidas\" class=\"heading timer count-title count-number\" data-to=\"55000\" data-speed=\"2000\"></p>\r\n<p class=\"count-text \">Palabras traducidas o editadas</p>\r\n</div>\r\n</div>\r\n<div class=\"col-md-4 col-sm-12 my-1 \">\r\n<div class=\"counter px-2 \">\r\n<p id=\"clietes-satisfechos\" class=\"heading timer count-title count-number\" data-to=\"157\" data-speed=\"2000\"></p>\r\n<p class=\"count-text \">Clientes satisfechos</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<div id=\"bloque-texto-inicio-1\" class=\"container my-4 text-center\">\r\n<h3 class=\"\">Titulo del texto</h3>\r\n<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, facere! Quos commodi eveniet distinctio sequi deleniti totam natus quae perferendis delectus quisquam, impedit atque, in molestiae saepe consequatur fugit inventore? Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic earum asperiores voluptates inventore excepturi quaerat quasi ratione laboriosam, autem illo ea at totam magni labore eius quae? Ex, culpa sequi!</p>\r\n</div>\r\n<hr />\r\n<div id=\"bloque-servicios-ofrecidos\" class=\"container my-4 \">\r\n<h3 class=\"center\">&iquest;Qu&eacute; servicios te ofrezco?</h3>\r\n<ul class=\"list-inline center \">\r\n<li class=\"list-inline-item\"><a href=\"#\">Traducci&oacute;n Jurada</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Traducci&oacute;n Jur&iacute;dica</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Traducci&oacute;n Econ&oacute;mica</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Traducci&oacute;n T&eacute;cnica y Especializada</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Traducci&oacute;n Audiovisual</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Traducci&oacute;n de P&aacute;ginas Web y Software</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Revisi&oacute;n de traducciones de terceros</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Correcci&oacute;n de textos</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Transcripci&oacute;n y subtitulaci&oacute;n</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Creaci&oacute;n de bases terminol&oacute;gicas</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Creaci&oacute;n de memorias de traducci&oacute;n</a></li>\r\n<li class=\"list-inline-item\"><a href=\"#\">Asesoramiento ling&uuml;istico</a></li>\r\n</ul>\r\n</div>\r\n<div id=\"bloque-opiniones\" class=\"container my-4 text-center carousel slide\">\r\n<h3>Opiniones</h3>\r\n<div id=\"opiniones\" class=\" container-fluid carousel-inner px-4\" data-ride=\"carousel\">\r\n<div class=\"comilla-ini \">&nbsp;</div>\r\n<div class=\"comilla-fin \">&nbsp;</div>\r\n<div class=\"carousel-item \">\r\n<p class=\"opinion\"><q> Me ha traducido los textos de mi p&aacute;gina web. Entiendo bien el ingl&eacute;s y los veo muy acertados. </q> <span class=\"autor-cita\">&Aacute;ngel Mori Mart&iacute;nez</span></p>\r\n</div>\r\n<div class=\"carousel-item active\">\r\n<p class=\"opinion\"><q> Malena ha superado mis expectativas. Realmente he quedado satisfecho con su trabajo, mis clientes del mercado internacional lo agradecer&aacute;n sin duda. </q> <span class=\"autor-cita\">Marta Gallardo</span></p>\r\n</div>\r\n<div class=\"carousel-item\">\r\n<p class=\"opinion\"><q> Muchas gracias por la revisi&oacute;n de mi documento! </q> <span class=\"autor-cita\">Ricardo Soler</span></p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</main>\r\n</body>\r\n</html>'),
@@ -54,9 +54,9 @@ INSERT INTO `tm_page` (`page_name`, `lang`, `title`, `content`) VALUES
 --
 
 --
--- Indices de la tabla `tm_page`
+-- Indices de la tabla `tm_pages`
 --
-ALTER TABLE `tm_page`
+ALTER TABLE `tm_pages`
   ADD PRIMARY KEY (`page_name`,`lang`);
 COMMIT;
 
