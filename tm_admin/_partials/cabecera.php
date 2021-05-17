@@ -40,7 +40,7 @@
             <li> <a href="editar.php">Editar</a></li>
             <li> <a href="comparar.php">Comparar</a></li>
             <li> <a href="info.php">Información</a></li>
-            <li> <a href=".." target="_blank">Ver mi web</a></li>
+            <!-- <li> <a href=".." target="_blank">Ver mi web</a></li> -->
             <li> <a href="?cerrarSesion=">Cerrar sesión</a></li>
         </ul>
 
