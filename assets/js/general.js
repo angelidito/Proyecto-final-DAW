@@ -107,8 +107,7 @@ function asignarEnlaceIdioma(enlace) {
     if (enlace.getAttribute('id') != 'cambioIdiomaMovil') {
         if (idiomaObjetivo == 'es') {
             enlace.innerHTML = 'ES';
-        }
-        elseif(idiomaObjetivo == 'en') {
+        } else if (idiomaObjetivo == 'en') {
             enlace.innerHTML = 'EN';
         }
     }
