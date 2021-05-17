@@ -1,7 +1,5 @@
 <?php
-
 require 'datos_config.php';
-
 
 /**
  * Clase con conexión a la BD tm_pages.
@@ -12,13 +10,18 @@ require 'datos_config.php';
  */
 class Conexion
 {
-    // Conexión objeto de tipo mysqli
+    /**
+     * Conexión objeto de tipo mysqli
+     *
+     * @var mysqli Conexión de PHP con base de datos MYSQLI
+     */
     protected $conn;
 
     /**
      * Constructor de la clase.
      *
-     * Establece una conexión con la BD perros_raza según la configuración del archivo datos_config.php.
+     * Establece una conexión con la BD según 
+     * la configuración del archivo datos_config.php.
      *
      *
      * @author Ángel M. M. Díez
@@ -54,7 +57,7 @@ class Consulta extends Conexion
     /**
      * Constructor de la clase.
      *
-     * Establece una conexión con la BD perro_raza.
+     * Establece una conexión con la BD.
      *
      * @author Ángel M. M. Díez
      */
@@ -321,9 +324,9 @@ class Consulta extends Conexion
     {
         $select =
             "SELECT
-                pass
+                `hash`
             FROM
-                tm_users
+                tm_admins
             WHERE
                 user = '$usuario'
             ;";
@@ -336,7 +339,7 @@ class Consulta extends Conexion
             throw new BDException("Si estás viendo este error es que algo ha ido rematadamente mal y hay dos usuarios con el mismo nombre. Lo cual no debería ser posible ya que es la clave primaria, pero vamos a contemplarlo por si las moscas.");
 
 
-        return $resultado->fetch_array()['contraseña'];
+        return $resultado->fetch_array()['hash'];
     }
 
 
@@ -344,7 +347,7 @@ class Consulta extends Conexion
      * Añade un usuario a la base de datos.
      *
      * @param string $usuario Nombre de usuario.
-     * @param string $hash Contraseña.
+     * @param string $hash Hash de la contraseña del usuario..
      *
      * @return boolean Si se ha añadido a la BD `true`; si no, `false`.
      * 
@@ -358,8 +361,8 @@ class Consulta extends Conexion
                 INTO 
                     tm_admins
                 VALUES
-                    ('$usuario', '$hash');
-            ";
+                    ('$usuario', '$hash', NOW());
+            ;";
 
         $this->conn->query($insert);
 
@@ -367,5 +370,33 @@ class Consulta extends Conexion
             return false;
 
         return true;
+    }
+
+
+    /**
+     * Borra un usuario a la base de datos.
+     * 
+     * Si no de pasa ningún parámetro o este es `null` se borrarán 
+     * todos los registros de la tabla.
+     *
+     * @param string $usuario Nombre del usuario a borrar.
+     *
+     * @return void
+     * 
+     * @author Ángel M. M. Díez
+     */
+    public function borrarAdmin($usuario = null)
+    {
+        if ($usuario == null) {
+            $sql = "TRUNCATE TABLE tm_admins;";
+        } else {
+            $sql =
+                "DELETE
+                    FROM tm_admins
+                    WHERE user = '$usuario' 
+                    ;";
+        }
+
+        $this->conn->query($sql);
     }
 }

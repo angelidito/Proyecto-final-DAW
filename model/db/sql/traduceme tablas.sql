@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS tm_partials  (
 
 CREATE TABLE IF NOT EXISTS tm_admins (
     user VARCHAR(16),
-    pass VARCHAR(64) NOT NULL,
+    `hash` VARCHAR(64) NOT NULL,
     PRIMARY KEY (user)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_general_ci;

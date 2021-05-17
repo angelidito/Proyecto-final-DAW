@@ -12,6 +12,7 @@
 <!-- TinyMCE -->
 <script src="https://cdn.tiny.cloud/1/6bhuqx89rm55uhit2zmiyx5y2vl4pufzhuycvki63e0e7d46/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
+
 <!-- Mis Scripts -->
 <script src="../assets/js/general.js"></script>
 <script src="../assets/js/tinymce_config.js"></script>
@@ -23,8 +24,8 @@
 </head>
 
 <body id="<?php echo $id_admin_page ?>">
-    <header>
 
+    <header>
         <div id="logoYTitulo">
             <a href="."> <img src="../img/logo.png" alt="logo" id="logoCabecera" class="logo">
             </a>
@@ -40,7 +41,10 @@
             <li> <a href="comparar.php">Comparar</a></li>
             <li> <a href="info.php">Información</a></li>
             <li> <a href=".." target="_blank">Ver mi web</a></li>
+            <li> <a href="?cerrarSesion=">Cerrar sesión</a></li>
         </ul>
+
+
     </header>
 
     <main class="mt-4 pt-4 center">

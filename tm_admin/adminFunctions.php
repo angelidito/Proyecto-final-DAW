@@ -18,7 +18,8 @@ function borrarCache($dirs_only = true)
     if ($files = glob('../cache/*'))  //obtenemos todos los nombres de los ficheros
         foreach ($files as $file)
             if (is_dir($file) || !$dirs_only)
-                $cache_borrada = deleteDirectory($file);
+                if (!deleteDirectory($file)  && $cache_borrada)
+                    $cache_borrada = false;
 
     $dirPages = "../cache/pages/";
     if (!file_exists("../cache/pages/")) {

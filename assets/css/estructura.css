@@ -433,12 +433,26 @@ header a {
     /* border-bottom: 1px solid #f40; */
 }
 
-#menu a {
+#menu a,
+#menu .menu-li {
     display: block;
     padding-top: 1rem;
     padding-bottom: 1rem;
     text-decoration: none;
     /* color: red; */
+}
+
+#menu form.menu-li {
+    border: none;
+    margin: none;
+    border: none;
+}
+
+#menu input.menu-li {
+    color: red;
+    margin: none;
+    background: none;
+    border: none;
 }
 
 
@@ -452,7 +466,8 @@ header a {
     color: white;
 } */
 
-#menu li a:hover {
+#menu li a:hover,
+#menu input.menu-li:hover {
     color: white;
     background-color: #f76;
 }

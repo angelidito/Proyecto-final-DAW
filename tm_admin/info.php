@@ -7,7 +7,7 @@ require_once '../model/excepciones.php';
 require_once '../model/form_control.php';
 require_once '../model/db/traduceme/conexion.php';
 
-$tituloPaginaAdmin = "¡Traduce una página!";
+$tituloPaginaAdmin = "En resumen";
 $errores = '';
 $mensajeExito = '';
 
@@ -26,8 +26,12 @@ try {
     $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 }
 
-if (isset($_POST['noCache']))
-    borrarCache();
+if (isset($_POST['noCache'])) {
+    if (borrarCache())
+        $mensajeExito .= "<p class='m-0'>Caché borrada correctamente</p>";
+    else
+        $errores .= "<p class='m-0'>No se ha logrado borrar la caché</p>";
+}
 
 
 $rutaCache = '../cache/pages';
@@ -59,29 +63,43 @@ include('_partials/cabecera.php');
     <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
     <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
 </div>
-<div class="container p-4">
+
+<div class="container mt-4">
     <h2 class="mb-4">Páginas en la base de datos</h2>
     <div class="row text-left">
         <div class="col-xs-12 col-md-6">
             <?php echo $tablaES ?>
-            <hr class="clasic">
+            <hr class="clasic mb-0">
         </div>
         <div class="col-xs-12 col-md-6 ">
             <?php echo $tablaEN ?>
-            <hr class="clasic">
+            <hr class="clasic mb-0">
         </div>
     </div>
 </div>
-<div class="container">
-    <h2 class="mb-4 ">Caché</h2>
+
+<div class="container mt-4">
+    <h2 class="mb-4 ">Rendimiento: memoria en caché</h2>
     <p>
         Último borrado de caché: <?php echo $fechaCache ?>.
     </p>
     <form method="post" action="">
         <div class="form-group center">
-            <button name="noCache" type="submit" class="btn btn-primary">Borrar caché</button>
+            <button name="noCache" type="submit" class="btn btn-primary mb-2">Borrar caché</button>
         </div>
     </form>
+    <hr class="clasic mt-4">
+</div>
+
+<div class="container mt-4">
+    <h2 class="mb-4 ">Contacta con el desarrollador</h2>
+    <p>
+    <ul class="list-unstyled">
+        <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
+        <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34 608 29 15 90</a></li>
+        <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
+    </ul>
+    </p>
 </div>
 
 

@@ -1,33 +1,30 @@
-<a href=".">Volver al backoffice</a>
+<a href="cuidado.php">Volver al backoffice</a>
 <br><br>
-<hr class="margarita"><br>
+<hr><br>
 
 <?php
-require '../model/user.php';
+require '../model/Admin.php';
 require '../model/excepciones.php';
+require_once '../model/db/traduceme/conexion.php';
 
-// echo '<pre>';
+echo '<br>';
 
-$usuario = 'mori';
-$contraseña = '1234';
-var_dump(User::añadirAdmin($usuario, $contraseña));
-var_dump(User::isAdmin($usuario, $contraseña));
+echo 'Anadiendo admins...<br>';
 
-// var_dump(User::isAdmin('malena', 'pollo'));
+var_dump(Admin::añadirAdmin('mori', 'mori'));
+var_dump(Admin::isAdmin('mori', 'mori'));
+echo '<br>';
 
-// var_dump(User::isAdmin('maroto', 'mjuan'));
+var_dump(Admin::añadirAdmin('malena', 'malena'));
+var_dump(Admin::isAdmin('malena', 'malena'));
+echo '<br>';
+
+var_dump(Admin::añadirAdmin('maroto', 'mjuan'));
+var_dump(Admin::isAdmin('maroto', 'mjuan'));
 
 
 
-// var_dump(User::isAdmin('mfdgri', 'mori'));
 
-// var_dump(User::isAdmin('malena', 'pofgllo'));
-
-// var_dump(User::isAdmin('', 'mjuan'));
-
-// var_dump(User::isAdmin('mjuan', ''));
-
-// var_dump(User::isAdmin('', ''));
 
 
 
@@ -50,5 +47,5 @@ var_dump(User::isAdmin($usuario, $contraseña));
 
 ?>
 <br><br>
-<hr class="margarita"><br>
+<hr><br>
 <h1 class="display-4">Prueba terminada</h1>

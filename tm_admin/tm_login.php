@@ -2,13 +2,13 @@
 // Control de sesión
 session_start();
 if (isset($_SESSION['logged_admin'])) {
-    header("Location: controlador/control_menu.php");
+    header("Location: cuidado.php");
 }
 
 // require('../modelo/db_usuarios/db/traduceme/conexion.php');
-require_once('../modelo/excepciones.php');
+require_once '../model/Admin.php';
 
-$errores = 'Constaseña incorrecta.';
+$errores = '';
 
 $usuario = '';
 $contraseña = '';
@@ -21,32 +21,24 @@ try {
         $usuario = $_POST['usuario'];
         $contraseña = $_POST['contraseña'];
 
-        $conn = new Consulta();
 
-        if (strlen($usuario) < 1 || strlen($contraseña) < 1) {
-        }
-
+        // if (strlen($usuario) < 1 || strlen($contraseña) < 1) {
+        // }
         // Comprobamos si el usuario y la contraseña coinciden.
-        // Esta función puede lanzar excepciones
-        $autorizado = $conn->logIn($usuario, $contraseña);
-
-        // Si coincicen...
-        if ($autorizado) {
+        if (Admin::isAdmin($usuario, $contraseña)) {
 
             // Guardamos el usuario y su imagen en la sesión
             $_SESSION['logged_admin'] = $usuario;
 
-            // Carga el menú de consultas de la base de dados PR (perro_raza)
+            // Carga las páginas de administración
             header('Location: cuidado.php');
             exit;
         }
 
         $errores = "Constaseña incorrecta.";
     }
-    // Fin del if (isset($_POST['enviar']));
-} catch (UsuarioNoRegistradoException $e) {
-    $errores = $e->getMessage();
 } catch (Exception $e) {
+    $errores = "Constaseña incorrecta. ";
     $errores = $e->getMessage();
 }
 
@@ -86,14 +78,15 @@ try {
 </head>
 
 <body class="text-center">
-    <form class="form-signin">
+    <form method="post" class="form-signin">
+
         <h1 class="h3 mb-4 font-weight-normal">Acceso a administración</h1>
 
         <label for="usuario" class="sr-only">Usuario</label>
-        <input type="text" id="usuario" class="form-control" placeholder="Usuario" required autofocus="">
+        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus="">
 
         <label for="contraseña" class="sr-only">Contraseña</label>
-        <input type="password" id="contraseña" class="form-control mb-4 " placeholder="Contraseña" required>
+        <input type="password" id="contraseña" name="contraseña" class="form-control mb-4 " placeholder="Contraseña" required>
 
         <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
 

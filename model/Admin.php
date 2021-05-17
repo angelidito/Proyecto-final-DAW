@@ -3,7 +3,7 @@
 require 'form_control.php';
 require 'db/traduceme/conexion.php';
 
-class User
+class Admin
 {
 
     /**
@@ -22,7 +22,7 @@ class User
      */
     public static function añadirAdmin($usuario, $contraseña)
     {
-        self::validarUser($usuario, $contraseña);
+        self::validarDatos($usuario, $contraseña);
 
         $hash = password_hash($contraseña, PASSWORD_DEFAULT);
 
@@ -43,7 +43,7 @@ class User
      *
      * @author Ángel M. M. Díez
      */
-    private static function validarUser($usuario, $contraseña)
+    private static function validarDatos($usuario, $contraseña)
     {
         FormControl::checkLength($usuario, 4, 16, 'nombre de usuario');
         FormControl::checkLength($contraseña, 4, 24, 'contraseña');
@@ -65,7 +65,6 @@ class User
         } catch (BDException $e) {
             return false;
         }
-
 
         if (password_verify($contraseña, $hash))
             return true;
