@@ -78,9 +78,9 @@ class Pagina
      * Crea un array de objetos `Pagina` con cada una las páginas existentes de la web.
      *
      * Genera y devuelve un array de objetos `Pagina` a parir de cada uno
-     * de los registros de la tabla tm_pages.
+     * de los registros de la tabla tm_page.
      *
-     * @return array Array con los registros de la tabla tm_pages que coincidan.
+     * @return array Array con los registros de la tabla tm_page que coincidan.
      *
      *
      * @author Ángel M. M. Díez
@@ -127,7 +127,7 @@ class Pagina
     }
 
     /**
-     * Crea a partir de si misma, un registro en la base de datos en la tabla tm_pages.
+     * Crea a partir de si misma, un registro en la base de datos en la tabla tm_page.
      *
      * @return boolean `true` si se ha añadido, `false` si no.
      * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
@@ -142,7 +142,7 @@ class Pagina
     }
 
     /**
-     * Actualiza un registro en la base de datos en la tabla tm_pages.
+     * Actualiza un registro en la base de datos en la tabla tm_page.
      * 
      * El registro que se modificará será aquel que coincidan los atributos 
      * del objeto $page_name y $lang con la clave primaria (page_name, lang).

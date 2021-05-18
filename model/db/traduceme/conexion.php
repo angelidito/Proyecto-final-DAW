@@ -2,7 +2,7 @@
 require 'datos_config.php';
 
 /**
- * Clase con conexión a la BD tm_pages.
+ * Clase con conexión a la BD tm_page.
  *
  * @param mysqli $conn
  *
@@ -95,7 +95,7 @@ class Consulta extends Conexion
 
         $insert =
             "INSERT INTO
-                tm_pages (page_name, lang, title, content)
+                tm_page (page_name, lang, title, content)
             VALUES
                 ('$datos[0]', '$datos[1]', '$datos[2]', '" . addslashes($datos[3]) . "');";
 
@@ -107,7 +107,7 @@ class Consulta extends Conexion
     }
 
     /**
-     * Actualiza información de un registro la tabla tm_pages.
+     * Actualiza información de un registro la tabla tm_page.
      * 
      * @param Pagina $pagina Página a actualizar.
      * @return boolean `true` si se ha añadido, `false` si no.
@@ -117,7 +117,7 @@ class Consulta extends Conexion
     public function actualizarPagina($pagina)
     {
         $select =
-            "UPDATE tm_pages 
+            "UPDATE tm_page 
                 SET title='" . $pagina->getTitle() . "', content='" . addslashes($pagina->getContent()) . "' 
                 WHERE page_name = '" . $pagina->getPage_name() . "' and lang = '" . $pagina->getLang() . "' 
                 ;";
@@ -128,7 +128,7 @@ class Consulta extends Conexion
     }
 
     /**
-     * Actualiza información de un registro la tabla tm_partials.
+     * Actualiza información de un registro la tabla tm_partial.
      * 
      * @param Partial $partial Página a actualizar.
      * @return boolean `true` si se ha añadido, `false` si no.
@@ -138,7 +138,7 @@ class Consulta extends Conexion
     public function actualizarPartial($partial)
     {
         $select =
-            "UPDATE tm_partials 
+            "UPDATE tm_partial 
                 SET  content='" . addslashes($partial->getContent()) . "' 
                 WHERE partial_name = '" . $partial->getpartial_name() . "' and lang = '" . $partial->getLang() . "' 
                 ;";
@@ -148,7 +148,7 @@ class Consulta extends Conexion
     }
 
     /**
-     * Devuelve la información de la tabla tm_pages que coincida con los parámetros pasados.
+     * Devuelve la información de la tabla tm_page que coincida con los parámetros pasados.
      *
      * Si no se pasan parametros, devuelve toda la información de la tabla.
      * 
@@ -160,7 +160,7 @@ class Consulta extends Conexion
      * 
      * @param string $page_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).
-     * @return mixed Array con los registros de la tabla tm_pages que coincidan.
+     * @return mixed Array con los registros de la tabla tm_page que coincidan.
      * 
      * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
      *
@@ -170,13 +170,13 @@ class Consulta extends Conexion
     {
         if ($page_name != null) {
             if ($lang != null)
-                $select = "SELECT * FROM tm_pages WHERE page_name = '$page_name' and lang = '$lang' ORDER BY page_name, lang ;";
+                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' and lang = '$lang' ORDER BY page_name, lang ;";
             else
-                $select = "SELECT * FROM tm_pages WHERE page_name = '$page_name' ORDER BY page_name, lang ;";
+                $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' ORDER BY page_name, lang ;";
         } elseif ($lang != null) {
-            $select = "SELECT * FROM tm_pages WHERE lang = '$lang' ORDER BY page_name, lang ;";
+            $select = "SELECT * FROM tm_page WHERE lang = '$lang' ORDER BY page_name, lang ;";
         } else {
-            $select = "SELECT * FROM tm_pages ORDER BY page_name, lang ;";
+            $select = "SELECT * FROM tm_page ORDER BY page_name, lang ;";
         }
 
         $resultados = $this->conn->query($select);
@@ -189,7 +189,7 @@ class Consulta extends Conexion
     }
 
     /**
-     * Devuelve la información de la tabla tm_partials que coincida con los parámetros pasados.
+     * Devuelve la información de la tabla tm_partial que coincida con los parámetros pasados.
      *
      * Si no se pasan parametros, devuelve toda la información de la tabla.
      * 
@@ -201,7 +201,7 @@ class Consulta extends Conexion
      * 
      * @param string $partial_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).
-     * @return mixed Array con los registros de la tabla tm_partials que coincidan.
+     * @return mixed Array con los registros de la tabla tm_partial que coincidan.
      * 
      * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
      *
@@ -211,13 +211,13 @@ class Consulta extends Conexion
     {
         if ($partial_name != null) {
             if ($lang != null)
-                $select = "SELECT * FROM tm_partials WHERE partial_name = '$partial_name' and lang = '$lang' ORDER BY partial_name, lang ;";
+                $select = "SELECT * FROM tm_partial WHERE partial_name = '$partial_name' and lang = '$lang' ORDER BY partial_name, lang ;";
             else
-                $select = "SELECT * FROM tm_partials WHERE partial_name = '$partial_name' ORDER BY partial_name, lang ;";
+                $select = "SELECT * FROM tm_partial WHERE partial_name = '$partial_name' ORDER BY partial_name, lang ;";
         } elseif ($lang != null) {
-            $select = "SELECT * FROM tm_partials WHERE lang = '$lang' ORDER BY partial_name, lang ;";
+            $select = "SELECT * FROM tm_partial WHERE lang = '$lang' ORDER BY partial_name, lang ;";
         } else {
-            $select = "SELECT * FROM tm_partials ORDER BY partial_name, lang ;";
+            $select = "SELECT * FROM tm_partial ORDER BY partial_name, lang ;";
         }
 
         $resultados = $this->conn->query($select);
@@ -232,7 +232,7 @@ class Consulta extends Conexion
     /**
      * Devuelve los nombres del páginas que hay en la web.
      * 
-     * Lista con los datos de la columna `page_name` de la table tm_pages.
+     * Lista con los datos de la columna `page_name` de la table tm_page.
      * 
      * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
      * 
@@ -242,7 +242,7 @@ class Consulta extends Conexion
     public function getPage_names()
     {
 
-        $select = "SELECT DISTINCT page_name FROM tm_pages  ;";
+        $select = "SELECT DISTINCT page_name FROM tm_page  ;";
 
         $resultados = $this->conn->query($select);
 
@@ -258,7 +258,7 @@ class Consulta extends Conexion
     /**
      * Devuelve los nombres del páginas que hay en la web.
      * 
-     * Lista con los datos de la columna `partial_name` de la table tm_partials.
+     * Lista con los datos de la columna `partial_name` de la table tm_partial.
      * 
      * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
      * 
@@ -268,7 +268,7 @@ class Consulta extends Conexion
     public function getPartial_names()
     {
 
-        $select = "SELECT DISTINCT partial_name FROM tm_partials  ;";
+        $select = "SELECT DISTINCT partial_name FROM tm_partial  ;";
 
         $resultados = $this->conn->query($select);
 
@@ -284,7 +284,7 @@ class Consulta extends Conexion
     /**
      * Devuelve los nombres del páginas que están en ambos idiomas.
      * 
-     * Llamamos nombre a la columna `page_name` de la table tm_pages.
+     * Llamamos nombre a la columna `page_name` de la table tm_page.
      * 
      * @return array Array con los nombres del páginas que hay en la web.
      * 
@@ -294,7 +294,7 @@ class Consulta extends Conexion
     public function getPage_namesEN_ES()
     {
 
-        $select = "SELECT page_name FROM tm_pages WHERE lang='es' AND page_name IN (SELECT page_name FROM tm_pages WHERE lang='en') ;";
+        $select = "SELECT page_name FROM tm_page WHERE lang='es' AND page_name IN (SELECT page_name FROM tm_page WHERE lang='en') ;";
 
         $resultados = $this->conn->query($select);
 
@@ -326,7 +326,7 @@ class Consulta extends Conexion
             "SELECT
                 `hash`
             FROM
-                tm_admins
+                tm_admin
             WHERE
                 user = '$usuario'
             ;";
@@ -359,7 +359,7 @@ class Consulta extends Conexion
         $insert =
             "INSERT 
                 INTO 
-                    tm_admins
+                    tm_admin
                 VALUES
                     ('$usuario', '$hash', NOW());
             ;";
@@ -388,11 +388,11 @@ class Consulta extends Conexion
     public function borrarAdmin($usuario = null)
     {
         if ($usuario == null) {
-            $sql = "TRUNCATE TABLE tm_admins;";
+            $sql = "TRUNCATE TABLE tm_admin;";
         } else {
             $sql =
                 "DELETE
-                    FROM tm_admins
+                    FROM tm_admin
                     WHERE user = '$usuario' 
                     ;";
         }
