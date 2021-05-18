@@ -1,3 +1,3 @@
 <?php
 $page_name = 'traduccion';
-require 'start.php';
+require_once 'start.php';

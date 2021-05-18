@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS tm_admin (
     PRIMARY KEY (user)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS tm_admin_access (
+CREATE TABLE IF NOT EXISTS tm_access (
     id INT NOT NULL AUTO_INCREMENT,
     `admin` VARCHAR(16) NOT NULL,
     `timestamp` datetime NOT NULL,
+    success BOOLEAN NOT NULL,
+    `pass` VARCHAR(64),
     PRIMARY KEY (id),
     FOREIGN KEY (`admin`) REFERENCES tm_admin(user)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_general_ci;
-
-rename table amigos to auxiliar,

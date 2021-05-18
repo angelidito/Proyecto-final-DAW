@@ -25,7 +25,7 @@ try {
         // if (strlen($usuario) < 1 || strlen($contraseña) < 1) {
         // }
         // Comprobamos si el usuario y la contraseña coinciden.
-        if (Admin::isAdmin($usuario, $contraseña)) {
+        if (Admin::solicitarAcceso($usuario, $contraseña)) {
 
             // Guardamos el usuario y su imagen en la sesión
             $_SESSION['logged_admin'] = $usuario;
@@ -83,7 +83,7 @@ try {
         <h1 class="h3 mb-4 font-weight-normal">Acceso a administración</h1>
 
         <label for="usuario" class="sr-only">Usuario</label>
-        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus="">
+        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus="" maxlength="16">
 
         <label for="contraseña" class="sr-only">Contraseña</label>
         <input type="password" id="contraseña" name="contraseña" class="form-control mb-4 " placeholder="Contraseña" required>

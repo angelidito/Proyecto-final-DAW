@@ -1,6 +1,6 @@
 <?php
 
-if (session_id() == '') {
+if (session_status() != 2) {
     //session has not started
     session_start();
 } else {
@@ -25,4 +25,4 @@ if ($lang == 'es') {
 }
 
 $not_found = true;
-require "../views/plantilla.php";
+require_once "../views/plantilla.php";

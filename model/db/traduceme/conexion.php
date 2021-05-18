@@ -1,5 +1,5 @@
 <?php
-require 'datos_config.php';
+require_once 'datos_config.php';
 
 /**
  * Clase con conexión a la BD tm_page.
@@ -334,7 +334,7 @@ class Consulta extends Conexion
         $resultado = $this->conn->query($select);
 
         if ($this->conn->affected_rows < 1)
-            throw new UsuarioNoRegistradoException("No se ha podido encontrar el usuario \"$usuario\". Si no está registrado, puede hacerlo <a href='control_registro.php'>aquí</a>.");
+            throw new UsuarioNoRegistradoException("Usuario \"$usuario\" no registrado.");
         elseif ($this->conn->affected_rows > 1)
             throw new BDException("Si estás viendo este error es que algo ha ido rematadamente mal y hay dos usuarios con el mismo nombre. Lo cual no debería ser posible ya que es la clave primaria, pero vamos a contemplarlo por si las moscas.");
 
@@ -349,7 +349,7 @@ class Consulta extends Conexion
      * @param string $usuario Nombre de usuario.
      * @param string $hash Hash de la contraseña del usuario..
      *
-     * @return boolean Si se ha añadido a la BD `true`; si no, `false`.
+     * @return boolean Si se ha añadido a la BD, `true`; si no, `false`.
      * 
      * @author Ángel M. M. Díez
      */
@@ -372,31 +372,101 @@ class Consulta extends Conexion
         return true;
     }
 
-
     /**
      * Borra un usuario a la base de datos.
      * 
      * Si no de pasa ningún parámetro o este es `null` se borrarán 
      * todos los registros de la tabla.
+     * 
+     * Si se pasa un array de string o string se borrarán 
+     * los usuarios con esos nombres.
      *
-     * @param string $usuario Nombre del usuario a borrar.
+     * @param array|string|null $usuarios Nombres de los usuarios a borrar.
      *
      * @return void
      * 
      * @author Ángel M. M. Díez
      */
-    public function borrarAdmin($usuario = null)
+    public function borrarAdmins($usuarios = null)
     {
-        if ($usuario == null) {
+        $sql = '';
+        if ($usuarios == null) {
             $sql = "TRUNCATE TABLE tm_admin;";
-        } else {
+        } elseif (is_array($usuarios)) {
+            foreach ($usuarios as $usuario) {
+                $sql .=
+                    "DELETE
+                        FROM tm_admin
+                        WHERE user = '$usuario' 
+                        ;";
+            }
+        } elseif (is_string($usuarios)) {
             $sql =
                 "DELETE
                     FROM tm_admin
-                    WHERE user = '$usuario' 
+                    WHERE user = '$usuarios' 
                     ;";
         }
 
-        $this->conn->query($sql);
+        if ($sql != '')
+            $this->conn->query($sql);
+    }
+
+    /**
+     * Registra un acceso de un administrador en la base de datos.
+     * 
+     * Si no de pasa ningún parámetro o este es `null` se borrarán 
+     * todos los registros de la tabla.
+     * 
+     * @param boolean $success Si el acceso es exitoso.
+     * @param string $usuario Nombre del administrador.
+     * @param string $ContraseñaInvalida Contraseña invalida.
+     * 
+     * @return boolean Si se ha añadido a la BD, `true`; si no, `false`. 
+     * @author Ángel M. M. Díez
+     */
+    public function registrarAcceso($success, $usuario, $contraseña = null)
+    {
+        // Por seguridad para no guardarla en tecto plano
+        if (!$success)
+            $contraseña = '********';
+
+        $insert =
+            "INSERT 
+                INTO 
+                tm_access (`admin`, `timestamp`, `success`, `pass`)
+                VALUES
+                    ('$usuario', CURRENT_TIMESTAMP, $success, '$contraseña')
+            ;";
+
+        $this->conn->query($insert);
+
+        if ($this->conn->affected_rows < 1)
+            return false;
+
+        return true;
+    }
+
+    /**
+     * Devuelve los accesos a la base de datos.
+     * 
+     * Ordenados de más a menos reciente
+     *
+     * @return array Array con los id, administradores y las horas a las que han entrado.
+     * 
+     * @author Ángel M. M. Díez
+     */
+    public function getAccess()
+    {
+        $select =
+            "SELECT 
+                *
+            FROM
+                tm_access
+            ORDER BY 
+                id DESC
+            ;";
+
+        return $this->conn->query($select)->fetch_all(MYSQLI_ASSOC);
     }
 }

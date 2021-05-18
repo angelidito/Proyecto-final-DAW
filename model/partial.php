@@ -155,7 +155,7 @@ class Partial
             $file,
             "<?php"
                 . PHP_EOL . "\$partial_name = '$this->partial_name';"
-                . PHP_EOL . "require 'start.php';"
+                . PHP_EOL . "require_once 'start.php';"
         );
         fclose($file);
     }

@@ -1,7 +1,7 @@
 <?php
 
-require 'form_control.php';
-require 'db/traduceme/conexion.php';
+require_once 'form_control.php';
+require_once 'db/traduceme/conexion.php';
 
 class Admin
 {
@@ -22,15 +22,14 @@ class Admin
      */
     public static function añadirAdmin($usuario, $contraseña)
     {
+        $conn = new Consulta();
+
         self::validarDatos($usuario, $contraseña);
 
         $hash = password_hash($contraseña, PASSWORD_DEFAULT);
 
-        $conn = new Consulta();
-
         return $conn->añadirAdmin($usuario, $hash);
     }
-
 
     /**
      * Comprueba que el nombre y la contraseña tengan una longitud valida.
@@ -50,17 +49,37 @@ class Admin
     }
 
     /**
-     * Comprueba que los datos introducidos son de un administrador.
-     *
+     * Comprueba que los datos introducidos son de un administrador y registra el acceso en la base de datos.
+     * 
      * @param string $usuario Nombre del administrador.
      * @param string $contraseña Contraseña del administrador.
      *  
      * @return boolean Si coinciden los datos con la BD `true`; si no, `false`.
      */
-    public static function isAdmin($usuario, $contraseña)
+    public static function solicitarAcceso($usuario, $contraseña)
     {
+        $success = self::isAdmin($usuario, $contraseña);
+
         $conn = new Consulta();
+        $conn->registrarAcceso($success, $usuario, $contraseña);
+
+        return $success;
+    }
+
+    /**
+     * Comprueba que los datos introducidos son de un administrador.
+     *
+     * @param string $usuario Nombre del administrador.
+     * @param string $contraseña Contraseña del administrador.
+     * @param Consulta $conn Consulta con conexión a la base de datos. 
+     *  
+     * @return boolean Si coinciden los datos con la BD `true`; si no, `false`.
+     */
+    private static function isAdmin($usuario, $contraseña)
+    {
+
         try {
+            $conn = new Consulta();
             $hash = $conn->getHash($usuario);
         } catch (BDException $e) {
             return false;
@@ -70,5 +89,22 @@ class Admin
             return true;
 
         return false;
+    }
+
+    public static function generarAccesosJSON()
+    {
+        $cacheVars = '../cache/vars/';
+
+        if (!file_exists($cacheVars)) {
+            mkdir($cacheVars, 0777, true);
+            $file = fopen($cacheVars . '/index.php', "w");
+            fwrite($file, '<?php header("Location: ../"); exit;');
+            fclose($file);
+        }
+
+        $conn = new Consulta();
+        $file = fopen($cacheVars . '/adminAccess.json', "w");
+        fwrite($file, json_encode($conn->getAccess(), JSON_PRETTY_PRINT));
+        fclose($file);
     }
 }

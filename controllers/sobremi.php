@@ -2,4 +2,4 @@
 
 $page_name = 'sobremi';
 
-require 'start.php';
+require_once 'start.php';

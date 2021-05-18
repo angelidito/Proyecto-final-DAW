@@ -22,7 +22,7 @@ function borrarCache($dirs_only = true)
                     $cache_borrada = false;
 
     $dirPages = "../cache/pages/";
-    if (!file_exists("../cache/pages/")) {
+    if (!file_exists($dirPages)) {
         mkdir($dirPages, 0777, true);
         $file = fopen($dirPages . '/index.php', "w");
         fwrite($file, '<?php header("Location: ../"); exit;');
@@ -55,6 +55,24 @@ function deleteDirectory($dir)
     }
 
     return rmdir($dir);
+}
+
+/**
+ * Elimina las etiquetas <!DOCTYPE>, \<html>, \<head> y \<body>. 
+ * 
+ * Tanto apertuta como cierre.
+ * 
+ * @param string $html Cadena con las etiquetas.
+ * @return string Cadena sin las etiquetas.
+ *
+ * @author Ángel M. M. Díez
+ */
+function noAnnoyingTags($html)
+{
+    $search = ['<!DOCTYPE html>', '<html>', '</html>', '<head>', '</head>', '<body>', '</body>'];
+    $replace = '';
+
+    return str_replace($search, $replace, $html);
 }
 
 

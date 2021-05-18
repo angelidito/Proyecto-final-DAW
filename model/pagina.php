@@ -184,7 +184,7 @@ class Pagina
             $file,
             "<?php"
                 . PHP_EOL . "\$page_name = '$this->page_name';"
-                . PHP_EOL . "require 'start.php';"
+                . PHP_EOL . "require_once 'start.php';"
         );
         fclose($file);
     }

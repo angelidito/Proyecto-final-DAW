@@ -331,7 +331,6 @@ function checkUncheck() {
 
 }
 
-
 /**
  * Edita el `style.content` aplicado a los pseudo elemento ::after
  * de algunos elementos de la clase `add-content-after`.

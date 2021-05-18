@@ -1,7 +1,7 @@
 <?php
 
-require '../model/db/traduceme/conexion.php';
-require '../model/excepciones.php';
+require_once '../model/db/traduceme/conexion.php';
+require_once '../model/excepciones.php';
 
 /**
  * Provee de variables útiles y necesarias para el programa.
@@ -118,7 +118,7 @@ if (!file_exists($rutaTitles)) {
     fwrite($file, '<?php $titles = [];' . PHP_EOL);
     fclose($file);
 }
-require $rutaTitles;
+require_once $rutaTitles;
 // Cargamos la página en la caché si no lo está todavía 
 $t_code = $lang . '-' . $page_name;
 if (!file_exists($cache_page) || !isset($titles[$t_code])) {
@@ -153,4 +153,4 @@ if (!file_exists($cache_page) || !isset($titles[$t_code])) {
 } else $title = $titles[$t_code];
 
 
-require "../views/plantilla.php";
+require_once "../views/plantilla.php";

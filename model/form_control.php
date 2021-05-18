@@ -78,7 +78,7 @@ class FormControl
     }
 
     /**
-     * Compruba que la cadena no sea  null o esté vacía.
+     * Comprueba que la cadena no sea  null o esté vacía.
      * 
      *
      * @param string $str Cadena a comprobar.

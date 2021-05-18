@@ -84,8 +84,8 @@ try {
         $hidden_editar     = '';
 
         $p_name      = $_POST['p_name'];
-        $content_es  = $_POST['content_es'];
-        $content_en  = $_POST['content_en'];
+        $content_es  = noAnnoyingTags($_POST['content_es']);
+        $content_en  = noAnnoyingTags($_POST['content_en']);
 
 
         if ($p_name != 'header' && $p_name != 'footer') {
@@ -166,135 +166,134 @@ if (isset($_POST['nocache'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edición de páginas</title>
-</head>
 
 
-<?php
-include('_partials/cabecera.php');
-?>
+    <?php
+    include('_partials/cabecera.php');
+    ?>
 
 
-<div id="selecionar-pagina" class="container mb-4  <?php echo $hidden_selecionar ?>">
-    <form method="post" action="">
-        <div class="row">
-            <div class="col-md-4 ">
-                <div class="form-group">
-                    <label for="page_name_selecion">Nombre de la página</label>
-                    <select id="page_name_selecion" class="form-control" name="p_name">
-                        <optgroup label="Páginas">
-                            <?php
-                            foreach ($page_names as $name)
-                                echo "<option " . ($name == $p_name ? 'selected' : '') . ">" . $name . "</option>";
-                            ?>
-                        </optgroup>
-                        <optgroup label="Partes">
-                            <?php
-                            foreach ($partials_names as $name)
-                                echo "<option " . ($name == $p_name ? 'selected' : '') . ">" . $name . "</option>";
-                            ?>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-6 ">
-                <div class="form-group float-left ">
-                    <label for="">&nbsp;</label>
-                    <button name="selecion_pagina" type="submit" class="btn btn-primary">Selecionar</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div id="alertas" class="container">
-    <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
-    <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
-</div>
-
-
-<div id="editar-pagina" class="<?php echo $hidden_editar ?>">
-    <form method="post" action="">
-
-        <div id="editar-pagina-1" class="container my-4  ">
-            <div class="form-group right sticky-top pt-2">
-                <!-- <label for="">&nbsp;</label> -->
-                <button type="submit" class="btn btn-secondary  btn-confirm">Atrás</button>
-                <button name="actualizar_pagina" type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-            <div class="form-group center mb-4">
-                <label for="page_name_editar">¿Qué quieres comparar?</label>
-                <input id="page_name_editar" class="form-control text-center" type="text" name="p_name" value="<?php echo $p_name ?>" readonly>
-            </div>
-            <div class="row ">
-                <div class="col-md-6 pr-1">
-                    <h2 class="">Español</h2>
-                    <div class="form-group text-center <?php echo $hidden_partial ?>">
-                        <label for="title_editar_es">Título navegador</label>
-                        <input id="title_editar_es" class="form-control text-center " type="text" name="title_es" <?php
-                                                                                                                    if ($hidden_partial == '' && isset($title_es)) echo "minlength=5 maxlength=70 value='$title_es'";
-                                                                                                                    else echo $hidden_partial;
-                                                                                                                    ?>>
-                    </div>
-                </div>
-                <div class="col-md-6 pl-1">
-                    <h2 class="">Inglés</h2>
-                    <div class="form-group text-center <?php echo $hidden_partial ?>">
-                        <label for="title_editar_en">Título navegador</label>
-                        <input id="title_editar_en" class="form-control text-center" type="text" name="title_en" <?php
-                                                                                                                    if ($hidden_partial == '' && isset($title_es)) echo "minlength=5 maxlength=70 value='$title_en'";
-                                                                                                                    else echo $hidden_partial;
-                                                                                                                    ?>>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="editar-pagina-2" class="container-fluid  ">
+    <div id="selecionar-pagina" class="container mb-4  <?php echo $hidden_selecionar ?>">
+        <form method="post" action="">
             <div class="row">
-                <div class="col-lg-6 pr-1">
+                <div class="col-md-4 ">
                     <div class="form-group">
-                        <label for="content_es">Contenido</label>
-                        <textarea id="content_es" class="form-control editable" name="content_es" rows="30" minlength=13 maxlength=65535><?php echo $content_es ?></textarea>
+                        <label for="page_name_selecion">Nombre de la página</label>
+                        <select id="page_name_selecion" class="form-control" name="p_name">
+                            <optgroup label="Páginas">
+                                <?php
+                                foreach ($page_names as $name)
+                                    echo "<option " . ($name == $p_name ? 'selected' : '') . ">" . $name . "</option>";
+                                ?>
+                            </optgroup>
+                            <optgroup label="Partes">
+                                <?php
+                                foreach ($partials_names as $name)
+                                    echo "<option " . ($name == $p_name ? 'selected' : '') . ">" . $name . "</option>";
+                                ?>
+                            </optgroup>
+                        </select>
                     </div>
                 </div>
 
-                <div class="col-lg-6 pl-1">
-                    <div class="form-group">
-                        <label for="content_en">Contenido</label>
-                        <textarea id="content_en" class="form-control editable" name="content_en" rows="30" minlength=13 maxlength=65535><?php echo $content_en ?></textarea>
+                <div class="col-md-6 ">
+                    <div class="form-group float-left ">
+                        <label for="">&nbsp;</label>
+                        <button name="selecion_pagina" type="submit" class="btn btn-primary">Selecionar</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
 
-        <div id="editar-pagina-3" class="container   ">
+    <div id="alertas" class="container">
+        <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
+        <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
+    </div>
 
-            <div class="form-group float-right mb-0 py-0">
-                <div class="form-group ">
-                    <div class="form-check">
-                        <input class="form-check-input if-checked-then-show check" type="checkbox" value="" id="nocache" name="nocache">
-                        <label class="form-check-label text-left " for="nocache">
-                            Borrar caché
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group mt-0">
 
+    <div id="editar-pagina" class="<?php echo $hidden_editar ?>">
+        <form method="post" action="">
+
+            <div id="editar-pagina-1" class="container my-4  ">
+                <div class="form-group right sticky-top pt-2">
                     <!-- <label for="">&nbsp;</label> -->
-                    <button type="submit" class="btn btn-secondary btn-confirm">Atrás</button>
+                    <button type="submit" class="btn btn-secondary  btn-confirm">Atrás</button>
                     <button name="actualizar_pagina" type="submit" class="btn btn-primary">Guardar</button>
-
+                </div>
+                <div class="form-group center mb-4">
+                    <label for="page_name_editar">¿Qué quieres comparar?</label>
+                    <input id="page_name_editar" class="form-control text-center" type="text" name="p_name" value="<?php echo $p_name ?>" readonly>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6 pr-1">
+                        <h2 class="">Español</h2>
+                        <div class="form-group text-center <?php echo $hidden_partial ?>">
+                            <label for="title_editar_es">Título navegador</label>
+                            <input id="title_editar_es" class="form-control text-center " type="text" name="title_es" <?php
+                                                                                                                        if ($hidden_partial == '' && isset($title_es)) echo "minlength=5 maxlength=70 value='$title_es'";
+                                                                                                                        else echo $hidden_partial;
+                                                                                                                        ?>>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        <h2 class="">Inglés</h2>
+                        <div class="form-group text-center <?php echo $hidden_partial ?>">
+                            <label for="title_editar_en">Título navegador</label>
+                            <input id="title_editar_en" class="form-control text-center" type="text" name="title_en" <?php
+                                                                                                                        if ($hidden_partial == '' && isset($title_es)) echo "minlength=5 maxlength=70 value='$title_en'";
+                                                                                                                        else echo $hidden_partial;
+                                                                                                                        ?>>
+                        </div>
+                    </div>
                 </div>
             </div>
-    </form>
-</div>
+
+            <div id="editar-pagina-2" class="container-fluid  ">
+                <div class="row">
+                    <div class="col-lg-6 pr-1">
+                        <div class="form-group">
+                            <label for="content_es">Contenido</label>
+                            <textarea id="content_es" class="form-control editable" name="content_es" rows="30" minlength=13 maxlength=65535><?php echo $content_es ?></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 pl-1">
+                        <div class="form-group">
+                            <label for="content_en">Contenido</label>
+                            <textarea id="content_en" class="form-control editable" name="content_en" rows="30" minlength=13 maxlength=65535><?php echo $content_en ?></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="editar-pagina-3" class="container   ">
+
+                <div class="form-group float-right mb-0 py-0">
+                    <div class="form-group ">
+                        <div class="form-check">
+                            <input class="form-check-input if-checked-then-show check" type="checkbox" value="" id="nocache" name="nocache">
+                            <label class="form-check-label text-left " for="nocache">
+                                Borrar caché
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group mt-0">
+
+                        <!-- <label for="">&nbsp;</label> -->
+                        <button type="submit" class="btn btn-secondary btn-confirm">Atrás</button>
+                        <button name="actualizar_pagina" type="submit" class="btn btn-primary">Guardar</button>
+
+                    </div>
+                </div>
+        </form>
+    </div>
 
 
 
 
-</main>
+    </main>
 
-<?php
-include('_partials/pie.php');
-?>
+    <?php
+    include('_partials/pie.php');
+    ?>

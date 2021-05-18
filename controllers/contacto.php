@@ -2,4 +2,4 @@
 
 $page_name = 'contacto';
 
-require 'start.php';
+require_once 'start.php';

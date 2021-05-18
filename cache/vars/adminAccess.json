@@ -1,0 +1,15 @@
+[{
+        "id": "2",
+        "admin": "angel",
+        "timestamp": "2021-05-18 12:05:57",
+        "success": "0",
+        "pass": "traduceme"
+    },
+    {
+        "id": "1",
+        "admin": "mori",
+        "timestamp": "2021-05-18 12:05:25",
+        "success": "1",
+        "pass": "********"
+    }
+]

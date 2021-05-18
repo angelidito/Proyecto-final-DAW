@@ -3,8 +3,8 @@
 <hr><br>
 
 <?php
-require '../model/Admin.php';
-require '../model/excepciones.php';
+require_once '../model/Admin.php';
+require_once '../model/excepciones.php';
 require_once '../model/db/traduceme/conexion.php';
 
 echo '<br>';
@@ -12,15 +12,15 @@ echo '<br>';
 echo 'Anadiendo admins...<br>';
 
 var_dump(Admin::añadirAdmin('mori', 'mori'));
-var_dump(Admin::isAdmin('mori', 'mori'));
+var_dump(Admin::solicitarAcceso('mori', 'mori'));
 echo '<br>';
 
 var_dump(Admin::añadirAdmin('malena', 'malena'));
-var_dump(Admin::isAdmin('malena', 'malena'));
+var_dump(Admin::solicitarAcceso('malena', 'malena'));
 echo '<br>';
 
 var_dump(Admin::añadirAdmin('maroto', 'mjuan'));
-var_dump(Admin::isAdmin('maroto', 'mjuan'));
+var_dump(Admin::solicitarAcceso('maroto', 'mjuan'));
 
 
 
