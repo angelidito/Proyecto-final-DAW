@@ -21,13 +21,13 @@ function borrarCache($dirs_only = true)
                 if (!deleteDirectory($file)  && $cache_borrada)
                     $cache_borrada = false;
 
-    $dirPages = "../cache/pages/";
-    if (!file_exists($dirPages)) {
-        mkdir($dirPages, 0777, true);
-        $file = fopen($dirPages . '/index.php', "w");
-        fwrite($file, '<?php header("Location: ../"); exit;');
-        fclose($file);
-    }
+    // $dirPages = "../cache/pages/";
+    // if (!file_exists($dirPages)) {
+    //     mkdir($dirPages, 0777, true);
+    //     $file = fopen($dirPages . '/index.php', "w");
+    //     fwrite($file, '<?php header("Location: ../"); exit;');
+    //     fclose($file);
+    // }
 
     return $cache_borrada;
 }

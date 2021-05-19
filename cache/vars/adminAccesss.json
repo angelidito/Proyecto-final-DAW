@@ -1,19 +1,5 @@
 [
     {
-        "id": "20",
-        "admin": "malena",
-        "timestamp": "2021-05-19 14:23:24",
-        "success": "1",
-        "pass": "********"
-    },
-    {
-        "id": "19",
-        "admin": "malena",
-        "timestamp": "2021-05-19 14:22:33",
-        "success": "0",
-        "pass": "admin"
-    },
-    {
         "id": "18",
         "admin": "mori",
         "timestamp": "2021-05-19 12:46:43",

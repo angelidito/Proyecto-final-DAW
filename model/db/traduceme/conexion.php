@@ -1,5 +1,6 @@
 <?php
 require_once 'datos_config.php';
+require_once '../model/excepciones.php';
 
 /**
  * Clase con conexión a la BD tm_page.
@@ -420,23 +421,24 @@ class Consulta extends Conexion
      * 
      * @param boolean $success Si el acceso es exitoso.
      * @param string $usuario Nombre del administrador.
-     * @param string $ContraseñaInvalida Contraseña invalida.
+     * @param string $contraseña Contraseña empleada.
      * 
      * @return boolean Si se ha añadido a la BD, `true`; si no, `false`. 
      * @author Ángel M. M. Díez
      */
-    public function registrarAcceso($success, $usuario, $contraseña = null)
+    public function registrarAcceso($success, $usuario, $contraseña)
     {
         // Por seguridad para no guardarla en tecto plano
-        if (!$success)
+        if ($success) {
             $contraseña = '********';
-
+        }
+        $s = $success ? 1 : 0;
         $insert =
             "INSERT 
                 INTO 
                 tm_access (`admin`, `timestamp`, `success`, `pass`)
                 VALUES
-                    ('$usuario', CURRENT_TIMESTAMP, $success, '$contraseña')
+                    ('$usuario', CURRENT_TIMESTAMP, $s, '$contraseña')
             ;";
 
         $this->conn->query($insert);

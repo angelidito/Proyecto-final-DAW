@@ -10,11 +10,10 @@ require_once '../model/excepciones.php';
 require_once '../model/db/traduceme/conexion.php';
 require_once '../model/Admin.php';
 
-$tituloPaginaAdmin = "En resumen";
+$tituloPaginaAdmin = "¡Hola, " . $_SESSION['logged_admin'] . "!";
 $errores = '';
 $mensajeExito = '';
 $conn = new Consulta();
-Admin::generarAccesosJSON();
 
 try {
     $paginasES = $conn->getPaginas('', 'es');
@@ -33,15 +32,14 @@ if (isset($_POST['noCache'])) {
         $mensajeExito .= "<p class='m-0'>Caché borrada correctamente</p>";
     else
         $errores .= "<p class='m-0'>No se ha logrado borrar la caché</p>";
+    Admin::actualizarAccesosJSON();
 }
 
-
-$rutaCache = '../cache/pages';
+$rutaCache = '../cache/vars';
 if (file_exists($rutaCache))
     $fechaCache = date("d-m-Y H:i:s", filectime($rutaCache));
 else
     $fechaCache = 'NO DATA';
-
 
 
 ?>
@@ -53,7 +51,7 @@ else
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edición de páginas</title>
+    <title>Información de la web</title>
     <script src="../assets/js/paginaInfo.js"></script>
 
 
@@ -61,9 +59,11 @@ else
     include('_partials/cabecera.php');
     ?>
 
-    <div class="container">
+    <div class="container mt-4">
         <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
         <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
+        <p class="display-4">Aquí tienes todo lo que puedas querer saber.</p>
+        <hr class="clasic mt-4">
     </div>
 
     <div class="container mt-4">
@@ -110,27 +110,49 @@ else
             <tbody id="tabla-accesos">
             </tbody>
         </table>
-        <select id="select-accesos" class="form-control ml-auto" name="lang">
-            <option>1</option>
-            <option>2</option>
-        </select>
-        <hr class="clasic mt-4">
-    </div>
-
-    <div class="container mt-4">
-        <h2 class="mb-4 ">Contacta con el desarrollador</h2>
-        <p>
-        <ul class="list-unstyled">
-            <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
-            <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34 608 29 15 90</a></li>
-            <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
-        </ul>
-        </p>
-    </div>
 
 
-    </main>
 
-    <?php
-    include('_partials/pie.php');
-    ?>
+        <div class="row form-inline form-group ">
+
+            <div class="form-group ml-auto paginacion">
+                <label for="select-accesos">Número de filas:</label>
+
+                <select id="select-accesos" class="form-control ml-auto" name="lang">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                    <option>500</option>
+                </select>
+
+                <label for="n-pagina-accesos">Página:</label>
+
+                <button class="btn btn-light mb-2" id="primera">Primera</button>
+                <button class="btn btn-light mb-2" id="anterior">Anterior</button>
+                <input type="text" class="form-control text-center" id="n-pagina-accesos" value=1>
+                <button class="btn btn-light mb-2" id="siguiente">Siguiente</button>
+                <button class="btn btn-light mb-2" id="ultima">Último</button>
+
+            </div>
+            <hr class="clasic mt-4">
+        </div>
+
+        <div class="container mt-4">
+            <h2 class="mb-4 ">Contacta con el desarrollador</h2>
+            <p>
+            <ul class="list-unstyled">
+                <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
+                <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34 608 29 15 90</a></li>
+                <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
+            </ul>
+            </p>
+        </div>
+
+
+        </main>
+
+        <?php
+        include('_partials/pie.php');
+        ?>

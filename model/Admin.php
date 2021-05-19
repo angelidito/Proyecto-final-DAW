@@ -62,6 +62,7 @@ class Admin
 
         $conn = new Consulta();
         $conn->registrarAcceso($success, $usuario, $contraseña);
+        Admin::actualizarAccesosJSON();
 
         return $success;
     }
@@ -91,7 +92,7 @@ class Admin
         return false;
     }
 
-    public static function generarAccesosJSON()
+    public static function actualizarAccesosJSON()
     {
         $cacheVars = '../cache/vars/';
 

@@ -718,8 +718,19 @@ footer address {
     display: block;
 }
 
-#select-accesos {
+#select-accesos,
+#nth-page-access {
     width: min-content;
+}
+
+.form-inline * {}
+
+.paginacion * {
+    margin: 0 0.5rem !important;
+}
+
+#n-pagina-accesos {
+    max-width: 150px !important;
 }
 
 

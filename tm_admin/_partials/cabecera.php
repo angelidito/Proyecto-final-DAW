@@ -27,7 +27,7 @@
 
     <header>
         <div id="logoYTitulo">
-            <a href="."> <img src="../img/logo.png" alt="logo" id="logoCabecera" class="logo">
+            <a href=".."> <img src="../img/logo.png" alt="logo" id="logoCabecera" class="logo">
             </a>
             <a href=".">
                 <p id="tituloWeb" class="m-0">Administración</p>
