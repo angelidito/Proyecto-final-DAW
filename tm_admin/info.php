@@ -32,7 +32,6 @@ if (isset($_POST['noCache'])) {
         $mensajeExito .= "<p class='m-0'>Caché borrada correctamente</p>";
     else
         $errores .= "<p class='m-0'>No se ha logrado borrar la caché</p>";
-    Admin::actualizarAccesosJSON();
 }
 
 $rutaCache = '../cache/vars';
@@ -62,7 +61,7 @@ else
     <div class="container mt-4">
         <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
         <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
-        <p class="display-4">Aquí tienes todo lo que puedas querer saber.</p>
+        <p class="">Aquí tienes todo lo que puedas querer saber.</p>
         <hr class="clasic mt-4">
     </div>
 
@@ -71,13 +70,14 @@ else
         <div class="row text-left">
             <div class="col-xs-12 col-md-6">
                 <?php echo $tablaES ?>
-                <hr class="clasic mb-0">
+                <hr class="clasic mt-0 mb-4 d-md-none d-sm-block">
             </div>
             <div class="col-xs-12 col-md-6 ">
                 <?php echo $tablaEN ?>
-                <hr class="clasic mb-0">
+                <!-- <hr class="clasic mb-0"> -->
             </div>
         </div>
+        <hr class="clasic mt-4">
     </div>
 
     <div class="container mt-4">
@@ -96,7 +96,7 @@ else
     <div class="container mt-4">
         <h2 class="mb-4 ">Accesos administración</h2>
         <p>
-            lorem impusm lousm lorusm loreem impusm lorem iorreem impmpuusm lormpusm lorem impusmpum lorem impusm lorem impusm lororem impusm lorem immpupusm lorusm loem impmpuusm
+            Estos son los últimos accesos al modo de administrador.
         </p>
         <table class="table ">
             <thead>
@@ -112,47 +112,43 @@ else
         </table>
 
 
+        <div class=" form-inline form-group ml-auto paginacion">
+            <label for="select-accesos">Número de filas:</label>
 
-        <div class="row form-inline form-group ">
+            <select id="select-accesos" class="form-control ml-auto" name="lang">
+                <option>5</option>
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+                <option>500</option>
+            </select>
+            <label for="n-pagina-accesos">Página:</label>
+            <button class="btn btn-light mb-2" id="primera">Primera</button>
+            <button class="btn btn-light mb-2" id="anterior">Anterior</button>
+            <input type="text" class="form-control text-center" id="n-pagina-accesos" value=1>
+            <button class="btn btn-light mb-2" id="siguiente">Siguiente</button>
+            <button class="btn btn-light mb-2" id="ultima">Último</button>
 
-            <div class="form-group ml-auto paginacion">
-                <label for="select-accesos">Número de filas:</label>
-
-                <select id="select-accesos" class="form-control ml-auto" name="lang">
-                    <option>5</option>
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
-                    <option>500</option>
-                </select>
-
-                <label for="n-pagina-accesos">Página:</label>
-
-                <button class="btn btn-light mb-2" id="primera">Primera</button>
-                <button class="btn btn-light mb-2" id="anterior">Anterior</button>
-                <input type="text" class="form-control text-center" id="n-pagina-accesos" value=1>
-                <button class="btn btn-light mb-2" id="siguiente">Siguiente</button>
-                <button class="btn btn-light mb-2" id="ultima">Último</button>
-
-            </div>
-            <hr class="clasic mt-4">
         </div>
 
-        <div class="container mt-4">
-            <h2 class="mb-4 ">Contacta con el desarrollador</h2>
-            <p>
-            <ul class="list-unstyled">
-                <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
-                <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34 608 29 15 90</a></li>
-                <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
-            </ul>
-            </p>
-        </div>
+        <hr class="clasic my-4">
+    </div>
+
+    <div class="container mt-4">
+        <h2 class="mb-4 ">Contacta con el desarrollador</h2>
+        <p>
+        <ul class="list-unstyled">
+            <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
+            <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34 608 29 15 90</a></li>
+            <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
+        </ul>
+        </p>
+    </div>
 
 
-        </main>
+    </main>
 
-        <?php
-        include('_partials/pie.php');
-        ?>
+    <?php
+    include('_partials/pie.php');
+    ?>

@@ -99,7 +99,7 @@ try {
                     </div> -->
                     <div class="form-group">
                         <label for="content">Contenido</label>
-                        <textarea id="content" class="form-control " name="content" rows="20" minlength=13 maxlength=65535><?php echo $content ?></textarea>
+                        <textarea id="content" class="form-control editable" name="content" rows="20" minlength=13 maxlength=65535><?php echo $content ?></textarea>
                     </div>
                     <!--<textarea id="content" class="form-control editable" name="content" rows="20" minlength=13 maxlength=65535>-->
                 </div>

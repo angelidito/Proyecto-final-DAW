@@ -1,10 +1,11 @@
 <?php
 require_once 'adminSessionControl.php';
+require_once '../model/Admin.php';
 
 /**
  * Borra la caché.
  * 
- * Al acabar crea de nuevo únicamente el directorio pages y su index.php.
+ * Al acabar crea de nuevo el JSON archivo de accesos.
  * 
  * @param boolean $dirs_only Por defecto (`true`) borra solo directorios. Si `false`, borra también archivos
  * @return boolean `true` si la caché se ha borrado con exito; `false` si no.
@@ -28,6 +29,7 @@ function borrarCache($dirs_only = true)
     //     fwrite($file, '<?php header("Location: ../"); exit;');
     //     fclose($file);
     // }
+    Admin::actualizarAccesosJSON();
 
     return $cache_borrada;
 }
