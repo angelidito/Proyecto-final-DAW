@@ -27,7 +27,6 @@ function inicio() {
         document.getElementById('page_name').addEventListener('input', editContentAfter);
     }
 
-
 }
 
 
