@@ -7,12 +7,12 @@ require_once '../model/Admin.php';
  *
  * Al acabar crea de nuevo el JSON archivo de accesos.
  *
- * @param boolean $dirs_only Por defecto (`true`) borra solo directorios. Si `false`, borra también archivos
+ * @param boolean $dirs_only Por defecto (`false`) borra solo directorios. Si `false`, borra también archivos
  * @return boolean `true` si la caché se ha borrado con exito; `false` si no.
  *
  * @author Ángel M. M. Díez
  */
-function borrarCache($dirs_only = true)
+function borrarCache($dirs_only = false)
 {
     $cache_borrada = true;
 
