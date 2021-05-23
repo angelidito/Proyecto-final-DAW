@@ -3,3 +3,4 @@
 *.docxx
 ._*
 ~$*.docx
+model/db/traduceme/datos_config.php
