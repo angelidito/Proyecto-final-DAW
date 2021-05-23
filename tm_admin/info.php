@@ -35,7 +35,7 @@ if (isset($_POST['noCache'])) {
     }
 }
 
-$rutaCache = '../cache/vars';
+$rutaCache = '../cache/index.php';
 if (file_exists($rutaCache)) {
     $fechaCache = date("d-m-Y H:i:s", filectime($rutaCache));
 } else {
