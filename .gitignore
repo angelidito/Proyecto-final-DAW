@@ -4,3 +4,4 @@
 ._*
 ~$*.docx
 *datos_config.php
+/cache/*
