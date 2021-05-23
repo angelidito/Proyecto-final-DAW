@@ -4,9 +4,9 @@ require_once '../model/Admin.php';
 
 /**
  * Borra la caché.
- * 
+ *
  * Al acabar crea de nuevo el JSON archivo de accesos.
- * 
+ *
  * @param boolean $dirs_only Por defecto (`true`) borra solo directorios. Si `false`, borra también archivos
  * @return boolean `true` si la caché se ha borrado con exito; `false` si no.
  *
@@ -16,19 +16,24 @@ function borrarCache($dirs_only = true)
 {
     $cache_borrada = true;
 
-    if ($files = glob('../cache/*'))  //obtenemos todos los nombres de los ficheros
-        foreach ($files as $file)
-            if (is_dir($file) || !$dirs_only)
-                if (!deleteDirectory($file)  && $cache_borrada)
+    if ($files = glob('../cache/*')) {  //obtenemos todos los nombres de los ficheros
+        foreach ($files as $file) {
+            if (is_dir($file) || !$dirs_only) {
+                if (!deleteDirectory($file)  && $cache_borrada) {
                     $cache_borrada = false;
+                }
+            }
+        }
+    }
 
-    // $dirPages = "../cache/pages/";
-    // if (!file_exists($dirPages)) {
-    //     mkdir($dirPages, 0777, true);
-    //     $file = fopen($dirPages . '/index.php', "w");
-    //     fwrite($file, '<?php header("Location: ../"); exit;');
-    //     fclose($file);
-    // }
+    // creamos el index de seguridad
+    $cacheIndex = "../cache/index.php";
+    if (!file_exists($cacheIndex)) {
+        // mkdir($cacheIndex, 0777, true);
+        $file = fopen($cacheIndex, "w");
+        fwrite($file, '<?php header("Location: ../"); exit;');
+        fclose($file);
+    }
     Admin::actualizarAccesosJSON();
 
     return $cache_borrada;
@@ -42,28 +47,32 @@ function borrarCache($dirs_only = true)
  */
 function deleteDirectory($dir)
 {
-    if (!file_exists($dir))
+    if (!file_exists($dir)) {
         return true;
+    }
 
-    if (!is_dir($dir))
+    if (!is_dir($dir)) {
         return unlink($dir);
+    }
 
     foreach (scandir($dir) as $item) {
-        if ($item == '.' || $item == '..')
+        if ($item == '.' || $item == '..') {
             continue;
+        }
 
-        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item))
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
             return false;
+        }
     }
 
     return rmdir($dir);
 }
 
 /**
- * Elimina las etiquetas <!DOCTYPE>, \<html>, \<head> y \<body>. 
- * 
+ * Elimina las etiquetas <!DOCTYPE>, \<html>, \<head> y \<body>.
+ *
  * Tanto apertuta como cierre.
- * 
+ *
  * @param string $html Cadena con las etiquetas.
  * @return string Cadena sin las etiquetas.
  *
