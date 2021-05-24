@@ -12,7 +12,7 @@ require_once '../model/excepciones.php';
 class Conexion
 {
     /**
-     * Conexión objeto de tipo mysqli
+     * Conexión objeto de tipo mysqli.
      *
      * @var mysqli Conexión de PHP con base de datos MYSQLI
      */
@@ -21,10 +21,10 @@ class Conexion
     /**
      * Constructor de la clase.
      *
-     * Establece una conexión con la BD según 
+     * Establece una conexión con la BD según
      * la configuración del archivo datos_config.php.
      *
-     *
+     * @throws BDException Si no se puede establecer conexíon con la base de datos.
      * @author Ángel M. M. Díez
      */
     public function __construct()
@@ -34,7 +34,7 @@ class Conexion
 
         // Comprobamos la conexión
         if ($this->conn->connect_errno) {
-            echo "Fallo en la conexión...<br>";
+            throw new BDException("<p>Fallo en la conexión con la base de datos</p>", 1);
         }
         // else {
         //     echo "Consexión establecida.<br>";
@@ -76,8 +76,9 @@ class Consulta extends Conexion
      */
     private function anyRowAffected()
     {
-        if ($this->conn->affected_rows < 1)
+        if ($this->conn->affected_rows < 1) {
             return false;
+        }
         return true;
     }
 
@@ -109,7 +110,7 @@ class Consulta extends Conexion
 
     /**
      * Actualiza información de un registro la tabla tm_page.
-     * 
+     *
      * @param Pagina $pagina Página a actualizar.
      * @return boolean `true` si se ha añadido, `false` si no.
      *
@@ -130,7 +131,7 @@ class Consulta extends Conexion
 
     /**
      * Actualiza información de un registro la tabla tm_partial.
-     * 
+     *
      * @param Partial $partial Página a actualizar.
      * @return boolean `true` si se ha añadido, `false` si no.
      *
@@ -152,17 +153,17 @@ class Consulta extends Conexion
      * Devuelve la información de la tabla tm_page que coincida con los parámetros pasados.
      *
      * Si no se pasan parametros, devuelve toda la información de la tabla.
-     * 
-     * Si algun campo es igual a `null` no se tendrá en cuenta a la hora 
+     *
+     * Si algun campo es igual a `null` no se tendrá en cuenta a la hora
      * de buscar las páginas correspondientes.
-     * 
-     * Cada elemento del array devuelto es a su vez un array sociativo 
+     *
+     * Cada elemento del array devuelto es a su vez un array sociativo
      * con los campos 'page_name', 'lang', 'title' y 'content'.
-     * 
+     *
      * @param string $page_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).
      * @return mixed Array con los registros de la tabla tm_page que coincidan.
-     * 
+     *
      * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
      *
      * @author Ángel M. M. Díez
@@ -170,10 +171,11 @@ class Consulta extends Conexion
     public function getPaginas($page_name = null, $lang = null)
     {
         if ($page_name != null) {
-            if ($lang != null)
+            if ($lang != null) {
                 $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' and lang = '$lang' ORDER BY page_name, lang ;";
-            else
+            } else {
                 $select = "SELECT * FROM tm_page WHERE page_name = '$page_name' ORDER BY page_name, lang ;";
+            }
         } elseif ($lang != null) {
             $select = "SELECT * FROM tm_page WHERE lang = '$lang' ORDER BY page_name, lang ;";
         } else {
@@ -182,8 +184,9 @@ class Consulta extends Conexion
 
         $resultados = $this->conn->query($select);
 
-        if (!$this->anyRowAffected())
+        if (!$this->anyRowAffected()) {
             throw new NoExistenRegistrosException("No existen páginas con estos parámetros. ");
+        }
 
 
         return $resultados->fetch_all(MYSQLI_ASSOC);
@@ -193,17 +196,17 @@ class Consulta extends Conexion
      * Devuelve la información de la tabla tm_partial que coincida con los parámetros pasados.
      *
      * Si no se pasan parametros, devuelve toda la información de la tabla.
-     * 
-     * Si algun campo es igual a `null` no se tendrá en cuenta a la hora 
+     *
+     * Si algun campo es igual a `null` no se tendrá en cuenta a la hora
      * de buscar las páginas correspondientes.
-     * 
-     * Cada elemento del array devuelto es a su vez un array sociativo 
+     *
+     * Cada elemento del array devuelto es a su vez un array sociativo
      * con los campos 'partial_name', 'lang' y 'content'.
-     * 
+     *
      * @param string $partial_name Nombre de la(s) página(s).
      * @param string $lang Idioma de la(s) página(s).
      * @return mixed Array con los registros de la tabla tm_partial que coincidan.
-     * 
+     *
      * @throws NoExistenRegistrosException Cuando no hay páginas que coinciden con la búsqueda.
      *
      * @author Ángel M. M. Díez
@@ -211,10 +214,11 @@ class Consulta extends Conexion
     public function getPartials($partial_name = null, $lang = null)
     {
         if ($partial_name != null) {
-            if ($lang != null)
+            if ($lang != null) {
                 $select = "SELECT * FROM tm_partial WHERE partial_name = '$partial_name' and lang = '$lang' ORDER BY partial_name, lang ;";
-            else
+            } else {
                 $select = "SELECT * FROM tm_partial WHERE partial_name = '$partial_name' ORDER BY partial_name, lang ;";
+            }
         } elseif ($lang != null) {
             $select = "SELECT * FROM tm_partial WHERE lang = '$lang' ORDER BY partial_name, lang ;";
         } else {
@@ -223,8 +227,9 @@ class Consulta extends Conexion
 
         $resultados = $this->conn->query($select);
 
-        if (!$this->anyRowAffected())
+        if (!$this->anyRowAffected()) {
             throw new NoExistenRegistrosException("No existe ningún partial con estos parámetros: $partial_name $lang. ");
+        }
 
 
         return $resultados->fetch_all(MYSQLI_ASSOC);
@@ -232,17 +237,16 @@ class Consulta extends Conexion
 
     /**
      * Devuelve los nombres del páginas que hay en la web.
-     * 
+     *
      * Lista con los datos de la columna `page_name` de la table tm_page.
-     * 
+     *
      * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
-     * 
+     *
      *
      * @author Ángel M. M. Díez
      */
     public function getPage_names()
     {
-
         $select = "SELECT DISTINCT page_name FROM tm_page  ;";
 
         $resultados = $this->conn->query($select);
@@ -258,17 +262,16 @@ class Consulta extends Conexion
 
     /**
      * Devuelve los nombres del páginas que hay en la web.
-     * 
+     *
      * Lista con los datos de la columna `partial_name` de la table tm_partial.
-     * 
+     *
      * @return array Array sociativo con los nombres del páginas tanto en la clave como en el valor.
-     * 
+     *
      *
      * @author Ángel M. M. Díez
      */
     public function getPartial_names()
     {
-
         $select = "SELECT DISTINCT partial_name FROM tm_partial  ;";
 
         $resultados = $this->conn->query($select);
@@ -284,17 +287,16 @@ class Consulta extends Conexion
 
     /**
      * Devuelve los nombres del páginas que están en ambos idiomas.
-     * 
+     *
      * Llamamos nombre a la columna `page_name` de la table tm_page.
-     * 
+     *
      * @return array Array con los nombres del páginas que hay en la web.
-     * 
+     *
      *
      * @author Ángel M. M. Díez
      */
     public function getPage_namesEN_ES()
     {
-
         $select = "SELECT page_name FROM tm_page WHERE lang='es' AND page_name IN (SELECT page_name FROM tm_page WHERE lang='en') ;";
 
         $resultados = $this->conn->query($select);
@@ -314,11 +316,11 @@ class Consulta extends Conexion
      * @param string $usuario Usuario que pretende iniciar sesión.
      *
      * @return string Hash de la contraseña del admin.
-     * 
+     *
      * @throws UsuarioNoRegistradoException Si el usuario no existe en la tabla tm_users.
      * @throws BDException Si se encuentra más de un usuario. No debería ocurrir si la BD está bien diseñada.
      *
-     * 
+     *
      * @author Ángel M. M. Díez
      */
     public function getHash($usuario)
@@ -334,10 +336,11 @@ class Consulta extends Conexion
 
         $resultado = $this->conn->query($select);
 
-        if ($this->conn->affected_rows < 1)
+        if ($this->conn->affected_rows < 1) {
             throw new UsuarioNoRegistradoException("Usuario \"$usuario\" no registrado.");
-        elseif ($this->conn->affected_rows > 1)
+        } elseif ($this->conn->affected_rows > 1) {
             throw new BDException("Si estás viendo este error es que algo ha ido rematadamente mal y hay dos usuarios con el mismo nombre. Lo cual no debería ser posible ya que es la clave primaria, pero vamos a contemplarlo por si las moscas.");
+        }
 
 
         return $resultado->fetch_array()['hash'];
@@ -351,12 +354,11 @@ class Consulta extends Conexion
      * @param string $hash Hash de la contraseña del usuario..
      *
      * @return boolean Si se ha añadido a la BD, `true`; si no, `false`.
-     * 
+     *
      * @author Ángel M. M. Díez
      */
     public function añadirAdmin($usuario = null, $hash = null)
     {
-
         $insert =
             "INSERT 
                 INTO 
@@ -367,25 +369,26 @@ class Consulta extends Conexion
 
         $this->conn->query($insert);
 
-        if ($this->conn->affected_rows < 1)
+        if ($this->conn->affected_rows < 1) {
             return false;
+        }
 
         return true;
     }
 
     /**
      * Borra un usuario a la base de datos.
-     * 
-     * Si no de pasa ningún parámetro o este es `null` se borrarán 
+     *
+     * Si no de pasa ningún parámetro o este es `null` se borrarán
      * todos los registros de la tabla.
-     * 
-     * Si se pasa un array de string o string se borrarán 
+     *
+     * Si se pasa un array de string o string se borrarán
      * los usuarios con esos nombres.
      *
      * @param array|string|null $usuarios Nombres de los usuarios a borrar.
      *
      * @return void
-     * 
+     *
      * @author Ángel M. M. Díez
      */
     public function borrarAdmins($usuarios = null)
@@ -409,21 +412,22 @@ class Consulta extends Conexion
                     ;";
         }
 
-        if ($sql != '')
+        if ($sql != '') {
             $this->conn->query($sql);
+        }
     }
 
     /**
      * Registra un acceso de un administrador en la base de datos.
-     * 
-     * Si no de pasa ningún parámetro o este es `null` se borrarán 
+     *
+     * Si no de pasa ningún parámetro o este es `null` se borrarán
      * todos los registros de la tabla.
-     * 
+     *
      * @param boolean $success Si el acceso es exitoso.
      * @param string $usuario Nombre del administrador.
      * @param string $contraseña Contraseña empleada.
-     * 
-     * @return boolean Si se ha añadido a la BD, `true`; si no, `false`. 
+     *
+     * @return boolean Si se ha añadido a la BD, `true`; si no, `false`.
      * @author Ángel M. M. Díez
      */
     public function registrarAcceso($success, $usuario, $contraseña)
@@ -443,19 +447,20 @@ class Consulta extends Conexion
 
         $this->conn->query($insert);
 
-        if ($this->conn->affected_rows < 1)
+        if ($this->conn->affected_rows < 1) {
             return false;
+        }
 
         return true;
     }
 
     /**
      * Devuelve los accesos a la base de datos.
-     * 
+     *
      * Ordenados de más a menos reciente
      *
      * @return array Array con los id, administradores y las horas a las que han entrado.
-     * 
+     *
      * @author Ángel M. M. Díez
      */
     public function getAccess()

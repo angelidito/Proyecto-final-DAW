@@ -23,7 +23,7 @@ function cargar() {
             let json = await response.json();
             cargarJSON(json);
         } else if (response.status === 404)
-            document.getElementById("tabla-accesos").innerHTML = '<div class="alert alert-danger mx-auto my-4" role="alert"><p class="m-0 ">Error 404: archivo de accesos no encontrado.</p></div>';
+            document.getElementById("tabla-accesos").innerHTML = '<div class="alert alert-danger mx-auto my-4 w-100" role="alert"><p class="m-0 ">Error 404: archivo de accesos no encontrado.</p></div>';
     }
 
     obtenerJSON("../cache/vars/adminAccess.json");

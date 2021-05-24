@@ -3,3 +3,6 @@
 *.docxx
 ._*
 ~$*.docx
+*datos_config.php
+/cache/*
+cache/vars/adminAccess.json

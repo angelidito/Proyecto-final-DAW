@@ -28,17 +28,19 @@ try {
 }
 
 if (isset($_POST['noCache'])) {
-    if (borrarCache())
+    if (borrarCache()) {
         $mensajeExito .= "<p class='m-0'>Caché borrada correctamente</p>";
-    else
+    } else {
         $errores .= "<p class='m-0'>No se ha logrado borrar la caché</p>";
+    }
 }
 
-$rutaCache = '../cache/vars';
-if (file_exists($rutaCache))
+$rutaCache = '../cache/index.php';
+if (file_exists($rutaCache)) {
     $fechaCache = date("d-m-Y H:i:s", filectime($rutaCache));
-else
+} else {
     $fechaCache = 'NO DATA';
+}
 
 
 ?>
@@ -140,7 +142,9 @@ else
         <p>
         <ul class="list-unstyled">
             <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
-            <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34 608 29 15 90</a></li>
+            <li><a class="telefono"
+                    href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34
+                    608 29 15 90</a></li>
             <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
         </ul>
         </p>
