@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?></title>
+    <title><?php echo (isset($not_found) && $not_found) ? $title : $titles[$lang . '-' . $page_name] ?></title>
 
 
     <!-- BootstrapCDN -->
@@ -20,7 +20,7 @@
     </script>
 
     <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/6bhuqx89rm55uhit2zmiyx5y2vl4pufzhuycvki63e0e7d46/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- <script src="https://cdn.tiny.cloud/1/6bhuqx89rm55uhit2zmiyx5y2vl4pufzhuycvki63e0e7d46/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
 
 
     <!-- Mis Scripts -->

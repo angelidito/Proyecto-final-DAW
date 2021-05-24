@@ -1,13 +1,14 @@
 <?php
 
-require_once '../model/db/traduceme/conexion.php';
-require_once '../model/excepciones.php';
-
 /**
  * Provee de variables útiles y necesarias para el programa.
  *
  * @author Ángel M. M. Díez
  */
+
+require_once '../model/db/traduceme/conexion.php';
+require_once '../model/excepciones.php';
+
 
 session_start();
 // Comprueba haya cookie de idioma.
@@ -120,8 +121,8 @@ if (!file_exists($rutaTitles)) {
 }
 require_once $rutaTitles;
 // Cargamos la página en la caché si no lo está todavía 
-$t_code = $lang . '-' . $page_name;
-if (!file_exists($cache_page) || !isset($titles[$t_code])) {
+$title_code = $lang . '-' . $page_name;
+if (!file_exists($cache_page) || !isset($titles[$title_code])) {
     try {
 
         $pagina = $conn->getPaginas($page_name, $lang)[0];
@@ -130,9 +131,8 @@ if (!file_exists($cache_page) || !isset($titles[$t_code])) {
         fclose($file);
 
         // Guardamos el titulo de la página en la caché si no lo está ya
-        if (!isset($titles[$t_code])) {
-            $title = $pagina['title'];
-            file_put_contents($rutaTitles,  "\$titles['$t_code'] = '$title';" . PHP_EOL, FILE_APPEND);
+        if (!isset($titles[$title_code])) {
+            file_put_contents($rutaTitles,  "\$titles['$title_code'] = '" . $pagina['title'] . "';" . PHP_EOL, FILE_APPEND);
         }
     } catch (NoExistenRegistrosException $e) {
         // Si no existe en el idioma que se quiere, 
@@ -150,7 +150,7 @@ if (!file_exists($cache_page) || !isset($titles[$t_code])) {
             exit;
         }
     }
-} else $title = $titles[$t_code];
-
+}
+// else $title = $titles[$lang . '-' . $page_name];
 
 require_once "../views/plantilla.php";
