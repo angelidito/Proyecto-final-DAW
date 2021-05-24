@@ -4,5 +4,6 @@
 ._*
 ~$*.docx
 *datos_config.php
-/cache/*
+cache/*
 cache/vars/adminAccess.json
+*/.DS_Store
