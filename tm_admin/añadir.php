@@ -1,6 +1,7 @@
 <?php
 
-require_once 'adminSessionControl.php';
+require_once './adminSessionControl.php';
+require_once './adminFunctions.php';
 require_once '../model/excepciones.php';
 require_once '../model/pagina.php';
 

@@ -810,7 +810,6 @@ footer address {
     }
     ul.breadcrumb {
         padding-left: 0;
-        margin-left: 10%;
     }
     #menu {
         display: flex !important;
@@ -830,6 +829,7 @@ footer address {
         box-sizing: content-box;
         height: min-content;
         border: none;
+        z-index: 9999;
     }
     #menu a {
         padding: 1rem 1.3rem;

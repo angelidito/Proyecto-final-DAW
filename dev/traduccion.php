@@ -9,7 +9,7 @@
     <?php
     include('_partials/cabecera.php');
     ?>
-    <nav class=" m-0 py-0 w-100 fg">
+    <nav class=" container">
         <ul class="breadcrumb">
             <li>
                 <a href="../..">Inicio</a>
