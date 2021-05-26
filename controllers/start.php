@@ -87,7 +87,7 @@ $cache_header = "../cache/pages/_partials/$lang/header.html";
 $cache_footer = "../cache/pages/_partials/$lang/footer.html";
 $cache_page = "../cache/pages/$lang/$page_name.html";
 
-// Cargamos el header en la caché si no lo están todavía 
+// Cargamos el header en la caché si no lo están todavía
 if (!file_exists($cache_header)) {
     // Cargamos contenido de la pagina
     try {
@@ -99,7 +99,7 @@ if (!file_exists($cache_header)) {
         echo $e->getMessage();
     }
 }
-// Cargamos el footer en la caché si no lo están todavía 
+// Cargamos el footer en la caché si no lo están todavía
 if (!file_exists($cache_footer)) {
     // Cargamos contenido de la pagina
     try {
@@ -120,11 +120,10 @@ if (!file_exists($rutaTitles)) {
     fclose($file);
 }
 require_once $rutaTitles;
-// Cargamos la página en la caché si no lo está todavía 
+// Cargamos la página en la caché si no lo está todavía
 $title_code = $lang . '-' . $page_name;
 if (!file_exists($cache_page) || !isset($titles[$title_code])) {
     try {
-
         $pagina = $conn->getPaginas($page_name, $lang)[0];
         $file = fopen($cache_page, "w");
         fwrite($file, $pagina['content']);
@@ -132,11 +131,11 @@ if (!file_exists($cache_page) || !isset($titles[$title_code])) {
 
         // Guardamos el titulo de la página en la caché si no lo está ya
         if (!isset($titles[$title_code])) {
-            file_put_contents($rutaTitles,  "\$titles['$title_code'] = '" . $pagina['title'] . "';" . PHP_EOL, FILE_APPEND);
+            file_put_contents($rutaTitles, "\$titles['$title_code'] = '" . $pagina['title'] . "';" . PHP_EOL, FILE_APPEND);
         }
     } catch (NoExistenRegistrosException $e) {
-        // Si no existe en el idioma que se quiere, 
-        // se carga el contenido del otro idioma 
+        // Si no existe en el idioma que se quiere,
+        // se carga el contenido del otro idioma
         $lang = ($lang == 'es') ? 'en' : 'es';
         $cache_page = "../cache/pages/$lang/$page_name.html";
         try {

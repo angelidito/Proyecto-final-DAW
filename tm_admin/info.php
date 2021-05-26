@@ -1,8 +1,5 @@
 <?php
-$asdf = 1;
-$asdf = 1;
-$asdf = 1;
-$asdf = 1;
+
 require_once 'adminSessionControl.php';
 require_once 'adminFunctions.php';
 require_once '../model/pagina.php';
