@@ -88,7 +88,7 @@ try {
             }
             // Si no se realiza el update es que no existe o que no se ha modificado nada, así que la creamos
             else {
-                if ($pagina->crear()) {
+                if ($pagina->crear($_SESSION['logged_admin'])) {
                     $mensajeExito .= "<p class='m-0'>¡Página creada correctamente!</p> ";
                 } else {
                     $errores .= "<p class='m-0'>Advertencia: no se ha modificado nada, por lo que no se ha guardado ningún cambio en la base de datos</p> ";
@@ -207,18 +207,15 @@ if (isset($_POST['nocache'])) {
                 <div class="col-md-3 ">
                     <div class="form-group">
                         <label for="p_name_editar">Nombre de la página</label>
-                        <input id="p_name_editar" class="form-control" type="text" name="p_name"
-                            value="<?php echo $p_name ?>" readonly>
+                        <input id="p_name_editar" class="form-control" type="text" name="p_name" value="<?php echo $p_name ?>" readonly>
                     </div>
                 </div>
 
                 <div class=" <?php echo $hidden_partial == '' ? "col-md-2" : "col-md-3" ?>">
                     <div class="form-group">
                         <label for="lang_editar">Idioma</label>
-                        <input id="lang_muestra" class="form-control" type="text" name="lang_muestra"
-                            value="<?php echo ($lang == 'es') ? "español" : "inglés" ?>" readonly>
-                        <input id="lang_editar" class="d-none form-control hidden" type="text" name="lang"
-                            value="<?php echo $lang ?>" hidden readonly>
+                        <input id="lang_muestra" class="form-control" type="text" name="lang_muestra" value="<?php echo ($lang == 'es') ? "español" : "inglés" ?>" readonly>
+                        <input id="lang_editar" class="d-none form-control hidden" type="text" name="lang" value="<?php echo $lang ?>" hidden readonly>
 
                     </div>
                 </div>
@@ -226,8 +223,7 @@ if (isset($_POST['nocache'])) {
                 <div class="col-md-3 col-lg-4 <?php echo $hidden_partial ?>">
                     <div class="form-group">
                         <label for="title_editar">Título navegador</label>
-                        <input id="title_editar" class="form-control" type="text" name="title"
-                            <?php echo $hidden_partial == '' ? "minlength=5 maxlength=70 value='$title'" : $hidden_partial; ?>>
+                        <input id="title_editar" class="form-control" type="text" name="title" <?php echo $hidden_partial == '' ? "minlength=5 maxlength=70 value='$title'" : $hidden_partial; ?>>
                     </div>
                 </div>
 
@@ -244,16 +240,14 @@ if (isset($_POST['nocache'])) {
                 <div class="col-12 ">
                     <div class="form-group">
                         <label for="content">Contenido</label>
-                        <textarea id="content" class="form-control editable" name="content" rows="30" minlength=13
-                            maxlength=65535><?php echo $content ?></textarea>
+                        <textarea id="content" class="form-control editable" name="content" rows="30" minlength=13 maxlength=65535><?php echo $content ?></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col form-group ">
                     <div class="form-check float-right">
-                        <input class="form-check-input if-checked-then-show check" type="checkbox" value="" id="nocache"
-                            name="nocache">
+                        <input class="form-check-input if-checked-then-show check" type="checkbox" value="" id="nocache" name="nocache">
                         <label class="form-check-label text-left " for="nocache">
                             Borrar caché
                         </label>
