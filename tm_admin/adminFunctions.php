@@ -80,7 +80,7 @@ function deleteDirectory($dir)
  */
 function noAnnoyingTags($html)
 {
-    $search = ['<!DOCTYPE html>', '<html>', '</html>', '<head>', '</head>', '<body>', '</body>'];
+    $search = ['<!DOCTYPE html>', '<html>', '</html>', '<head>', '</head>', '<body>', '</body>', "\n"];
     $replace = '';
 
     return str_replace($search, $replace, $html);
