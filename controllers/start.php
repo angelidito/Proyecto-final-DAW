@@ -119,6 +119,7 @@ if (!file_exists($rutaTitles)) {
     fwrite($file, '<?php $titles = [];' . PHP_EOL);
     fclose($file);
 }
+
 require_once $rutaTitles;
 // Cargamos la página en la caché si no lo está todavía
 $title_code = $lang . '-' . $page_name;
@@ -132,6 +133,7 @@ if (!file_exists($cache_page) || !isset($titles[$title_code])) {
         // Guardamos el titulo de la página en la caché si no lo está ya
         if (!isset($titles[$title_code])) {
             file_put_contents($rutaTitles, "\$titles['$title_code'] = '" . $pagina['title'] . "';" . PHP_EOL, FILE_APPEND);
+            $titles[$title_code] = $pagina['title'];
         }
     } catch (NoExistenRegistrosException $e) {
         // Si no existe en el idioma que se quiere,

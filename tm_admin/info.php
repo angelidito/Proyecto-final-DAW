@@ -13,11 +13,11 @@ $mensajeExito = '';
 $conn = new Consulta();
 
 try {
-    $paginasES = $conn->getPaginas('', 'es');
-    $paginasEN = $conn->getPaginas('', 'en');
+    $paginasES = $conn->getPaginas(null, 'es');
+    $paginasEN = $conn->getPaginas(null, 'en');
 
-    $tablaES = tabularMatrizN($paginasES, ['Página', 'Idioma', 'Título',], 'table caption-top', 'Páginas en español');
-    $tablaEN = tabularMatrizN($paginasEN, ['Página', 'Idioma', 'Título',], 'table caption-top', 'Páginas en inglés');
+    $tablaES = tabularMatrizN($paginasES, ['Página', 'Idioma', 'Título', 'Admin',], 'table thead-light table-hover table-striped caption-top table-sm', 'Páginas en español');
+    $tablaEN = tabularMatrizN($paginasEN, ['Página', 'Idioma', 'Título', 'Admin',], 'table thead-light table-hover table-striped caption-top table-sm', 'Páginas en inglés');
 } catch (BDException $e) {
     $errores .= "<p class='m-0'>" . $e->getMessage() . "</p>";
 } catch (Exception $e) {
@@ -67,11 +67,11 @@ if (file_exists($rutaCache)) {
     <div class="container mt-4">
         <h2 class="mb-4">Páginas en la base de datos</h2>
         <div class="row text-left">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-6 pl-0">
                 <?php echo $tablaES ?>
                 <hr class="clasic mt-0 mb-4 d-md-none d-sm-block">
             </div>
-            <div class="col-xs-12 col-md-6 ">
+            <div class="col-xs-12 col-md-6 pr-0">
                 <?php echo $tablaEN ?>
                 <!-- <hr class="clasic mb-0"> -->
             </div>
@@ -97,7 +97,7 @@ if (file_exists($rutaCache)) {
         <p>
             Estos son los últimos accesos al modo de administrador.
         </p>
-        <table class="table ">
+        <table class="table thead-light table-hover table-sm ">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -139,8 +139,7 @@ if (file_exists($rutaCache)) {
         <p>
         <ul class="list-unstyled">
             <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
-            <li><a class="telefono"
-                    href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34
+            <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34
                     608 29 15 90</a></li>
             <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
         </ul>

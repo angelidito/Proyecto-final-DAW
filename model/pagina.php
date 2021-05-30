@@ -129,16 +129,18 @@ class Pagina
     /**
      * Crea a partir de si misma, un registro en la base de datos en la tabla tm_page.
      *
+     * @param string $usuario Usuario administrador que ha creado la página.
+     * 
      * @return boolean `true` si se ha añadido, `false` si no.
      * @throws FormException Cuando los atributos del objeto no son no tienen el tamaño que deben tener.
      *
      * @author Ángel M. M. Díez
      */
-    public function crear()
+    public function crear($usuario)
     {
         $this->validarPagina();
 
-        return self::$conn->añadirPagina($this);
+        return self::$conn->añadirPagina($this, $usuario);
     }
 
     /**

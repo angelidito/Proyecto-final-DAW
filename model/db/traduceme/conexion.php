@@ -86,21 +86,21 @@ class Consulta extends Conexion
      * Añade una página a la base de datos.
      *
      * @param Pagina $pagina Página a añadir.
+     * @param string $usuario Usuario administrador que ha añadido la página.
      *
      * @return boolean `true` si la página se ha añadido a la base de datos. `false` si no.
      *
      * @author Ángel M. M. Díez
      */
-    public function añadirPagina($pagina)
+    public function añadirPagina($pagina, $usuario)
     {
         $datos = $pagina->toArray(false);
 
         $insert =
             "INSERT INTO
-                tm_page (page_name, lang, title, content)
+                tm_page (page_name, lang, title, user, content)
             VALUES
-                ('$datos[0]', '$datos[1]', '$datos[2]', '" . addslashes($datos[3]) . "');";
-
+                ('$datos[0]', '$datos[1]', '$datos[2]', '$usuario', '" . addslashes($datos[3]) . "');";
 
         $this->conn->query($insert);
 
@@ -434,7 +434,7 @@ class Consulta extends Conexion
     {
         // Por seguridad para no guardarla en tecto plano
         if ($success) {
-            $contraseña = '********';
+            $contraseña = '************';
         }
         $s = $success ? 1 : 0;
         $insert =
