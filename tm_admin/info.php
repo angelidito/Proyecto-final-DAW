@@ -60,7 +60,7 @@ if (file_exists($rutaCache)) {
     <div class="container mt-4">
         <div class="alert alert-success" role="alert"><?php echo $mensajeExito ?></div>
         <div class="alert alert-danger" role="alert"><?php echo $errores ?></div>
-        <p class="">Aquí tienes todo lo que puedas querer saber.</p>
+        <p class="">Aquí tienes toda la información que puedas necesitar.</p>
         <hr class="clasic mt-4">
     </div>
 
@@ -134,17 +134,7 @@ if (file_exists($rutaCache)) {
         <hr class="clasic my-4">
     </div>
 
-    <div class="container mt-4">
-        <h2 class="mb-4 ">Contacta con el desarrollador</h2>
-        <p>
-        <ul class="list-unstyled">
-            <li><a href="https://twitter.com/angelidito">Ángel Mori Martínez Díez</a></li>
-            <li><a class="telefono" href="https://wa.me/34608291590?text=&iexcl;Hola%21%20Tengo%20tengo%20un%20problema%20con%20la%20web&hellip;">+34
-                    608 29 15 90</a></li>
-            <li><a class="email" href="mailto:angel.mtnez.diez@gmail.com">angel.mtnez.diez@gmail.com</a></li>
-        </ul>
-        </p>
-    </div>
+    
 
 
     </main>
