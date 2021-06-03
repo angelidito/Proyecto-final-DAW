@@ -24,7 +24,7 @@ function inicio() {
 
     editContentAfter();
     if (document.getElementById('texto-crear-pagina') != null) {
-        document.getElementById('page_name').addEventListener('input', editContentAfter);
+        document.getElementById('p_name').addEventListener('input', editContentAfter);
     }
 
 }
@@ -180,11 +180,11 @@ function asignarEnlaceAClase(clase, enlace) {
 }
 
 function contador() {
-    (function($) {
-        $.fn.countTo = function(options) {
+    (function ($) {
+        $.fn.countTo = function (options) {
             options = options || {};
 
-            return $(this).each(function() {
+            return $(this).each(function () {
                 // set options for current element
                 var settings = $.extend({}, $.fn.countTo.defaults, {
                     from: $(this).data('from'),
@@ -222,7 +222,7 @@ function contador() {
 
                     render(value);
 
-                    if (typeof(settings.onUpdate) == 'function') {
+                    if (typeof (settings.onUpdate) == 'function') {
                         settings.onUpdate.call(self, value);
                     }
 
@@ -232,7 +232,7 @@ function contador() {
                         clearInterval(data.interval);
                         value = settings.to;
 
-                        if (typeof(settings.onComplete) == 'function') {
+                        if (typeof (settings.onComplete) == 'function') {
                             settings.onComplete.call(self, value);
                         }
                     }
@@ -266,10 +266,10 @@ function contador() {
 
 
 
-    jQuery(function($) {
+    jQuery(function ($) {
         // custom formatting example
         $('.count-number').data('countToOptions', {
-            formatter: function(value, options) {
+            formatter: function (value, options) {
                 return value.toFixed(options.decimals).replace(
                     /\B(?=(?:\d{3})+(?!\d))/g, ',');
             }
@@ -338,7 +338,7 @@ function editContentAfter() {
 
     let textoCrearPagina = document.getElementById('texto-crear-pagina');
     if (textoCrearPagina != null) {
-        let texto = document.getElementById('page_name').value + '.php';
+        let texto = document.getElementById('p_name').value + '.php';
         textoCrearPagina.setAttribute('data-content-after', texto);
     }
 
